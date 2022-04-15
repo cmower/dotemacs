@@ -1,0 +1,5 @@
+#+title: Emacs initialization
+
+#+begin_src emacs-lisp
+(message "hello world")
+#+end_src
