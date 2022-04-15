@@ -1,0 +1,23 @@
+
+# Autogen files
+Emacs.el
+Emacs.tex
+Emacs.pdf
+custom.el
+ac-comphist.dat
+bookmarks
+recentf
+
+# Ignore emacs backup files
+*~
+
+# Autogen directories
+elpa/
+transient/
+ltximg/
+elfeed/
+eshell/
+games/
+
+# Private files
+private.txt
