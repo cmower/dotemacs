@@ -79,8 +79,16 @@
 - https://emacs.stackexchange.com/a/59811/30155
 
 * Theme
+* Custom functions
 
 #+begin_src emacs-lisp
+
+  (defun open-init-file ()
+    "Open Emacs init file."
+    (interactive)
+    (find-file (expand-file-name "Emacs.org" user-emacs-directory)))
+
+#+end_src
 
   ;; (load-theme 'spacegray t)
   (load-theme 'monokai t)
