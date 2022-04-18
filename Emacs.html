@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-18 Mon 01:38 -->
+<!-- 2022-04-18 Mon 01:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs initialization</title>
@@ -246,17 +246,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb80151a">1. Package management</a></li>
-<li><a href="#orgaa64f92">2. use-package</a></li>
-<li><a href="#org9d20222">3. Magit</a></li>
-<li><a href="#org893bbf3">4. Completed Emacs.org setup</a></li>
-<li><a href="#orgae805a8">5. Local variables</a></li>
+<li><a href="#org1475856">1. Package management</a></li>
+<li><a href="#org3eabe21">2. use-package</a></li>
+<li><a href="#org590e8ab">3. Magit</a></li>
+<li><a href="#orgb0e0955">4. Completed Emacs.org setup</a></li>
+<li><a href="#orgdc68b0d">5. Local variables</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb80151a" class="outline-2">
-<h2 id="orgb80151a"><span class="section-number-2">1</span> Package management</h2>
+<div id="outline-container-org1475856" class="outline-2">
+<h2 id="org1475856"><span class="section-number-2">1</span> Package management</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -276,8 +276,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgaa64f92" class="outline-2">
-<h2 id="orgaa64f92"><span class="section-number-2">2</span> use-package</h2>
+<div id="outline-container-org3eabe21" class="outline-2">
+<h2 id="org3eabe21"><span class="section-number-2">2</span> use-package</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -297,8 +297,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org9d20222" class="outline-2">
-<h2 id="org9d20222"><span class="section-number-2">3</span> Magit</h2>
+<div id="outline-container-org590e8ab" class="outline-2">
+<h2 id="org590e8ab"><span class="section-number-2">3</span> Magit</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
@@ -310,7 +310,7 @@ for the JavaScript code in this tag.
   :ensure t)
 
 ;; Custom functions for opening GitHub from magit
-(defun cem/parse-github-url (url)
+(defun parse-github-url (url)
   "convert a git remote location as a HTTP URL"
   (if (string-match "^http" url)
       url
@@ -318,17 +318,17 @@ for the JavaScript code in this tag.
 			      "https://\\2/\\3"
 			      url)))
 
-(defun cem/magit-open-repo ()
+(defun magit-open-repo ()
   "open remote repo URL"
   (interactive)
   (let ((url (magit-get "remote" "origin" "url")))
     (progn
-      (browse-url (cem/parse-github-url url))
+      (browse-url (parse-github-url url))
       (message "Opening %s" url))))
 
 (add-hook 'magit-mode-hook
 	  (lambda ()
-	    (local-set-key (kbd "o") 'cem/magit-open-repo)))
+	    (local-set-key (kbd "o") 'magit-open-repo)))
 
 (message "successfully setup magit")
 
@@ -337,8 +337,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org893bbf3" class="outline-2">
-<h2 id="org893bbf3"><span class="section-number-2">4</span> Completed Emacs.org setup</h2>
+<div id="outline-container-orgb0e0955" class="outline-2">
+<h2 id="orgb0e0955"><span class="section-number-2">4</span> Completed Emacs.org setup</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(message "finished Emacs.org setup")
@@ -347,8 +347,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgae805a8" class="outline-2">
-<h2 id="orgae805a8"><span class="section-number-2">5</span> Local variables</h2>
+<div id="outline-container-orgdc68b0d" class="outline-2">
+<h2 id="orgdc68b0d"><span class="section-number-2">5</span> Local variables</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 View this file as a text file.
@@ -357,7 +357,7 @@ View this file as a text file.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-04-18 Mon 01:38</p>
+<p class="date">Created: 2022-04-18 Mon 01:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
