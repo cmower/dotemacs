@@ -79,7 +79,6 @@
 - https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/
 - https://emacs.stackexchange.com/a/59811/30155
 
-* Theme
 * Custom functions
 
 #+begin_src emacs-lisp
@@ -96,12 +95,36 @@
 
 #+end_src
 
+* User interface
+
+** Theme
+
+#+begin_src emacs-lisp
   ;; (load-theme 'spacegray t)
   (load-theme 'monokai t)
 
   (report-init-stage "successfully setup emacs theme")
 
 #+end_src
+
+** Appearance
+
+#+begin_src emacs-lisp
+
+  (scroll-bar-mode 0) ;; remove scroll bar
+  (tool-bar-mode 0) ;; remove tool bar
+  (menu-bar-mode 0) ;; remove menu bar
+  (show-paren-mode 1) ;; highlight parentheses
+  (global-hl-line-mode 1) ;; highlight current line
+  (global-linum-mode 1) ;; show line numbers
+
+  (report-init-stage "successfully setup appearance")
+
+#+end_src
+
+** Resources
+
+- http://ergoemacs.org/emacs/emacs_highlight_parenthesis.html
 
 * Magit
 
