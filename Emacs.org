@@ -154,7 +154,7 @@ https://magit.vc/manual/magit/
    '(("TODO" . (:foreground "#ffb347" :weight bold))
      ("DONE" . (:foreground "#037d50"))
      ("TODAY" . (:foreground "#add8e6" :weight bold))
-     ("CANCELED" . (:foreground "red"))))
+     ("CANCELED" . (:foreground "red")))
 
    )
 
@@ -274,7 +274,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
   (setq day-of-week-today (get-day-from-now 0))
 
   ;; Get day of week end
-  (-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* (- 8 cem/day-of-week-today) 86400) (float-time)))))
+  (-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* (- 8 day-of-week-today) 86400) (float-time)))))
     (setq org-end-of-week (format "%d-%02d-%02d" year month day)))
 
   ;; Get day of week soon date (i.e. 4 days)
@@ -304,11 +304,11 @@ The following date indicators are required in the =org-super-agenda= setup in th
             (:name "Read by today" :and (:deadline today :tag "reading"))
             (:name "Watch today" :and (:deadline today :tag "watch"))
             (:name "By today" :deadline today)
-            (:name "Read tomorrow" :and (:deadline (before ,cem/org-tomorrow-date) :tag "reading"))
-            (:name "By tomorrow" :deadline (before ,cem/org-tomorrow-date))
-            (:name "Read by EOW" :and (:deadline (before ,cem/org-end-of-week) :tag "reading"))
-            (:name "Watch by EOW" :and (:deadline (before ,cem/org-end-of-week) :tag "watch"))
-            (:name "By EOW" :deadline (before ,cem/org-end-of-week))
+            (:name "Read tomorrow" :and (:deadline (before ,org-tomorrow-date) :tag "reading"))
+            (:name "By tomorrow" :deadline (before ,org-tomorrow-date))
+            (:name "Read by EOW" :and (:deadline (before ,org-end-of-week) :tag "reading"))
+            (:name "Watch by EOW" :and (:deadline (before ,org-end-of-week) :tag "watch"))
+            (:name "By EOW" :deadline (before ,org-end-of-week))
             (:name "Reading" :tag "reading"))))
 
 #+end_src
