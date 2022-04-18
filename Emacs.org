@@ -74,11 +74,25 @@ https://magit.vc/manual/magit/
 #+begin_src emacs-lisp
 
   (setq
+ 
+   ;; default location to look for Org files
    org-directory "~/Dropbox/org"
+
+   ;; font-lock should hide the emphasis marker characters
    org-hide-emphasis-markers t
+
+   ;; turn on org-indent-mode on startup.
    org-startup-indented t
+
+   ;; insert state change notes and time stamps into a drawer
    org-log-into-drawer t
-   org-log-done t)
+
+   ;; information to record when a task moves to the DONE state.
+   org-log-done t
+ 
+   )
+
+#+end_src
 
 #+end_src
 
