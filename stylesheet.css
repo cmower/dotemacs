@@ -6,6 +6,10 @@ body {
     margin:auto
 }
 
+div#text-table-of-contents li {
+    list-style-type: none;
+}
+
 .title  {
 
     font-family: 'Lato', Verdana, Helvetica, sans-serif;
