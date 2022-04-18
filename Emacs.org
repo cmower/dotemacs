@@ -422,6 +422,15 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 #+end_src
 
+* Hooks
+
+#+begin_src emacs-lisp
+
+  ;; remove any trailing whitespace on save
+  (add-hook 'after-save-hook 'delete-trailing-whitespace)
+
+#+end_src
+
 * Completed Emacs.org setup
 
 #+begin_src emacs-lisp
