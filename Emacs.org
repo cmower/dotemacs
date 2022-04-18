@@ -74,7 +74,7 @@ https://magit.vc/manual/magit/
 #+begin_src emacs-lisp
 
   (setq
- 
+
    ;; default location to look for Org files
    org-directory "~/Dropbox/org"
 
