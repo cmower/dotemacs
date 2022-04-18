@@ -524,6 +524,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
   ;; Init file
   (global-set-key (kbd "C-c i") 'open-init-file)
+
 #+end_src
 
 * Hooks
