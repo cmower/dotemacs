@@ -1,6 +1,7 @@
 #+title: Emacs initialization
-#+OPTIONS: author:nil date:nil
+#+OPTIONS: author:nil date:nil html-style:nil
 #+FILETAGS: :emacs:
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 
 * Package management
 
