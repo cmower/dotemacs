@@ -39,6 +39,19 @@
 
   (setq
 
+   ;; full name of the user logged in
+   user-full-name "Christopher E. Mower"
+
+
+   ;; file used for storing customization information.
+   custom-file (concat user-emacs-directory "/custom.el")
+
+   ;; application that opens pdf documents
+   pdf-open-application
+   (cond
+    ((string-equal system-type "gnu/linux") "evince")
+    ((string-equal system-type "darwin") "open"))
+
    ;; default user directory for storing custom theme files
    custom-theme-directory "~/.emacs.d/themes"
 
