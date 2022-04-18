@@ -33,6 +33,18 @@
 
 - [[https://emacs.stackexchange.com/a/50603/30155][use-package won't load]]
 
+* Constants
+
+#+begin_src emacs-lisp
+
+  (setq
+
+   ;; default user directory for storing custom theme files
+   custom-theme-directory "~/.emacs.d/themes"
+
+   )
+
+#+end_src
 * Magit
 
 https://magit.vc/manual/magit/
