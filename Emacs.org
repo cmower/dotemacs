@@ -74,6 +74,8 @@ https://magit.vc/manual/magit/
 
 * Local variables
 
+View this file as a text file.
+
 # Local variables:
 # eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
 # end:
