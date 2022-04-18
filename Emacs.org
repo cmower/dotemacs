@@ -55,7 +55,19 @@
    ;; default user directory for storing custom theme files
    custom-theme-directory "~/.emacs.d/themes"
 
+   ;; number of lines of margin at the top and bottom of a window
+   scroll-margin 5
+
+   ;; the number of lines to try scrolling a window by when point moves out
+   scroll-step 1
+
+   ;; The day of the week on which a week in the calendar begins
+   ;; 0 means Sunday (default), 1 means Monday, and so on
+   calendar-week-start-day 1
+
    )
+
+(message "set constants")
 
 #+end_src
 
@@ -63,6 +75,7 @@
 
 - https://stackoverflow.com/a/1817318/4650592
 - https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/
+- https://emacs.stackexchange.com/a/59811/30155
 
 * Theme
 
