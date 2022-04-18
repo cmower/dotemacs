@@ -222,6 +222,18 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
+Note, when writing $\LaTeX$ equations, the standard environment to use is
+#+begin_src :tangle no
+\begin{equation}
+  E = mc^2
+\end{equation}
+#+end_src
+however, when writing $\LaTeX$ in Org-mode files, use
+#+begin_src :tangle no
+#+begin_export latex
+  E = mc^2
+#+end_export
+#+end_src
 ** Finished Org
 
 #+begin_src emacs-lisp
