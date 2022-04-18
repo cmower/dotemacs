@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-18 Mon 15:52 -->
+<!-- 2022-04-18 Mon 16:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs initialization</title>
@@ -238,6 +238,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -246,36 +268,51 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga262932">1. Package management</a></li>
-<li><a href="#orga5b13e4">2. use-package</a></li>
-<li><a href="#org0be163f">3. Magit</a></li>
-<li><a href="#org3813823">4. Org</a>
+<li><a href="#orgac197f4">1. Package management</a></li>
+<li><a href="#orgdda621b">2. use-package</a></li>
+<li><a href="#org8a69f31">3. Magit</a></li>
+<li><a href="#org0afa044">4. Org</a>
 <ul>
-<li><a href="#org3b5c6fe">4.1. Constants</a></li>
-<li><a href="#org2359642">4.2. Org files</a>
+<li><a href="#orgfe71663">4.1. Constants</a>
 <ul>
-<li><a href="#org704936e">4.2.1. Resources</a></li>
+<li><a href="#org7771d3e">4.1.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org1ddd34b">4.3. Appearance</a>
+<li><a href="#orgc33ae17">4.2. Org files</a>
 <ul>
-<li><a href="#org77f7d64">4.3.1. Resources</a></li>
+<li><a href="#org49107c0">4.2.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgeb929bc">4.4. Org-babel</a></li>
-<li><a href="#org4f69f6b">4.5. Org-ref</a></li>
-<li><a href="#orgbbd4dbb">4.6. Finished Org</a></li>
+<li><a href="#org9799103">4.3. Appearance</a>
+<ul>
+<li><a href="#orgf1e6942">4.3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org2c470af">5. Keybindings</a></li>
-<li><a href="#org98a2829">6. Completed Emacs.org setup</a></li>
-<li><a href="#org4053d4d">7. Local variables</a></li>
+<li><a href="#org6ccdc99">4.4. org-babel</a></li>
+<li><a href="#org14d2b3b">4.5. org-ref</a>
+<ul>
+<li><a href="#orgb8262d8">4.5.1. Resources</a></li>
+</ul>
+</li>
+<li><a href="#org03adad5">4.6. org-super-agenda</a>
+<ul>
+<li><a href="#org1862ecc">4.6.1. Preliminary setup</a></li>
+<li><a href="#org42f25c6">4.6.2. Main org-super-agenda configuration</a></li>
+<li><a href="#orgf94e87c">4.6.3. Resources</a></li>
+</ul>
+</li>
+<li><a href="#orgc7452f2">4.7. Finished Org</a></li>
+</ul>
+</li>
+<li><a href="#org0f4c1c8">5. Keybindings</a></li>
+<li><a href="#orgfba732b">6. Completed Emacs.org setup</a></li>
+<li><a href="#org99ade4f">7. Local variables</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga262932" class="outline-2">
-<h2 id="orga262932"><span class="section-number-2">1</span> Package management</h2>
+<div id="outline-container-orgac197f4" class="outline-2">
+<h2 id="orgac197f4"><span class="section-number-2">1</span> Package management</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -295,8 +332,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga5b13e4" class="outline-2">
-<h2 id="orga5b13e4"><span class="section-number-2">2</span> use-package</h2>
+<div id="outline-container-orgdda621b" class="outline-2">
+<h2 id="orgdda621b"><span class="section-number-2">2</span> use-package</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -316,8 +353,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org0be163f" class="outline-2">
-<h2 id="org0be163f"><span class="section-number-2">3</span> Magit</h2>
+<div id="outline-container-org8a69f31" class="outline-2">
+<h2 id="org8a69f31"><span class="section-number-2">3</span> Magit</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
@@ -356,12 +393,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3813823" class="outline-2">
-<h2 id="org3813823"><span class="section-number-2">4</span> Org</h2>
+<div id="outline-container-org0afa044" class="outline-2">
+<h2 id="org0afa044"><span class="section-number-2">4</span> Org</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org3b5c6fe" class="outline-3">
-<h3 id="org3b5c6fe"><span class="section-number-3">4.1</span> Constants</h3>
+<div id="outline-container-orgfe71663" class="outline-3">
+<h3 id="orgfe71663"><span class="section-number-3">4.1</span> Constants</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -396,15 +433,65 @@ for the JavaScript code in this tag.
    "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"
    "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b")
 
+ ;; sorting structure for the agenda items of a single day
+ org-agenda-sorting-strategy
+ '((agenda habit-down time-up priority-down effort-up category-keep)
+   (todo priority-down effort-up category-keep)
+   (tags priority-down effort-up category-keep)
+   (search category-keep))
+
+ ;; don’t show deadlines when the corresponding item is done
+ org-agenda-skip-deadline-if-done t
+
+ ;; don’t show scheduled items in agenda when they are done
+ org-agenda-skip-scheduled-if-done t
+
+ ;; custom commands for the agenda
+ org-agenda-custom-commands
+ '(
+
+   ;; view completed tasks today
+   ("D" "Daily review"
+    tags "+CLOSED&gt;\"&lt;-0d&gt;\"/DONE")
+
+   ;; view completed tasks during past week
+   ("W" "Weekly review"
+    tags "+CLOSED&gt;\"&lt;-7d&gt;\"/DONE")
+
+   ;; view completed tasks during past two weeks
+   ("R" "Fortnightly review"
+    tags "+CLOSED&gt;\"&lt;-14d&gt;\"/DONE")
+
+   ;; view completed tasks during past month
+   ("N" "Monthly review"
+    tags "+CLOSED&gt;\"&lt;-1m&gt;\"/DONE")
+
+   ;; view TODO items without a timestamp
+   ("U" "Unscheduled TODO"
+    ((todo ""
+	   ((org-agenda-overriding-header "\nUnscheduled TODO")
+	    (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))))
+
  )
 
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org7771d3e" class="outline-4">
+<h4 id="org7771d3e"><span class="section-number-4">4.1.1</span> Resources</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<ul class="org-ul">
+<li><a href="https://emacs.stackexchange.com/a/16561">https://emacs.stackexchange.com/a/16561</a></li>
+<li><a href="https://emacs.stackexchange.com/a/53007/30155">https://emacs.stackexchange.com/a/53007/30155</a></li>
+<li><a href="https://www.reddit.com/r/orgmode/comments/jqu70x/how_to_create_a_custom_agenda_view_to_show_all/">https://www.reddit.com/r/orgmode/comments/jqu70x/how_to_create_a_custom_agenda_view_to_show_all/</a></li>
+</ul>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org2359642" class="outline-3">
-<h3 id="org2359642"><span class="section-number-3">4.2</span> Org files</h3>
+<div id="outline-container-orgc33ae17" class="outline-3">
+<h3 id="orgc33ae17"><span class="section-number-3">4.2</span> Org files</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -419,8 +506,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org704936e" class="outline-4">
-<h4 id="org704936e"><span class="section-number-4">4.2.1</span> Resources</h4>
+<div id="outline-container-org49107c0" class="outline-4">
+<h4 id="org49107c0"><span class="section-number-4">4.2.1</span> Resources</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/">https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/</a></li>
@@ -429,8 +516,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org1ddd34b" class="outline-3">
-<h3 id="org1ddd34b"><span class="section-number-3">4.3</span> Appearance</h3>
+<div id="outline-container-org9799103" class="outline-3">
+<h3 id="org9799103"><span class="section-number-3">4.3</span> Appearance</h3>
 <div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -455,8 +542,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org77f7d64" class="outline-4">
-<h4 id="org77f7d64"><span class="section-number-4">4.3.1</span> Resources</h4>
+<div id="outline-container-orgf1e6942" class="outline-4">
+<h4 id="orgf1e6942"><span class="section-number-4">4.3.1</span> Resources</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li><a href="https://github.com/awth13/org-appear">https://github.com/awth13/org-appear</a></li>
@@ -467,8 +554,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgeb929bc" class="outline-3">
-<h3 id="orgeb929bc"><span class="section-number-3">4.4</span> Org-babel</h3>
+<div id="outline-container-org6ccdc99" class="outline-3">
+<h3 id="org6ccdc99"><span class="section-number-3">4.4</span> org-babel</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -482,8 +569,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4f69f6b" class="outline-3">
-<h3 id="org4f69f6b"><span class="section-number-3">4.5</span> Org-ref</h3>
+<div id="outline-container-org14d2b3b" class="outline-3">
+<h3 id="org14d2b3b"><span class="section-number-3">4.5</span> org-ref</h3>
 <div class="outline-text-3" id="text-4-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -495,12 +582,126 @@ for the JavaScript code in this tag.
 
 </pre>
 </div>
+
+<p>
+Note, when writing \(\LaTeX\) equations, the standard environment to use is
+</p>
+<div class="org-src-container">
+<pre class="src src-:tangle">\begin{equation}
+  E = mc^2
+\end{equation}
+</pre>
+</div>
+<p>
+however, when writing \(\LaTeX\) in Org-mode files, use
+</p>
+<div class="org-src-container">
+<pre class="src src-:tangle">#+begin_export latex
+  E = mc^2
+#+end_export
+</pre>
 </div>
 </div>
 
-<div id="outline-container-orgbbd4dbb" class="outline-3">
-<h3 id="orgbbd4dbb"><span class="section-number-3">4.6</span> Finished Org</h3>
+<div id="outline-container-orgb8262d8" class="outline-4">
+<h4 id="orgb8262d8"><span class="section-number-4">4.5.1</span> Resources</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=2t925KRBbFc">https://www.youtube.com/watch?v=2t925KRBbFc</a></li>
+<li><a href="https://emacs.stackexchange.com/a/58641/30155">https://emacs.stackexchange.com/a/58641/30155</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03adad5" class="outline-3">
+<h3 id="org03adad5"><span class="section-number-3">4.6</span> org-super-agenda</h3>
 <div class="outline-text-3" id="text-4-6">
+<p>
+<a href="https://github.com/alphapapa/org-super-agenda">https://github.com/alphapapa/org-super-agenda</a>
+</p>
+</div>
+
+<div id="outline-container-org1862ecc" class="outline-4">
+<h4 id="org1862ecc"><span class="section-number-4">4.6.1</span> Preliminary setup</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<p>
+The following date indicators are required in the <code>org-super-agenda</code> setup in the next section.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+;; Return day of week: Sun=0, Mon=1, Tues=2, ..., Sat=6
+(defun get-day-from-now (n)
+  (-let*
+      (((sec minute hour day month year dow dst utcoff)
+	(decode-time (+ (* n 86400) (float-time)))))
+    dow)) ;; dow &lt;=&gt; day-of-week
+
+;; Get day of week today
+(setq day-of-week-today (get-day-from-now 0))
+
+;; Get day of week end
+(-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* (- 8 cem/day-of-week-today) 86400) (float-time)))))
+  (setq org-end-of-week (format "%d-%02d-%02d" year month day)))
+
+;; Get day of week soon date (i.e. 4 days)
+(-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 4 86400) (float-time))))) ;; 4 days
+  (setq org-soon-date (format "%d-%02d-%02d" year month day)))
+
+;; Get day of week tomorrow date
+(-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 2 86400) (float-time))))) ;; 2 days
+  (setq org-tomorrow-date (format "%d-%02d-%02d" year month day)))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org42f25c6" class="outline-4">
+<h4 id="org42f25c6"><span class="section-number-4">4.6.2</span> Main org-super-agenda configuration</h4>
+<div class="outline-text-4" id="text-4-6-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package org-super-agenda
+  :ensure t
+  :config
+  (org-super-agenda-mode t)
+  (setq org-super-agenda-groups
+	`((:name "Today" :time-grid t)
+	  (:name "Scheduled" :scheduled past)
+	  (:name "Overdue reading" :and (:deadline past :tag "reading"))
+	  (:name "Overdue" :deadline past)
+	  (:name "Scheduled Today" :todo "TODAY")
+	  (:name "Read by today" :and (:deadline today :tag "reading"))
+	  (:name "Watch today" :and (:deadline today :tag "watch"))
+	  (:name "By today" :deadline today)
+	  (:name "Read tomorrow" :and (:deadline (before ,cem/org-tomorrow-date) :tag "reading"))
+	  (:name "By tomorrow" :deadline (before ,cem/org-tomorrow-date))
+	  (:name "Read by EOW" :and (:deadline (before ,cem/org-end-of-week) :tag "reading"))
+	  (:name "Watch by EOW" :and (:deadline (before ,cem/org-end-of-week) :tag "watch"))
+	  (:name "By EOW" :deadline (before ,cem/org-end-of-week))
+	  (:name "Reading" :tag "reading"))))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf94e87c" class="outline-4">
+<h4 id="orgf94e87c"><span class="section-number-4">4.6.3</span> Resources</h4>
+<div class="outline-text-4" id="text-4-6-3">
+<ul class="org-ul">
+<li><a href="https://stackoverflow.com/a/67741229">https://stackoverflow.com/a/67741229</a></li>
+<li><a href="https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates">https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc7452f2" class="outline-3">
+<h3 id="orgc7452f2"><span class="section-number-3">4.7</span> Finished Org</h3>
+<div class="outline-text-3" id="text-4-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 (message "successfully setup Org")
@@ -511,8 +712,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2c470af" class="outline-2">
-<h2 id="org2c470af"><span class="section-number-2">5</span> Keybindings</h2>
+<div id="outline-container-org0f4c1c8" class="outline-2">
+<h2 id="org0f4c1c8"><span class="section-number-2">5</span> Keybindings</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -526,8 +727,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org98a2829" class="outline-2">
-<h2 id="org98a2829"><span class="section-number-2">6</span> Completed Emacs.org setup</h2>
+<div id="outline-container-orgfba732b" class="outline-2">
+<h2 id="orgfba732b"><span class="section-number-2">6</span> Completed Emacs.org setup</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(message "finished Emacs.org setup")
@@ -536,8 +737,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4053d4d" class="outline-2">
-<h2 id="org4053d4d"><span class="section-number-2">7</span> Local variables</h2>
+<div id="outline-container-org99ade4f" class="outline-2">
+<h2 id="org99ade4f"><span class="section-number-2">7</span> Local variables</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 View this file as a text file.
@@ -546,7 +747,7 @@ View this file as a text file.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-04-18 Mon 15:52</p>
+<p class="date">Created: 2022-04-18 Mon 16:45</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
