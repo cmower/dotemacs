@@ -93,6 +93,7 @@
     (message (concat "[INIT] " str)))
 
   (report-init-stage "successfuly setup custom functions")
+
 #+end_src
 
   ;; (load-theme 'spacegray t)
