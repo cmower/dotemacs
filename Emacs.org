@@ -67,20 +67,6 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
-* Completed Emacs.org setup
-
-#+begin_src emacs-lisp
-  (message "finished Emacs.org setup")
-#+end_src
-
-* Local variables
-
-View this file as a text file.
-
-# Local variables:
-# eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
-# end:
-
 * Org
 
 ** Constants
@@ -103,3 +89,17 @@ View this file as a text file.
   (message "successfully setup Org")
 
 #+end_src
+* Completed Emacs.org setup
+
+#+begin_src emacs-lisp
+  (message "finished Emacs.org setup")
+#+end_src
+
+* Local variables
+
+View this file as a text file.
+
+# Local variables:
+# eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
+# end:
+
