@@ -110,7 +110,35 @@ https://magit.vc/manual/magit/
 *** Resources
 
 - https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/
+
+** Appearance
+
+#+begin_src emacs-lisp
+
+  ;; org-appear mode
+  (use-package org-appear
+    :ensure t
+    :after org
+    :init
+    (setq org-appear-autolinks t)
+    :hook (org-mode . org-appear-mode))
+
+  ;; org-superstar
+  (use-package org-superstar
+    :ensure t
+    :after org
+    :hook (org-mode . org-superstar-mode)
+    :custom
+    (org-superstar-headline-bullets-list
+     '("◉" "●" "○" "▣" "■" "□" "▶" "▷")))
+
 #+end_src
+
+*** Resources
+
+- https://github.com/awth13/org-appear
+- https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets
+- https://github.com/integral-dw/org-superstar-mode
 
 ** Finished Org
 
