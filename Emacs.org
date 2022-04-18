@@ -1,5 +1,6 @@
 #+title: Emacs initialization
 #+OPTIONS: author:nil date:nil
+#+FILETAGS: :emacs:
 
 * Package management
 
