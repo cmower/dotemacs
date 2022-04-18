@@ -3,3 +3,21 @@
 #+begin_src emacs-lisp
 (message "hello world")
 #+end_src
+
+* Package management
+
+#+begin_src emacs-lisp
+
+  (require 'package)
+  (setq package-archives '(
+			   ("melpa" . "https://melpa.org/packages/")
+			   ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+			   ;; ("org" . "https://orgmode.org/elpa/")
+			   ("elpa" . "https://elpa.gnu.org/packages/")
+			   ))
+  (package-initialize)
+
+  (message "successfully setup package managers")
+
+#+end_src
+
