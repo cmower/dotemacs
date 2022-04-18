@@ -143,6 +143,19 @@ https://magit.vc/manual/magit/
              ((org-agenda-overriding-header "\nUnscheduled TODO")
               (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))))
 
+
+   ;; list of TODO entry keyword sequences and their interpretation
+   org-todo-keywords
+   '((sequence "TODO(t)" "|" "DONE(d)")
+     (sequence "TODAY(o)" "|" "CANCELED(c)"))
+
+   ;; faces for specific TODO keywords
+   org-todo-keyword-faces
+   '(("TODO" . (:foreground "#ffb347" :weight bold))
+     ("DONE" . (:foreground "#037d50"))
+     ("TODAY" . (:foreground "#add8e6" :weight bold))
+     ("CANCELED" . (:foreground "red"))))
+
    )
 
 #+end_src
