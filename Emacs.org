@@ -67,6 +67,9 @@
    ;; 0 means Sunday (default), 1 means Monday, and so on
    calendar-week-start-day 1
 
+   ;; inhibit the startup screen
+   inhibit-splash-screen t
+
    )
 
   (message "[INIT] set constants")
