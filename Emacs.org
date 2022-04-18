@@ -122,6 +122,22 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
+* Undo
+
+#+begin_src emacs-lisp
+
+  (use-package undo-tree
+    :ensure t
+    :init
+    (setq undo-tree-visualizer-diff t)
+    :config
+    (global-undo-tree-mode))
+
+
+  (message "successfully setup undo-tree")
+
+#+end_src
+
 * Org
 
 ** Constants
