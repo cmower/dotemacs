@@ -452,6 +452,44 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 #+end_src
 
+* LaTeX
+
+#+begin_src emacs-lisp
+
+  ;; AucTeX
+  (use-package auctex
+    :defer t
+    :ensure t
+    :init
+    (setq TeX-show-compilation 1))
+
+  (use-package auctex-latexmk
+    :defer t
+    :ensure t
+    :config
+    (progn
+      (auctex-latexmk-setup)
+      (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
+
+  ;; Add custom command to compress pdf
+  (eval-after-load "tex"
+    '(add-to-list 'TeX-command-list
+                  '(
+                    "Compress"
+                    "python $HOME/Dropbox/Documents/myscripts/my_python_scripts/pdfcompress.py %s.pdf"
+                    TeX-run-shell nil t :help "Compresses PDF.")
+                  t))
+
+  (report-init-stage "successfully setup latex")
+
+#+end_src
+
+** Resources
+
+- https://github.com/jwiegley/use-package/issues/379
+- https://github.com/tom-tan/auctex-latexmk
+- https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
+
 * Keybindings
 
 #+begin_src emacs-lisp
