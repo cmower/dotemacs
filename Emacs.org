@@ -103,10 +103,55 @@ https://magit.vc/manual/magit/
      "makeindex %b"
      "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"
      "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b")
- 
+
+   ;; sorting structure for the agenda items of a single day
+   org-agenda-sorting-strategy
+   '((agenda habit-down time-up priority-down effort-up category-keep)
+     (todo priority-down effort-up category-keep)
+     (tags priority-down effort-up category-keep)
+     (search category-keep))
+
+   ;; don’t show deadlines when the corresponding item is done
+   org-agenda-skip-deadline-if-done t
+
+   ;; don’t show scheduled items in agenda when they are done
+   org-agenda-skip-scheduled-if-done t
+
+   ;; custom commands for the agenda
+   org-agenda-custom-commands
+   '(
+
+     ;; view completed tasks today
+     ("D" "Daily review"
+      tags "+CLOSED>\"<-0d>\"/DONE")
+
+     ;; view completed tasks during past week
+     ("W" "Weekly review"
+      tags "+CLOSED>\"<-7d>\"/DONE")
+
+     ;; view completed tasks during past two weeks
+     ("R" "Fortnightly review"
+      tags "+CLOSED>\"<-14d>\"/DONE")
+
+     ;; view completed tasks during past month
+     ("N" "Monthly review"
+      tags "+CLOSED>\"<-1m>\"/DONE")
+
+     ;; view TODO items without a timestamp
+     ("U" "Unscheduled TODO"
+      ((todo ""
+             ((org-agenda-overriding-header "\nUnscheduled TODO")
+              (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))))
+
    )
 
 #+end_src
+
+*** Resources
+
+- https://emacs.stackexchange.com/a/16561
+- https://emacs.stackexchange.com/a/53007/30155
+- https://www.reddit.com/r/orgmode/comments/jqu70x/how_to_create_a_custom_agenda_view_to_show_all/
 
 ** Org files
 
