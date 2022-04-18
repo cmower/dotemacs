@@ -156,6 +156,20 @@ https://magit.vc/manual/magit/
      ("TODAY" . (:foreground "#add8e6" :weight bold))
      ("CANCELED" . (:foreground "red")))
 
+   ;; external applications for opening ‘file:path’ items in a document
+   org-file-apps
+   (cond
+    ((string-equal system-type "gnu/linux")
+     '((auto-mode . emacs)
+       ("\\.mm\\'" . default)
+       ("\\.x?html?\\'" . default)
+       ("\\.pdf\\'" . "evince %s")))
+    ((string-equal system-type "darwin")
+     '((auto-mode . emacs)
+       ("\\.mm\\'" . default)
+       ("\\.x?html?\\'" . default)
+       ("\\.pdf\\'" . "open %s"))))
+
    )
 
 #+end_src
