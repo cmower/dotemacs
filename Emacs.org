@@ -70,6 +70,9 @@
    ;; inhibit the startup screen
    inhibit-splash-screen t
 
+   ;; default dictionary to use
+   ispell-dictionary "en_US"
+
    )
 
   (message "[INIT] set constants")
