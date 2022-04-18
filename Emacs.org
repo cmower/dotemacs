@@ -240,6 +240,71 @@ however, when writing $\LaTeX$ in Org-mode files, use
 - https://www.youtube.com/watch?v=2t925KRBbFc
 - https://emacs.stackexchange.com/a/58641/30155
 
+** org-super-agenda
+
+https://github.com/alphapapa/org-super-agenda
+
+*** Preliminary setup
+
+The following date indicators are required in the =org-super-agenda= setup in the next section.
+
+#+begin_src emacs-lisp
+
+  ;; Return day of week: Sun=0, Mon=1, Tues=2, ..., Sat=6
+  (defun get-day-from-now (n)
+    (-let*
+        (((sec minute hour day month year dow dst utcoff)
+          (decode-time (+ (* n 86400) (float-time)))))
+      dow)) ;; dow <=> day-of-week
+
+  ;; Get day of week today
+  (setq day-of-week-today (get-day-from-now 0))
+
+  ;; Get day of week end
+  (-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* (- 8 cem/day-of-week-today) 86400) (float-time)))))
+    (setq org-end-of-week (format "%d-%02d-%02d" year month day)))
+
+  ;; Get day of week soon date (i.e. 4 days)
+  (-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 4 86400) (float-time))))) ;; 4 days
+    (setq org-soon-date (format "%d-%02d-%02d" year month day)))
+
+  ;; Get day of week tomorrow date
+  (-let* (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 2 86400) (float-time))))) ;; 2 days
+    (setq org-tomorrow-date (format "%d-%02d-%02d" year month day)))
+
+#+end_src
+
+*** Main org-super-agenda configuration
+
+#+begin_src emacs-lisp
+
+  (use-package org-super-agenda
+    :ensure t
+    :config
+    (org-super-agenda-mode t)
+    (setq org-super-agenda-groups
+          `((:name "Today" :time-grid t)
+            (:name "Scheduled" :scheduled past)
+            (:name "Overdue reading" :and (:deadline past :tag "reading"))
+            (:name "Overdue" :deadline past)
+            (:name "Scheduled Today" :todo "TODAY")
+            (:name "Read by today" :and (:deadline today :tag "reading"))
+            (:name "Watch today" :and (:deadline today :tag "watch"))
+            (:name "By today" :deadline today)
+            (:name "Read tomorrow" :and (:deadline (before ,cem/org-tomorrow-date) :tag "reading"))
+            (:name "By tomorrow" :deadline (before ,cem/org-tomorrow-date))
+            (:name "Read by EOW" :and (:deadline (before ,cem/org-end-of-week) :tag "reading"))
+            (:name "Watch by EOW" :and (:deadline (before ,cem/org-end-of-week) :tag "watch"))
+            (:name "By EOW" :deadline (before ,cem/org-end-of-week))
+            (:name "Reading" :tag "reading"))))
+
+#+end_src
+
+*** Resources
+
+- https://stackoverflow.com/a/67741229
+- https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates
+
 ** Finished Org
 
 #+begin_src emacs-lisp
