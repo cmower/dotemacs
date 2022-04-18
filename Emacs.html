@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-18 Mon 11:33 -->
+<!-- 2022-04-18 Mon 15:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs initialization</title>
@@ -246,34 +246,36 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfe39892">1. Package management</a></li>
-<li><a href="#orgb653217">2. use-package</a></li>
-<li><a href="#org9356797">3. Magit</a></li>
-<li><a href="#orgfabfd6e">4. Org</a>
+<li><a href="#orga262932">1. Package management</a></li>
+<li><a href="#orga5b13e4">2. use-package</a></li>
+<li><a href="#org0be163f">3. Magit</a></li>
+<li><a href="#org3813823">4. Org</a>
 <ul>
-<li><a href="#org66da571">4.1. Constants</a></li>
-<li><a href="#orgc2a0667">4.2. Org files</a>
+<li><a href="#org3b5c6fe">4.1. Constants</a></li>
+<li><a href="#org2359642">4.2. Org files</a>
 <ul>
-<li><a href="#org264062f">4.2.1. Resources</a></li>
+<li><a href="#org704936e">4.2.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org0da6970">4.3. Appearance</a>
+<li><a href="#org1ddd34b">4.3. Appearance</a>
 <ul>
-<li><a href="#orgaa485e9">4.3.1. Resources</a></li>
+<li><a href="#org77f7d64">4.3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org4f1b7d5">4.4. Finished Org</a></li>
+<li><a href="#orgeb929bc">4.4. Org-babel</a></li>
+<li><a href="#org4f69f6b">4.5. Org-ref</a></li>
+<li><a href="#orgbbd4dbb">4.6. Finished Org</a></li>
 </ul>
 </li>
-<li><a href="#org65376a0">5. Keybindings</a></li>
-<li><a href="#org8095413">6. Completed Emacs.org setup</a></li>
-<li><a href="#org5800932">7. Local variables</a></li>
+<li><a href="#org2c470af">5. Keybindings</a></li>
+<li><a href="#org98a2829">6. Completed Emacs.org setup</a></li>
+<li><a href="#org4053d4d">7. Local variables</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfe39892" class="outline-2">
-<h2 id="orgfe39892"><span class="section-number-2">1</span> Package management</h2>
+<div id="outline-container-orga262932" class="outline-2">
+<h2 id="orga262932"><span class="section-number-2">1</span> Package management</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -293,8 +295,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgb653217" class="outline-2">
-<h2 id="orgb653217"><span class="section-number-2">2</span> use-package</h2>
+<div id="outline-container-orga5b13e4" class="outline-2">
+<h2 id="orga5b13e4"><span class="section-number-2">2</span> use-package</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -314,8 +316,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org9356797" class="outline-2">
-<h2 id="org9356797"><span class="section-number-2">3</span> Magit</h2>
+<div id="outline-container-org0be163f" class="outline-2">
+<h2 id="org0be163f"><span class="section-number-2">3</span> Magit</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
@@ -354,12 +356,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgfabfd6e" class="outline-2">
-<h2 id="orgfabfd6e"><span class="section-number-2">4</span> Org</h2>
+<div id="outline-container-org3813823" class="outline-2">
+<h2 id="org3813823"><span class="section-number-2">4</span> Org</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org66da571" class="outline-3">
-<h3 id="org66da571"><span class="section-number-3">4.1</span> Constants</h3>
+<div id="outline-container-org3b5c6fe" class="outline-3">
+<h3 id="org3b5c6fe"><span class="section-number-3">4.1</span> Constants</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -380,6 +382,20 @@ for the JavaScript code in this tag.
  ;; information to record when a task moves to the DONE state.
  org-log-done t
 
+ ;; default target for storing notes
+ org-default-notes-file (concat org-directory "/quick.org")
+
+ ;; name of the command for executing Python code.
+ org-babel-python-command "python3"
+
+ ;; commands to process a LaTeX file to a PDF file
+ org-latex-pdf-process
+ '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"
+   "bibtex %b"
+   "makeindex %b"
+   "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"
+   "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b")
+
  )
 
 </pre>
@@ -387,8 +403,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc2a0667" class="outline-3">
-<h3 id="orgc2a0667"><span class="section-number-3">4.2</span> Org files</h3>
+<div id="outline-container-org2359642" class="outline-3">
+<h3 id="org2359642"><span class="section-number-3">4.2</span> Org files</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -403,8 +419,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org264062f" class="outline-4">
-<h4 id="org264062f"><span class="section-number-4">4.2.1</span> Resources</h4>
+<div id="outline-container-org704936e" class="outline-4">
+<h4 id="org704936e"><span class="section-number-4">4.2.1</span> Resources</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/">https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/</a></li>
@@ -413,8 +429,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org0da6970" class="outline-3">
-<h3 id="org0da6970"><span class="section-number-3">4.3</span> Appearance</h3>
+<div id="outline-container-org1ddd34b" class="outline-3">
+<h3 id="org1ddd34b"><span class="section-number-3">4.3</span> Appearance</h3>
 <div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -439,8 +455,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgaa485e9" class="outline-4">
-<h4 id="orgaa485e9"><span class="section-number-4">4.3.1</span> Resources</h4>
+<div id="outline-container-org77f7d64" class="outline-4">
+<h4 id="org77f7d64"><span class="section-number-4">4.3.1</span> Resources</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li><a href="https://github.com/awth13/org-appear">https://github.com/awth13/org-appear</a></li>
@@ -451,9 +467,40 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4f1b7d5" class="outline-3">
-<h3 id="org4f1b7d5"><span class="section-number-3">4.4</span> Finished Org</h3>
+<div id="outline-container-orgeb929bc" class="outline-3">
+<h3 id="orgeb929bc"><span class="section-number-3">4.4</span> Org-babel</h3>
 <div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)
+   (python . t)))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4f69f6b" class="outline-3">
+<h3 id="org4f69f6b"><span class="section-number-3">4.5</span> Org-ref</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(use-package org-ref
+  :ensure t
+  :init
+  (setq org-ref-bibliography-notes "~/Dropbox/org/reading.org"
+	org-ref-default-bibliography '("~/Dropbox/org/bib/bib.bib")))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbbd4dbb" class="outline-3">
+<h3 id="orgbbd4dbb"><span class="section-number-3">4.6</span> Finished Org</h3>
+<div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 (message "successfully setup Org")
@@ -464,8 +511,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org65376a0" class="outline-2">
-<h2 id="org65376a0"><span class="section-number-2">5</span> Keybindings</h2>
+<div id="outline-container-org2c470af" class="outline-2">
+<h2 id="org2c470af"><span class="section-number-2">5</span> Keybindings</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -479,8 +526,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8095413" class="outline-2">
-<h2 id="org8095413"><span class="section-number-2">6</span> Completed Emacs.org setup</h2>
+<div id="outline-container-org98a2829" class="outline-2">
+<h2 id="org98a2829"><span class="section-number-2">6</span> Completed Emacs.org setup</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(message "finished Emacs.org setup")
@@ -489,8 +536,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5800932" class="outline-2">
-<h2 id="org5800932"><span class="section-number-2">7</span> Local variables</h2>
+<div id="outline-container-org4053d4d" class="outline-2">
+<h2 id="org4053d4d"><span class="section-number-2">7</span> Local variables</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 View this file as a text file.
@@ -499,7 +546,7 @@ View this file as a text file.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-04-18 Mon 11:33</p>
+<p class="date">Created: 2022-04-18 Mon 15:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
