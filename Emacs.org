@@ -164,6 +164,19 @@ https://magit.vc/manual/magit/
      (python . t)))
 
 #+end_src
+
+** Org-ref
+
+#+begin_src emacs-lisp
+
+  (use-package org-ref
+    :ensure t
+    :init
+    (setq org-ref-bibliography-notes "~/Dropbox/org/reading.org"
+          org-ref-default-bibliography '("~/Dropbox/org/bib/bib.bib")))
+
+#+end_src
+
 ** Finished Org
 
 #+begin_src emacs-lisp
