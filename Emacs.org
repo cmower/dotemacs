@@ -435,6 +435,8 @@ The following date indicators are required in the =org-super-agenda= setup in th
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
 
+  ;; Init file
+  (global-set-key (kbd "C-c i") 'open-init-file)
 #+end_src
 
 * Hooks
