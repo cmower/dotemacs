@@ -15,7 +15,7 @@
 			   ))
   (package-initialize)
 
-  (message "successfully setup package managers")
+  (message "[INIT] successfully setup package managers")
 
 #+end_src
 
@@ -29,7 +29,8 @@
   (eval-when-compile
     (require 'use-package))
 
-  (message "successfully setup use-package")
+  (message "[INIT] successfully setup use-package")
+
 #+end_src
 
 - [[https://emacs.stackexchange.com/a/50603/30155][use-package won't load]]
@@ -68,7 +69,7 @@
 
    )
 
-(message "set constants")
+  (message "[INIT] set constants")
 
 #+end_src
 
@@ -88,12 +89,16 @@
     (interactive)
     (find-file (expand-file-name "Emacs.org" user-emacs-directory)))
 
+  (defun report (str)
+    (message (concat "[INIT] " str)))
+
+  (report "successfuly setup custom functions")
 #+end_src
 
   ;; (load-theme 'spacegray t)
   (load-theme 'monokai t)
 
-  (message "successfully setup emacs theme")
+  (report "successfully setup emacs theme")
 
 #+end_src
 
@@ -127,7 +132,7 @@ https://magit.vc/manual/magit/
 	    (lambda ()
 	      (local-set-key (kbd "o") 'magit-open-repo)))
 
-  (message "successfully setup magit")
+  (report "successfully setup magit")
 
 #+end_src
 
@@ -143,7 +148,7 @@ https://magit.vc/manual/magit/
     (global-undo-tree-mode))
 
 
-  (message "successfully setup undo-tree")
+  (report "successfully setup undo-tree")
 
 #+end_src
 
@@ -416,7 +421,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 #+begin_src emacs-lisp
 
-  (message "successfully setup Org")
+  (report "successfully setup Org")
 
 #+end_src
 
@@ -443,7 +448,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 * Completed Emacs.org setup
 
 #+begin_src emacs-lisp
-  (message "finished Emacs.org setup")
+  (report "finished Emacs.org setup")
 #+end_src
 
 * Local variables
