@@ -182,6 +182,26 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
+* Spelling
+
+#+begin_src emacs-lisp
+
+  ;; Enable flyspell
+  (add-hook 'org-mode-hook '(lambda () (flyspell-mode)))
+  (add-hook 'LaTeX-mode-hook '(lambda () (flyspell-mode)))
+
+  ;; Use right-mouse button to correct spelling
+  (eval-after-load "flyspell"
+    '(progn
+       (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
+
+#+end_src
+
+** Resources
+
+- https://emacs.stackexchange.com/a/7469/30155
+- https://tex.stackexchange.com/a/210879/106130
+
 * Org
 
 ** Constants
