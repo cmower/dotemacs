@@ -1,5 +1,5 @@
 #+title: Emacs initialization
-#+OPTIONS: author:nil date:nil html-style:nil
+#+OPTIONS: author:nil date:nil html-style:nil html-postamble:nil
 #+FILETAGS: :emacs:
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 
