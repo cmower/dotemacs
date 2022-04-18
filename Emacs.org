@@ -199,7 +199,7 @@ https://magit.vc/manual/magit/
 - https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets
 - https://github.com/integral-dw/org-superstar-mode
 
-** Org-babel
+** org-babel
 
 #+begin_src emacs-lisp
 
@@ -210,7 +210,7 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
-** Org-ref
+** org-ref
 
 #+begin_src emacs-lisp
 
