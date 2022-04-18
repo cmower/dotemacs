@@ -74,27 +74,27 @@ Also affects 'linum-mode' background."
   :group 'monokai
   :package-version "3.5.1")
 
-(defcustom monokai-height-minus-1 0.8
+(defcustom monokai-height-minus-1 1.0 ;; 0.8
   "Font size -1."
   :type 'number
   :group 'monokai)
 
-(defcustom monokai-height-plus-1 1.1
+(defcustom monokai-height-plus-1 1.0 ;; 1.1
   "Font size +1."
   :type 'number
   :group 'monokai)
 
-(defcustom monokai-height-plus-2 1.15
+(defcustom monokai-height-plus-2 1.0 ;; 1.15
   "Font size +2."
   :type 'number
   :group 'monokai)
 
-(defcustom monokai-height-plus-3 1.2
+(defcustom monokai-height-plus-3 1.0 ;; 1.2
   "Font size +3."
   :type 'number
   :group 'monokai)
 
-(defcustom monokai-height-plus-4 1.3
+(defcustom monokai-height-plus-4 1.0 ;; 1.3
   "Font size +4."
   :type 'number
   :group 'monokai)
