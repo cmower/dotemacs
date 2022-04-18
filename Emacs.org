@@ -81,3 +81,25 @@ View this file as a text file.
 # eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
 # end:
 
+* Org
+
+** Constants
+
+#+begin_src emacs-lisp
+
+  (setq
+   org-directory "~/Dropbox/org"
+   org-hide-emphasis-markers t
+   org-startup-indented t
+   org-log-into-drawer t
+   org-log-done t)
+
+#+end_src
+
+** Finished Org
+
+#+begin_src emacs-lisp
+
+  (message "successfully setup Org")
+
+#+end_src
