@@ -45,6 +45,15 @@
    )
 
 #+end_src
+
+* Theme
+
+#+begin_src emacs-lisp
+
+  (load-theme 'spacegray t)
+
+#+end_src
+
 * Magit
 
 https://magit.vc/manual/magit/
