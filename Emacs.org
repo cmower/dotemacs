@@ -43,7 +43,7 @@ https://magit.vc/manual/magit/
     :ensure t)
 
   ;; Custom functions for opening GitHub from magit
-  (defun cem/parse-github-url (url)
+  (defun parse-github-url (url)
     "convert a git remote location as a HTTP URL"
     (if (string-match "^http" url)
 	url
@@ -51,17 +51,17 @@ https://magit.vc/manual/magit/
 				"https://\\2/\\3"
 				url)))
 
-  (defun cem/magit-open-repo ()
+  (defun magit-open-repo ()
     "open remote repo URL"
     (interactive)
     (let ((url (magit-get "remote" "origin" "url")))
       (progn
-	(browse-url (cem/parse-github-url url))
+	(browse-url (parse-github-url url))
 	(message "Opening %s" url))))
 
   (add-hook 'magit-mode-hook
 	    (lambda ()
-	      (local-set-key (kbd "o") 'cem/magit-open-repo)))
+	      (local-set-key (kbd "o") 'magit-open-repo)))
 
   (message "successfully setup magit")
 
