@@ -75,3 +75,10 @@ https://magit.vc/manual/magit/
 #+begin_src emacs-lisp
   (message "finished Emacs.org setup")
 #+end_src
+
+* Local variables
+
+# Local variables:
+# eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
+# end:
+
