@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-18 Mon 16:56 -->
+<!-- 2022-04-18 Mon 18:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs initialization</title>
@@ -268,82 +268,88 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6247444">1. Package management</a></li>
-<li><a href="#orgd9fbc21">2. use-package</a></li>
-<li><a href="#orgc6b8f37">3. Magit</a></li>
-<li><a href="#org0746667">4. Org</a>
+<li><a href="#org8faf8b2">1. Package management</a></li>
+<li><a href="#org65edaf0">2. use-package</a></li>
+<li><a href="#orgb973cc2">3. Constants</a>
 <ul>
-<li><a href="#org8138665">4.1. Constants</a>
-<ul>
-<li><a href="#orgb0ab016">4.1.1. Resources</a></li>
+<li><a href="#org293e6c5">3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org61462ff">4.2. Org files</a>
+<li><a href="#org31f863b">4. Theme</a></li>
+<li><a href="#org60f09ad">5. Magit</a></li>
+<li><a href="#org0073c6c">6. Org</a>
 <ul>
-<li><a href="#org6534c68">4.2.1. Resources</a></li>
-</ul>
-</li>
-<li><a href="#org6c5886f">4.3. Appearance</a>
+<li><a href="#org9479be1">6.1. Constants</a>
 <ul>
-<li><a href="#org6accfc2">4.3.1. Resources</a></li>
+<li><a href="#org4725ce4">6.1.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgc8c26dd">4.4. org-babel</a></li>
-<li><a href="#org83a48a8">4.5. org-ref</a>
+<li><a href="#org0ca0656">6.2. Org files</a>
 <ul>
-<li><a href="#orgbaedd32">4.5.1. Resources</a></li>
+<li><a href="#org7fbd991">6.2.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org78af4eb">4.6. org-super-agenda</a>
+<li><a href="#org540286e">6.3. Appearance</a>
 <ul>
-<li><a href="#org917b814">4.6.1. Preliminary setup</a></li>
-<li><a href="#org91ceab7">4.6.2. Main org-super-agenda configuration</a></li>
-<li><a href="#orgde20ccc">4.6.3. Resources</a></li>
+<li><a href="#org7f0f151">6.3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgfeea37b">4.7. Finished Org</a></li>
+<li><a href="#orgbcbc850">6.4. org-babel</a></li>
+<li><a href="#org72ab7d3">6.5. org-ref</a>
+<ul>
+<li><a href="#org3af177f">6.5.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org514f139">5. Keybindings</a></li>
-<li><a href="#orga7b1f9d">6. Completed Emacs.org setup</a></li>
-<li><a href="#org67cf91f">7. Local variables</a></li>
+<li><a href="#org6d924c9">6.6. org-super-agenda</a>
+<ul>
+<li><a href="#org9f1ac1a">6.6.1. Preliminary setup</a></li>
+<li><a href="#org604d785">6.6.2. Main org-super-agenda configuration</a></li>
+<li><a href="#org50f1683">6.6.3. Resources</a></li>
+</ul>
+</li>
+<li><a href="#org4cfd238">6.7. Finished Org</a></li>
+</ul>
+</li>
+<li><a href="#org41e1248">7. Keybindings</a></li>
+<li><a href="#org376f164">8. Completed Emacs.org setup</a></li>
+<li><a href="#org1fc74c8">9. Local variables</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6247444" class="outline-2">
-<h2 id="org6247444"><span class="section-number-2">1</span> Package management</h2>
+<div id="outline-container-org8faf8b2" class="outline-2">
+<h2 id="org8faf8b2"><span class="section-number-2">1</span> Package management</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">package</span>)
-(<span style="color: #a020f0;">setq</span> package-archives '(
-                         (<span style="color: #8b2252;">"melpa"</span> . <span style="color: #8b2252;">"https://melpa.org/packages/"</span>)
-                         <span style="color: #b22222;">;; </span><span style="color: #b22222;">("melpa-stable" . "https://stable.melpa.org/packages/")</span>
-                         <span style="color: #b22222;">;; </span><span style="color: #b22222;">("org" . "https://orgmode.org/elpa/")</span>
-                         (<span style="color: #8b2252;">"elpa"</span> . <span style="color: #8b2252;">"https://elpa.gnu.org/packages/"</span>)
+(<span style="color: #F92672;">require</span> '<span style="color: #AE81FF;">package</span>)
+(<span style="color: #F92672;">setq</span> package-archives '(
+                         (<span style="color: #E6DB74;">"melpa"</span> . <span style="color: #E6DB74;">"https://melpa.org/packages/"</span>)
+                         <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">("melpa-stable" . "https://stable.melpa.org/packages/")</span>
+                         <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">("org" . "https://orgmode.org/elpa/")</span>
+                         (<span style="color: #E6DB74;">"elpa"</span> . <span style="color: #E6DB74;">"https://elpa.gnu.org/packages/"</span>)
                          ))
 (package-initialize)
 
-(message <span style="color: #8b2252;">"successfully setup package managers"</span>)
+(message <span style="color: #E6DB74;">"successfully setup package managers"</span>)
 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd9fbc21" class="outline-2">
-<h2 id="orgd9fbc21"><span class="section-number-2">2</span> use-package</h2>
+<div id="outline-container-org65edaf0" class="outline-2">
+<h2 id="org65edaf0"><span class="section-number-2">2</span> use-package</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #a020f0;">unless</span> (package-installed-p 'use-package)
+(<span style="color: #F92672;">unless</span> (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(<span style="color: #a020f0;">eval-when-compile</span>
-  (<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">use-package</span>))
+(<span style="color: #F92672;">eval-when-compile</span>
+  (<span style="color: #F92672;">require</span> '<span style="color: #AE81FF;">use-package</span>))
 
-(message <span style="color: #8b2252;">"successfully setup use-package"</span>)
+(message <span style="color: #E6DB74;">"successfully setup use-package"</span>)
 </pre>
 </div>
 
@@ -353,137 +359,28 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc6b8f37" class="outline-2">
-<h2 id="orgc6b8f37"><span class="section-number-2">3</span> Magit</h2>
+<div id="outline-container-orgb973cc2" class="outline-2">
+<h2 id="orgb973cc2"><span class="section-number-2">3</span> Constants</h2>
 <div class="outline-text-2" id="text-3">
-<p>
-<a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
-</p>
-
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">magit</span>
-  <span style="color: #483d8b;">:ensure</span> t)
+(<span style="color: #F92672;">setq</span>
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Custom functions for opening GitHub from magit</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">parse-github-url</span> (url)
-  <span style="color: #8b2252;">"convert a git remote location as a HTTP URL"</span>
-  (<span style="color: #a020f0;">if</span> (string-match <span style="color: #8b2252;">"^http"</span> url)
-      url
-    (replace-regexp-in-string <span style="color: #8b2252;">"</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">.*</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">@</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">.*</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">:</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">.*</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">\\.git?</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">"</span>
-                              <span style="color: #8b2252;">"https://\\2/\\3"</span>
-                              url)))
-
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">magit-open-repo</span> ()
-  <span style="color: #8b2252;">"open remote repo URL"</span>
-  (<span style="color: #a020f0;">interactive</span>)
-  (<span style="color: #a020f0;">let</span> ((url (magit-get <span style="color: #8b2252;">"remote"</span> <span style="color: #8b2252;">"origin"</span> <span style="color: #8b2252;">"url"</span>)))
-    (<span style="color: #a020f0;">progn</span>
-      (browse-url (parse-github-url url))
-      (message <span style="color: #8b2252;">"Opening %s"</span> url))))
-
-(add-hook 'magit-mode-hook
-          (<span style="color: #a020f0;">lambda</span> ()
-            (local-set-key (kbd <span style="color: #8b2252;">"o"</span>) 'magit-open-repo)))
-
-(message <span style="color: #8b2252;">"successfully setup magit"</span>)
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org0746667" class="outline-2">
-<h2 id="org0746667"><span class="section-number-2">4</span> Org</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org8138665" class="outline-3">
-<h3 id="org8138665"><span class="section-number-3">4.1</span> Constants</h3>
-<div class="outline-text-3" id="text-4-1">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">
-(<span style="color: #a020f0;">setq</span>
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">default location to look for Org files</span>
- org-directory <span style="color: #8b2252;">"~/Dropbox/org"</span>
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">font-lock should hide the emphasis marker characters</span>
- org-hide-emphasis-markers t
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">turn on org-indent-mode on startup.</span>
- org-startup-indented t
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">insert state change notes and time stamps into a drawer</span>
- org-log-into-drawer t
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">information to record when a task moves to the DONE state.</span>
- org-log-done t
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">default target for storing notes</span>
- org-default-notes-file (concat org-directory <span style="color: #8b2252;">"/quick.org"</span>)
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">name of the command for executing Python code.</span>
- org-babel-python-command <span style="color: #8b2252;">"python3"</span>
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">commands to process a LaTeX file to a PDF file</span>
- org-latex-pdf-process
- '(<span style="color: #8b2252;">"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"</span>
-   <span style="color: #8b2252;">"bibtex %b"</span>
-   <span style="color: #8b2252;">"makeindex %b"</span>
-   <span style="color: #8b2252;">"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"</span>
-   <span style="color: #8b2252;">"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"</span>)
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">sorting structure for the agenda items of a single day</span>
- org-agenda-sorting-strategy
- '((agenda habit-down time-up priority-down effort-up category-keep)
-   (todo priority-down effort-up category-keep)
-   (tags priority-down effort-up category-keep)
-   (search category-keep))
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">don&#8217;t show deadlines when the corresponding item is done</span>
- org-agenda-skip-deadline-if-done t
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">don&#8217;t show scheduled items in agenda when they are done</span>
- org-agenda-skip-scheduled-if-done t
-
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">custom commands for the agenda</span>
- org-agenda-custom-commands
- '(
-
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">view completed tasks today</span>
-   (<span style="color: #8b2252;">"D"</span> <span style="color: #8b2252;">"Daily review"</span>
-    tags <span style="color: #8b2252;">"+CLOSED&gt;\"&lt;-0d&gt;\"/DONE"</span>)
-
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">view completed tasks during past week</span>
-   (<span style="color: #8b2252;">"W"</span> <span style="color: #8b2252;">"Weekly review"</span>
-    tags <span style="color: #8b2252;">"+CLOSED&gt;\"&lt;-7d&gt;\"/DONE"</span>)
-
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">view completed tasks during past two weeks</span>
-   (<span style="color: #8b2252;">"R"</span> <span style="color: #8b2252;">"Fortnightly review"</span>
-    tags <span style="color: #8b2252;">"+CLOSED&gt;\"&lt;-14d&gt;\"/DONE"</span>)
-
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">view completed tasks during past month</span>
-   (<span style="color: #8b2252;">"N"</span> <span style="color: #8b2252;">"Monthly review"</span>
-    tags <span style="color: #8b2252;">"+CLOSED&gt;\"&lt;-1m&gt;\"/DONE"</span>)
-
-   <span style="color: #b22222;">;; </span><span style="color: #b22222;">view TODO items without a timestamp</span>
-   (<span style="color: #8b2252;">"U"</span> <span style="color: #8b2252;">"Unscheduled TODO"</span>
-    ((todo <span style="color: #8b2252;">""</span>
-           ((org-agenda-overriding-header <span style="color: #8b2252;">"\nUnscheduled TODO"</span>)
-            (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))))
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">full name of the user logged in</span>
+ user-full-name <span style="color: #E6DB74;">"Christopher E. Mower"</span>
 
 
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">list of TODO entry keyword sequences and their interpretation</span>
- org-todo-keywords
- '((sequence <span style="color: #8b2252;">"TODO(t)"</span> <span style="color: #8b2252;">"|"</span> <span style="color: #8b2252;">"DONE(d)"</span>)
-   (sequence <span style="color: #8b2252;">"TODAY(o)"</span> <span style="color: #8b2252;">"|"</span> <span style="color: #8b2252;">"CANCELED(c)"</span>))
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">file used for storing customization information.</span>
+ custom-file (concat user-emacs-directory <span style="color: #E6DB74;">"/custom.el"</span>)
 
- <span style="color: #b22222;">;; </span><span style="color: #b22222;">faces for specific TODO keywords</span>
- org-todo-keyword-faces
- '((<span style="color: #8b2252;">"TODO"</span> . (<span style="color: #483d8b;">:foreground</span> <span style="color: #8b2252;">"#ffb347"</span> <span style="color: #483d8b;">:weight</span> bold))
-   (<span style="color: #8b2252;">"DONE"</span> . (<span style="color: #483d8b;">:foreground</span> <span style="color: #8b2252;">"#037d50"</span>))
-   (<span style="color: #8b2252;">"TODAY"</span> . (<span style="color: #483d8b;">:foreground</span> <span style="color: #8b2252;">"#add8e6"</span> <span style="color: #483d8b;">:weight</span> bold))
-   (<span style="color: #8b2252;">"CANCELED"</span> . (<span style="color: #483d8b;">:foreground</span> <span style="color: #8b2252;">"red"</span>)))
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">application that opens pdf documents</span>
+ pdf-open-application
+ (<span style="color: #F92672;">cond</span>
+  ((string-equal system-type <span style="color: #E6DB74;">"gnu/linux"</span>) <span style="color: #E6DB74;">"evince"</span>)
+  ((string-equal system-type <span style="color: #E6DB74;">"darwin"</span>) <span style="color: #E6DB74;">"open"</span>))
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">default user directory for storing custom theme files</span>
+ custom-theme-directory <span style="color: #E6DB74;">"~/.emacs.d/themes"</span>
 
  )
 
@@ -491,9 +388,185 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgb0ab016" class="outline-4">
-<h4 id="orgb0ab016"><span class="section-number-4">4.1.1</span> Resources</h4>
-<div class="outline-text-4" id="text-4-1-1">
+<div id="outline-container-org293e6c5" class="outline-3">
+<h3 id="org293e6c5"><span class="section-number-3">3.1</span> Resources</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li><a href="https://stackoverflow.com/a/1817318/4650592">https://stackoverflow.com/a/1817318/4650592</a></li>
+<li><a href="https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/">https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org31f863b" class="outline-2">
+<h2 id="org31f863b"><span class="section-number-2">4</span> Theme</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">(load-theme 'spacegray t)</span>
+(load-theme 'monokai t)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org60f09ad" class="outline-2">
+<h2 id="org60f09ad"><span class="section-number-2">5</span> Magit</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(<span style="color: #F92672;">use-package</span> <span style="color: #AE81FF;">magit</span>
+  <span style="color: #F92672;">:ensure</span> t)
+
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Custom functions for opening GitHub from magit</span>
+(<span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">parse-github-url</span> (url)
+  <span style="color: #E6DB74;">"convert a git remote location as a HTTP URL"</span>
+  (<span style="color: #F92672;">if</span> (string-match <span style="color: #E6DB74;">"^http"</span> url)
+      url
+    (replace-regexp-in-string <span style="color: #E6DB74;">"</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">(</span><span style="color: #E6DB74;">.*</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">)</span><span style="color: #E6DB74;">@</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">(</span><span style="color: #E6DB74;">.*</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">)</span><span style="color: #E6DB74;">:</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">(</span><span style="color: #E6DB74;">.*</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">)</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">(</span><span style="color: #E6DB74;">\\.git?</span><span style="color: #AE81FF;">\\</span><span style="color: #E6DB74;">)</span><span style="color: #E6DB74;">"</span>
+                              <span style="color: #E6DB74;">"https://\\2/\\3"</span>
+                              url)))
+
+(<span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">magit-open-repo</span> ()
+  <span style="color: #E6DB74;">"open remote repo URL"</span>
+  (<span style="color: #F92672;">interactive</span>)
+  (<span style="color: #F92672;">let</span> ((url (magit-get <span style="color: #E6DB74;">"remote"</span> <span style="color: #E6DB74;">"origin"</span> <span style="color: #E6DB74;">"url"</span>)))
+    (<span style="color: #F92672;">progn</span>
+      (browse-url (parse-github-url url))
+      (message <span style="color: #E6DB74;">"Opening %s"</span> url))))
+
+(add-hook 'magit-mode-hook
+          (<span style="color: #F92672;">lambda</span> ()
+            (local-set-key (kbd <span style="color: #E6DB74;">"o"</span>) 'magit-open-repo)))
+
+(message <span style="color: #E6DB74;">"successfully setup magit"</span>)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0073c6c" class="outline-2">
+<h2 id="org0073c6c"><span class="section-number-2">6</span> Org</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org9479be1" class="outline-3">
+<h3 id="org9479be1"><span class="section-number-3">6.1</span> Constants</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+(<span style="color: #F92672;">setq</span>
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">default location to look for Org files</span>
+ org-directory <span style="color: #E6DB74;">"~/Dropbox/org"</span>
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">font-lock should hide the emphasis marker characters</span>
+ org-hide-emphasis-markers t
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">turn on org-indent-mode on startup.</span>
+ org-startup-indented t
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">insert state change notes and time stamps into a drawer</span>
+ org-log-into-drawer t
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">information to record when a task moves to the DONE state.</span>
+ org-log-done t
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">default target for storing notes</span>
+ org-default-notes-file (concat org-directory <span style="color: #E6DB74;">"/quick.org"</span>)
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">name of the command for executing Python code.</span>
+ org-babel-python-command <span style="color: #E6DB74;">"python3"</span>
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">commands to process a LaTeX file to a PDF file</span>
+ org-latex-pdf-process
+ '(<span style="color: #E6DB74;">"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"</span>
+   <span style="color: #E6DB74;">"bibtex %b"</span>
+   <span style="color: #E6DB74;">"makeindex %b"</span>
+   <span style="color: #E6DB74;">"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"</span>
+   <span style="color: #E6DB74;">"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"</span>)
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">sorting structure for the agenda items of a single day</span>
+ org-agenda-sorting-strategy
+ '((agenda habit-down time-up priority-down effort-up category-keep)
+   (todo priority-down effort-up category-keep)
+   (tags priority-down effort-up category-keep)
+   (search category-keep))
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">don&#8217;t show deadlines when the corresponding item is done</span>
+ org-agenda-skip-deadline-if-done t
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">don&#8217;t show scheduled items in agenda when they are done</span>
+ org-agenda-skip-scheduled-if-done t
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">custom commands for the agenda</span>
+ org-agenda-custom-commands
+ '(
+
+   <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">view completed tasks today</span>
+   (<span style="color: #E6DB74;">"D"</span> <span style="color: #E6DB74;">"Daily review"</span>
+    tags <span style="color: #E6DB74;">"+CLOSED&gt;\"&lt;-0d&gt;\"/DONE"</span>)
+
+   <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">view completed tasks during past week</span>
+   (<span style="color: #E6DB74;">"W"</span> <span style="color: #E6DB74;">"Weekly review"</span>
+    tags <span style="color: #E6DB74;">"+CLOSED&gt;\"&lt;-7d&gt;\"/DONE"</span>)
+
+   <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">view completed tasks during past two weeks</span>
+   (<span style="color: #E6DB74;">"R"</span> <span style="color: #E6DB74;">"Fortnightly review"</span>
+    tags <span style="color: #E6DB74;">"+CLOSED&gt;\"&lt;-14d&gt;\"/DONE"</span>)
+
+   <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">view completed tasks during past month</span>
+   (<span style="color: #E6DB74;">"N"</span> <span style="color: #E6DB74;">"Monthly review"</span>
+    tags <span style="color: #E6DB74;">"+CLOSED&gt;\"&lt;-1m&gt;\"/DONE"</span>)
+
+   <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">view TODO items without a timestamp</span>
+   (<span style="color: #E6DB74;">"U"</span> <span style="color: #E6DB74;">"Unscheduled TODO"</span>
+    ((todo <span style="color: #E6DB74;">""</span>
+           ((org-agenda-overriding-header <span style="color: #E6DB74;">"\nUnscheduled TODO"</span>)
+            (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))))
+
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">list of TODO entry keyword sequences and their interpretation</span>
+ org-todo-keywords
+ '((sequence <span style="color: #E6DB74;">"TODO(t)"</span> <span style="color: #E6DB74;">"|"</span> <span style="color: #E6DB74;">"DONE(d)"</span>)
+   (sequence <span style="color: #E6DB74;">"TODAY(o)"</span> <span style="color: #E6DB74;">"|"</span> <span style="color: #E6DB74;">"CANCELED(c)"</span>))
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">faces for specific TODO keywords</span>
+ org-todo-keyword-faces
+ '((<span style="color: #E6DB74;">"TODO"</span> . (<span style="color: #F92672;">:foreground</span> <span style="color: #E6DB74;">"#ffb347"</span> <span style="color: #F92672;">:weight</span> bold))
+   (<span style="color: #E6DB74;">"DONE"</span> . (<span style="color: #F92672;">:foreground</span> <span style="color: #E6DB74;">"#037d50"</span>))
+   (<span style="color: #E6DB74;">"TODAY"</span> . (<span style="color: #F92672;">:foreground</span> <span style="color: #E6DB74;">"#add8e6"</span> <span style="color: #F92672;">:weight</span> bold))
+   (<span style="color: #E6DB74;">"CANCELED"</span> . (<span style="color: #F92672;">:foreground</span> <span style="color: #E6DB74;">"red"</span>)))
+
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">external applications for opening &#8216;</span><span style="color: #AE81FF;">file:path</span><span style="color: #b8b298;">&#8217; items in a document</span>
+ org-file-apps
+ (<span style="color: #F92672;">cond</span>
+  ((string-equal system-type <span style="color: #E6DB74;">"gnu/linux"</span>)
+   '((auto-mode . emacs)
+     (<span style="color: #E6DB74;">"\\.mm\\'"</span> . default)
+     (<span style="color: #E6DB74;">"\\.x?html?\\'"</span> . default)
+     (<span style="color: #E6DB74;">"\\.pdf\\'"</span> . <span style="color: #E6DB74;">"evince %s"</span>)))
+  ((string-equal system-type <span style="color: #E6DB74;">"darwin"</span>)
+   '((auto-mode . emacs)
+     (<span style="color: #E6DB74;">"\\.mm\\'"</span> . default)
+     (<span style="color: #E6DB74;">"\\.x?html?\\'"</span> . default)
+     (<span style="color: #E6DB74;">"\\.pdf\\'"</span> . <span style="color: #E6DB74;">"open %s"</span>))))
+
+ )
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4725ce4" class="outline-4">
+<h4 id="org4725ce4"><span class="section-number-4">6.1.1</span> Resources</h4>
+<div class="outline-text-4" id="text-6-1-1">
 <ul class="org-ul">
 <li><a href="https://emacs.stackexchange.com/a/16561">https://emacs.stackexchange.com/a/16561</a></li>
 <li><a href="https://emacs.stackexchange.com/a/53007/30155">https://emacs.stackexchange.com/a/53007/30155</a></li>
@@ -503,25 +576,25 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org61462ff" class="outline-3">
-<h3 id="org61462ff"><span class="section-number-3">4.2</span> Org files</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org0ca0656" class="outline-3">
+<h3 id="org0ca0656"><span class="section-number-3">6.2</span> Org files</h3>
+<div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Add all .org files in org-directory recursively</span>
-(load-library <span style="color: #8b2252;">"find-lisp"</span>)
-(<span style="color: #a020f0;">setq</span> org-agenda-files (find-lisp-find-files org-directory <span style="color: #8b2252;">"</span><span style="color: #ff0000; font-weight: bold;">\</span><span style="color: #8b2252;">.org$"</span>))
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Add all .org files in org-directory recursively</span>
+(load-library <span style="color: #E6DB74;">"find-lisp"</span>)
+(<span style="color: #F92672;">setq</span> org-agenda-files (find-lisp-find-files org-directory <span style="color: #E6DB74;">"</span><span style="color: #FD971F; font-weight: bold; font-style: italic; text-decoration: underline;">\</span><span style="color: #E6DB74;">.org$"</span>))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Include .emacs.d</span>
-(add-to-list 'org-agenda-files <span style="color: #8b2252;">"~/.emacs.d"</span>)
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Include .emacs.d</span>
+(add-to-list 'org-agenda-files <span style="color: #E6DB74;">"~/.emacs.d"</span>)
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6534c68" class="outline-4">
-<h4 id="org6534c68"><span class="section-number-4">4.2.1</span> Resources</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<div id="outline-container-org7fbd991" class="outline-4">
+<h4 id="org7fbd991"><span class="section-number-4">6.2.1</span> Resources</h4>
+<div class="outline-text-4" id="text-6-2-1">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/">https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/</a></li>
 </ul>
@@ -529,35 +602,35 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6c5886f" class="outline-3">
-<h3 id="org6c5886f"><span class="section-number-3">4.3</span> Appearance</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org540286e" class="outline-3">
+<h3 id="org540286e"><span class="section-number-3">6.3</span> Appearance</h3>
+<div class="outline-text-3" id="text-6-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">org-appear mode</span>
-(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">org-appear</span>
-  <span style="color: #483d8b;">:ensure</span> t
-  <span style="color: #483d8b;">:after</span> org
-  <span style="color: #483d8b;">:init</span>
-  (<span style="color: #a020f0;">setq</span> org-appear-autolinks t)
-  <span style="color: #483d8b;">:hook</span> (org-mode . org-appear-mode))
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">org-appear mode</span>
+(<span style="color: #F92672;">use-package</span> <span style="color: #AE81FF;">org-appear</span>
+  <span style="color: #F92672;">:ensure</span> t
+  <span style="color: #F92672;">:after</span> org
+  <span style="color: #F92672;">:init</span>
+  (<span style="color: #F92672;">setq</span> org-appear-autolinks t)
+  <span style="color: #F92672;">:hook</span> (org-mode . org-appear-mode))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">org-superstar</span>
-(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">org-superstar</span>
-  <span style="color: #483d8b;">:ensure</span> t
-  <span style="color: #483d8b;">:after</span> org
-  <span style="color: #483d8b;">:hook</span> (org-mode . org-superstar-mode)
-  <span style="color: #483d8b;">:custom</span>
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">org-superstar</span>
+(<span style="color: #F92672;">use-package</span> <span style="color: #AE81FF;">org-superstar</span>
+  <span style="color: #F92672;">:ensure</span> t
+  <span style="color: #F92672;">:after</span> org
+  <span style="color: #F92672;">:hook</span> (org-mode . org-superstar-mode)
+  <span style="color: #F92672;">:custom</span>
   (org-superstar-headline-bullets-list
-   '(<span style="color: #8b2252;">"&#9673;"</span> <span style="color: #8b2252;">"&#9679;"</span> <span style="color: #8b2252;">"&#9675;"</span> <span style="color: #8b2252;">"&#9635;"</span> <span style="color: #8b2252;">"&#9632;"</span> <span style="color: #8b2252;">"&#9633;"</span> <span style="color: #8b2252;">"&#9654;"</span> <span style="color: #8b2252;">"&#9655;"</span>)))
+   '(<span style="color: #E6DB74;">"&#9673;"</span> <span style="color: #E6DB74;">"&#9679;"</span> <span style="color: #E6DB74;">"&#9675;"</span> <span style="color: #E6DB74;">"&#9635;"</span> <span style="color: #E6DB74;">"&#9632;"</span> <span style="color: #E6DB74;">"&#9633;"</span> <span style="color: #E6DB74;">"&#9654;"</span> <span style="color: #E6DB74;">"&#9655;"</span>)))
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6accfc2" class="outline-4">
-<h4 id="org6accfc2"><span class="section-number-4">4.3.1</span> Resources</h4>
-<div class="outline-text-4" id="text-4-3-1">
+<div id="outline-container-org7f0f151" class="outline-4">
+<h4 id="org7f0f151"><span class="section-number-4">6.3.1</span> Resources</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <ul class="org-ul">
 <li><a href="https://github.com/awth13/org-appear">https://github.com/awth13/org-appear</a></li>
 <li><a href="https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets">https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets</a></li>
@@ -567,9 +640,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc8c26dd" class="outline-3">
-<h3 id="orgc8c26dd"><span class="section-number-3">4.4</span> org-babel</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgbcbc850" class="outline-3">
+<h3 id="orgbcbc850"><span class="section-number-3">6.4</span> org-babel</h3>
+<div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 (org-babel-do-load-languages
@@ -582,16 +655,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org83a48a8" class="outline-3">
-<h3 id="org83a48a8"><span class="section-number-3">4.5</span> org-ref</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-org72ab7d3" class="outline-3">
+<h3 id="org72ab7d3"><span class="section-number-3">6.5</span> org-ref</h3>
+<div class="outline-text-3" id="text-6-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">org-ref</span>
-  <span style="color: #483d8b;">:ensure</span> t
-  <span style="color: #483d8b;">:init</span>
-  (<span style="color: #a020f0;">setq</span> org-ref-bibliography-notes <span style="color: #8b2252;">"~/Dropbox/org/reading.org"</span>
-        org-ref-default-bibliography '(<span style="color: #8b2252;">"~/Dropbox/org/bib/bib.bib"</span>)))
+(<span style="color: #F92672;">use-package</span> <span style="color: #AE81FF;">org-ref</span>
+  <span style="color: #F92672;">:ensure</span> t
+  <span style="color: #F92672;">:init</span>
+  (<span style="color: #F92672;">setq</span> org-ref-bibliography-notes <span style="color: #E6DB74;">"~/Dropbox/org/reading.org"</span>
+        org-ref-default-bibliography '(<span style="color: #E6DB74;">"~/Dropbox/org/bib/bib.bib"</span>)))
 
 </pre>
 </div>
@@ -616,9 +689,9 @@ however, when writing \(\LaTeX\) in Org-mode files, use
 </div>
 </div>
 
-<div id="outline-container-orgbaedd32" class="outline-4">
-<h4 id="orgbaedd32"><span class="section-number-4">4.5.1</span> Resources</h4>
-<div class="outline-text-4" id="text-4-5-1">
+<div id="outline-container-org3af177f" class="outline-4">
+<h4 id="org3af177f"><span class="section-number-4">6.5.1</span> Resources</h4>
+<div class="outline-text-4" id="text-6-5-1">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=2t925KRBbFc">https://www.youtube.com/watch?v=2t925KRBbFc</a></li>
 <li><a href="https://emacs.stackexchange.com/a/58641/30155">https://emacs.stackexchange.com/a/58641/30155</a></li>
@@ -627,83 +700,83 @@ however, when writing \(\LaTeX\) in Org-mode files, use
 </div>
 </div>
 
-<div id="outline-container-org78af4eb" class="outline-3">
-<h3 id="org78af4eb"><span class="section-number-3">4.6</span> org-super-agenda</h3>
-<div class="outline-text-3" id="text-4-6">
+<div id="outline-container-org6d924c9" class="outline-3">
+<h3 id="org6d924c9"><span class="section-number-3">6.6</span> org-super-agenda</h3>
+<div class="outline-text-3" id="text-6-6">
 <p>
 <a href="https://github.com/alphapapa/org-super-agenda">https://github.com/alphapapa/org-super-agenda</a>
 </p>
 </div>
 
-<div id="outline-container-org917b814" class="outline-4">
-<h4 id="org917b814"><span class="section-number-4">4.6.1</span> Preliminary setup</h4>
-<div class="outline-text-4" id="text-4-6-1">
+<div id="outline-container-org9f1ac1a" class="outline-4">
+<h4 id="org9f1ac1a"><span class="section-number-4">6.6.1</span> Preliminary setup</h4>
+<div class="outline-text-4" id="text-6-6-1">
 <p>
 The following date indicators are required in the <code>org-super-agenda</code> setup in the next section.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Return day of week: Sun=0, Mon=1, Tues=2, ..., Sat=6</span>
-(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">get-day-from-now</span> (n)
-  (<span style="color: #a020f0;">-let*</span>
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Return day of week: Sun=0, Mon=1, Tues=2, ..., Sat=6</span>
+(<span style="color: #F92672;">defun</span> <span style="color: #A6E22E;">get-day-from-now</span> (n)
+  (<span style="color: #F92672;">-let*</span>
       (((sec minute hour day month year dow dst utcoff)
         (decode-time (+ (* n 86400) (float-time)))))
-    dow)) <span style="color: #b22222;">;; </span><span style="color: #b22222;">dow &lt;=&gt; day-of-week</span>
+    dow)) <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">dow &lt;=&gt; day-of-week</span>
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Get day of week today</span>
-(<span style="color: #a020f0;">setq</span> day-of-week-today (get-day-from-now 0))
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Get day of week today</span>
+(<span style="color: #F92672;">setq</span> day-of-week-today (get-day-from-now 0))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Get day of week end</span>
-(<span style="color: #a020f0;">-let*</span> (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* (- 8 day-of-week-today) 86400) (float-time)))))
-  (<span style="color: #a020f0;">setq</span> org-end-of-week (format <span style="color: #8b2252;">"%d-%02d-%02d"</span> year month day)))
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Get day of week end</span>
+(<span style="color: #F92672;">-let*</span> (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* (- 8 day-of-week-today) 86400) (float-time)))))
+  (<span style="color: #F92672;">setq</span> org-end-of-week (format <span style="color: #E6DB74;">"%d-%02d-%02d"</span> year month day)))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Get day of week soon date (i.e. 4 days)</span>
-(<span style="color: #a020f0;">-let*</span> (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 4 86400) (float-time))))) <span style="color: #b22222;">;; </span><span style="color: #b22222;">4 days</span>
-  (<span style="color: #a020f0;">setq</span> org-soon-date (format <span style="color: #8b2252;">"%d-%02d-%02d"</span> year month day)))
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Get day of week soon date (i.e. 4 days)</span>
+(<span style="color: #F92672;">-let*</span> (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 4 86400) (float-time))))) <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">4 days</span>
+  (<span style="color: #F92672;">setq</span> org-soon-date (format <span style="color: #E6DB74;">"%d-%02d-%02d"</span> year month day)))
 
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Get day of week tomorrow date</span>
-(<span style="color: #a020f0;">-let*</span> (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 2 86400) (float-time))))) <span style="color: #b22222;">;; </span><span style="color: #b22222;">2 days</span>
-  (<span style="color: #a020f0;">setq</span> org-tomorrow-date (format <span style="color: #8b2252;">"%d-%02d-%02d"</span> year month day)))
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Get day of week tomorrow date</span>
+(<span style="color: #F92672;">-let*</span> (((sec minute hour day month year dow dst utcoff) (decode-time (+ (* 2 86400) (float-time))))) <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">2 days</span>
+  (<span style="color: #F92672;">setq</span> org-tomorrow-date (format <span style="color: #E6DB74;">"%d-%02d-%02d"</span> year month day)))
 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org91ceab7" class="outline-4">
-<h4 id="org91ceab7"><span class="section-number-4">4.6.2</span> Main org-super-agenda configuration</h4>
-<div class="outline-text-4" id="text-4-6-2">
+<div id="outline-container-org604d785" class="outline-4">
+<h4 id="org604d785"><span class="section-number-4">6.6.2</span> Main org-super-agenda configuration</h4>
+<div class="outline-text-4" id="text-6-6-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">org-super-agenda</span>
-  <span style="color: #483d8b;">:ensure</span> t
-  <span style="color: #483d8b;">:config</span>
+(<span style="color: #F92672;">use-package</span> <span style="color: #AE81FF;">org-super-agenda</span>
+  <span style="color: #F92672;">:ensure</span> t
+  <span style="color: #F92672;">:config</span>
   (org-super-agenda-mode t)
-  (<span style="color: #a020f0;">setq</span> org-super-agenda-groups
-        `((<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Today"</span> <span style="color: #483d8b;">:time-grid</span> t)
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Scheduled"</span> <span style="color: #483d8b;">:scheduled</span> past)
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Overdue reading"</span> <span style="color: #483d8b;">:and</span> (<span style="color: #483d8b;">:deadline</span> past <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"reading"</span>))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Overdue"</span> <span style="color: #483d8b;">:deadline</span> past)
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Scheduled Today"</span> <span style="color: #483d8b;">:todo</span> <span style="color: #8b2252;">"TODAY"</span>)
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Read by today"</span> <span style="color: #483d8b;">:and</span> (<span style="color: #483d8b;">:deadline</span> today <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"reading"</span>))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Watch today"</span> <span style="color: #483d8b;">:and</span> (<span style="color: #483d8b;">:deadline</span> today <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"watch"</span>))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"By today"</span> <span style="color: #483d8b;">:deadline</span> today)
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Read tomorrow"</span> <span style="color: #483d8b;">:and</span> (<span style="color: #483d8b;">:deadline</span> (before ,org-tomorrow-date) <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"reading"</span>))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"By tomorrow"</span> <span style="color: #483d8b;">:deadline</span> (before ,org-tomorrow-date))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Read by EOW"</span> <span style="color: #483d8b;">:and</span> (<span style="color: #483d8b;">:deadline</span> (before ,org-end-of-week) <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"reading"</span>))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Watch by EOW"</span> <span style="color: #483d8b;">:and</span> (<span style="color: #483d8b;">:deadline</span> (before ,org-end-of-week) <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"watch"</span>))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"By EOW"</span> <span style="color: #483d8b;">:deadline</span> (before ,org-end-of-week))
-          (<span style="color: #483d8b;">:name</span> <span style="color: #8b2252;">"Reading"</span> <span style="color: #483d8b;">:tag</span> <span style="color: #8b2252;">"reading"</span>))))
+  (<span style="color: #F92672;">setq</span> org-super-agenda-groups
+        `((<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Today"</span> <span style="color: #F92672;">:time-grid</span> t)
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Scheduled"</span> <span style="color: #F92672;">:scheduled</span> past)
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Overdue reading"</span> <span style="color: #F92672;">:and</span> (<span style="color: #F92672;">:deadline</span> past <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"reading"</span>))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Overdue"</span> <span style="color: #F92672;">:deadline</span> past)
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Scheduled Today"</span> <span style="color: #F92672;">:todo</span> <span style="color: #E6DB74;">"TODAY"</span>)
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Read by today"</span> <span style="color: #F92672;">:and</span> (<span style="color: #F92672;">:deadline</span> today <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"reading"</span>))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Watch today"</span> <span style="color: #F92672;">:and</span> (<span style="color: #F92672;">:deadline</span> today <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"watch"</span>))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"By today"</span> <span style="color: #F92672;">:deadline</span> today)
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Read tomorrow"</span> <span style="color: #F92672;">:and</span> (<span style="color: #F92672;">:deadline</span> (before ,org-tomorrow-date) <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"reading"</span>))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"By tomorrow"</span> <span style="color: #F92672;">:deadline</span> (before ,org-tomorrow-date))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Read by EOW"</span> <span style="color: #F92672;">:and</span> (<span style="color: #F92672;">:deadline</span> (before ,org-end-of-week) <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"reading"</span>))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Watch by EOW"</span> <span style="color: #F92672;">:and</span> (<span style="color: #F92672;">:deadline</span> (before ,org-end-of-week) <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"watch"</span>))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"By EOW"</span> <span style="color: #F92672;">:deadline</span> (before ,org-end-of-week))
+          (<span style="color: #F92672;">:name</span> <span style="color: #E6DB74;">"Reading"</span> <span style="color: #F92672;">:tag</span> <span style="color: #E6DB74;">"reading"</span>))))
 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgde20ccc" class="outline-4">
-<h4 id="orgde20ccc"><span class="section-number-4">4.6.3</span> Resources</h4>
-<div class="outline-text-4" id="text-4-6-3">
+<div id="outline-container-org50f1683" class="outline-4">
+<h4 id="org50f1683"><span class="section-number-4">6.6.3</span> Resources</h4>
+<div class="outline-text-4" id="text-6-6-3">
 <ul class="org-ul">
 <li><a href="https://stackoverflow.com/a/67741229">https://stackoverflow.com/a/67741229</a></li>
 <li><a href="https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates">https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates</a></li>
@@ -712,12 +785,12 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-orgfeea37b" class="outline-3">
-<h3 id="orgfeea37b"><span class="section-number-3">4.7</span> Finished Org</h3>
-<div class="outline-text-3" id="text-4-7">
+<div id="outline-container-org4cfd238" class="outline-3">
+<h3 id="org4cfd238"><span class="section-number-3">6.7</span> Finished Org</h3>
+<div class="outline-text-3" id="text-6-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(message <span style="color: #8b2252;">"successfully setup Org"</span>)
+(message <span style="color: #E6DB74;">"successfully setup Org"</span>)
 
 </pre>
 </div>
@@ -725,34 +798,34 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org514f139" class="outline-2">
-<h2 id="org514f139"><span class="section-number-2">5</span> Keybindings</h2>
-<div class="outline-text-2" id="text-5">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">Org</span>
-(global-set-key (kbd <span style="color: #8b2252;">"C-c l"</span>) 'org-store-link)
-(global-set-key (kbd <span style="color: #8b2252;">"C-c a"</span>) 'org-agenda)
-(global-set-key (kbd <span style="color: #8b2252;">"C-c c"</span>) 'org-capture)
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orga7b1f9d" class="outline-2">
-<h2 id="orga7b1f9d"><span class="section-number-2">6</span> Completed Emacs.org setup</h2>
-<div class="outline-text-2" id="text-6">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(message <span style="color: #8b2252;">"finished Emacs.org setup"</span>)
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org67cf91f" class="outline-2">
-<h2 id="org67cf91f"><span class="section-number-2">7</span> Local variables</h2>
+<div id="outline-container-org41e1248" class="outline-2">
+<h2 id="org41e1248"><span class="section-number-2">7</span> Keybindings</h2>
 <div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Org</span>
+(global-set-key (kbd <span style="color: #E6DB74;">"C-c l"</span>) 'org-store-link)
+(global-set-key (kbd <span style="color: #E6DB74;">"C-c a"</span>) 'org-agenda)
+(global-set-key (kbd <span style="color: #E6DB74;">"C-c c"</span>) 'org-capture)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org376f164" class="outline-2">
+<h2 id="org376f164"><span class="section-number-2">8</span> Completed Emacs.org setup</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(message <span style="color: #E6DB74;">"finished Emacs.org setup"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1fc74c8" class="outline-2">
+<h2 id="org1fc74c8"><span class="section-number-2">9</span> Local variables</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 View this file as a text file.
 </p>
@@ -760,7 +833,7 @@ View this file as a text file.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-04-18 Mon 16:56</p>
+<p class="date">Created: 2022-04-18 Mon 18:15</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
