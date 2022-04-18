@@ -84,6 +84,8 @@
   ;; (load-theme 'spacegray t)
   (load-theme 'monokai t)
 
+  (message "successfully setup emacs theme")
+
 #+end_src
 
 * Magit
