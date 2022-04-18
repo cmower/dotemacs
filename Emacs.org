@@ -89,6 +89,20 @@ https://magit.vc/manual/magit/
 
    ;; information to record when a task moves to the DONE state.
    org-log-done t
+
+   ;; default target for storing notes
+   org-default-notes-file (concat org-directory "/quick.org")
+
+   ;; name of the command for executing Python code.
+   org-babel-python-command "python3"
+
+   ;; commands to process a LaTeX file to a PDF file
+   org-latex-pdf-process
+   '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"
+     "bibtex %b"
+     "makeindex %b"
+     "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b"
+     "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %b")
  
    )
 
