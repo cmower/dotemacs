@@ -89,16 +89,16 @@
     (interactive)
     (find-file (expand-file-name "Emacs.org" user-emacs-directory)))
 
-  (defun report (str)
+  (defun report-init-stage (str)
     (message (concat "[INIT] " str)))
 
-  (report "successfuly setup custom functions")
+  (report-init-stage "successfuly setup custom functions")
 #+end_src
 
   ;; (load-theme 'spacegray t)
   (load-theme 'monokai t)
 
-  (report "successfully setup emacs theme")
+  (report-init-stage "successfully setup emacs theme")
 
 #+end_src
 
@@ -132,7 +132,7 @@ https://magit.vc/manual/magit/
 	    (lambda ()
 	      (local-set-key (kbd "o") 'magit-open-repo)))
 
-  (report "successfully setup magit")
+  (report-init-stage "successfully setup magit")
 
 #+end_src
 
@@ -148,7 +148,7 @@ https://magit.vc/manual/magit/
     (global-undo-tree-mode))
 
 
-  (report "successfully setup undo-tree")
+  (report-init-stage "successfully setup undo-tree")
 
 #+end_src
 
@@ -421,7 +421,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 #+begin_src emacs-lisp
 
-  (report "successfully setup Org")
+  (report-init-stage "successfully setup Org")
 
 #+end_src
 
@@ -448,7 +448,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 * Completed Emacs.org setup
 
 #+begin_src emacs-lisp
-  (report "finished Emacs.org setup")
+  (report-init-stage "finished Emacs.org setup")
 #+end_src
 
 * Local variables
