@@ -50,7 +50,8 @@
 
 #+begin_src emacs-lisp
 
-  (load-theme 'spacegray t)
+  ;; (load-theme 'spacegray t)
+  (load-theme 'monokai t)
 
 #+end_src
 
