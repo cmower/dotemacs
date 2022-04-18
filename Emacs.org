@@ -21,3 +21,17 @@
 
 #+end_src
 
+* use-package
+
+#+begin_src emacs-lisp
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (eval-when-compile
+    (require 'use-package))
+
+#+end_src
+
+- [[https://emacs.stackexchange.com/a/50603/30155][use-package won't load]]
+
