@@ -94,6 +94,22 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
+** Org files
+
+#+begin_src emacs-lisp
+
+  ;; Add all .org files in org-directory recursively
+  (load-library "find-lisp")
+  (setq org-agenda-files (find-lisp-find-files org-directory "\.org$"))
+
+  ;; Include .emacs.d
+  (add-to-list 'org-agenda-files "~/.emacs.d")
+
+#+end_src
+
+*** Resources
+
+- https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/
 #+end_src
 
 ** Finished Org
