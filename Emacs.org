@@ -46,6 +46,11 @@
 
 #+end_src
 
+** Resources
+
+- https://stackoverflow.com/a/1817318/4650592
+- https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/
+
 * Theme
 
 #+begin_src emacs-lisp
