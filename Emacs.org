@@ -154,6 +154,16 @@ https://magit.vc/manual/magit/
 - https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets
 - https://github.com/integral-dw/org-superstar-mode
 
+** Org-babel
+
+#+begin_src emacs-lisp
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t)
+     (python . t)))
+
+#+end_src
 ** Finished Org
 
 #+begin_src emacs-lisp
