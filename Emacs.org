@@ -88,6 +88,7 @@
 - https://stackoverflow.com/a/1817318/4650592
 - https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/
 - https://emacs.stackexchange.com/a/59811/30155
+- https://tex.stackexchange.com/a/74373
 
 * Custom functions
 
