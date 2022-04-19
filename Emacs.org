@@ -87,6 +87,14 @@ Automatically export Emacs.org to HTML after save.
 
 #+end_src
 
+** Finished startup
+
+#+begin_src emacs-lisp
+
+(message "[INIT] successfully completed startup setup")
+
+#+end_src
+
 ** Resources
 
 - https://github.com/daviwil/dotfiles/blob/master/Emacs.org
