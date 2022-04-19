@@ -306,6 +306,9 @@ https://magit.vc/manual/magit/
        ("\\.x?html?\\'" . default)
        ("\\.pdf\\'" . "open %s"))))
 
+   ;; how the source code edit buffer should be displayed
+   org-src-window-setup 'current-window
+
    )
 
 #+end_src
