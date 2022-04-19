@@ -30,6 +30,7 @@ Make startup faster by reducing the frequency of garbage collection and then use
 I ran a quick test to check if the above code actually makes a difference.
 =On=: means =gc-cons-threshold= is set (above), and
 =Off=: means =gc-cons-threshold= is the default value.
+The trials were executed on a PC running Ubuntu 20.04, with a 16-core Intel(R) Core(TM) i9-9900KF CPU @ 3.60GHz.
 
 #+tblname: data_table
 | Off (secs) | On (secs) |
