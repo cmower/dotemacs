@@ -77,6 +77,10 @@
    ;; fontify subscript and superscript strings
    font-latex-fontify-script nil
 
+   ;; control use of local variables in files you visit
+   ;; :safe means set the safe variables, and ignore the rest
+   enable-local-variables :safe
+
    )
 
   (message "[INIT] set constants")
