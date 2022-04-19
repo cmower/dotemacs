@@ -74,6 +74,9 @@
    ;; default dictionary to use
    ispell-dictionary "en_US"
 
+   ;; fontify subscript and superscript strings
+   font-latex-fontify-script nil
+
    )
 
   (message "[INIT] set constants")
