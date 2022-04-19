@@ -167,6 +167,9 @@ Automatically export Emacs.org to HTML after save.
    ;; :safe means set the safe variables, and ignore the rest
    enable-local-variables :safe
 
+   ;; output type to be used by htmlize when formatting code snippets
+   org-html-htmlize-output-type 'css
+
    )
 
   (message "[INIT] set constants")
