@@ -2,6 +2,25 @@
 #+OPTIONS: author:nil date:nil html-style:nil html-postamble:nil
 #+FILETAGS: :emacs:
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+** Export Emacs.org to HTML
+
+Automatically export Emacs.org to HTML after save.
+
+#+begin_src emacs-lisp
+
+  (defun org-html-export-to-html-for-emacs-init ()
+    "When current buffer is Emacs.org, export to HTML"
+    (when (string= (buffer-file-name) (expand-file-name "Emacs.org" user-emacs-directory))
+      (message "Generating Emacs.html")
+      (org-html-export-to-html)))
+
+  (add-hook 'after-save-hook 'org-html-export-to-html-for-emacs-init)
+
+#+end_src
+
+** Resources
+
+- https://github.com/daviwil/dotfiles/blob/master/Emacs.org
 
 * Package management
 
@@ -44,7 +63,6 @@
 
    ;; full name of the user logged in
    user-full-name "Christopher E. Mower"
-
 
    ;; file used for storing customization information.
    custom-file (concat user-emacs-directory "/custom.el")
@@ -585,11 +603,3 @@ The following date indicators are required in the =org-super-agenda= setup in th
 #+begin_src emacs-lisp
   (report-init-stage "finished Emacs.org setup")
 #+end_src
-
-* Local variables
-
-View this file as a text file to see the local variables.
-
-# Local variables:
-# eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
-# end:
