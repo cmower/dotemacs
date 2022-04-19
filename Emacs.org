@@ -179,6 +179,10 @@ Automatically export Emacs.org to HTML after save.
    ;; output type to be used by htmlize when formatting code snippets
    org-html-htmlize-output-type 'css
 
+   ;; List of warnings that the byte-compiler should issue
+   ;; The 'cl' package is now officially deprecated in favor of 'cl-lib'.
+   byte-compile-warnings '(cl-functions)
+
    )
 
   (message "[INIT] set constants")
@@ -192,6 +196,8 @@ Automatically export Emacs.org to HTML after save.
 - https://emacs.stackexchange.com/a/59811/30155
 - https://tex.stackexchange.com/a/74373
 - https://emacs.stackexchange.com/a/38
+- https://www.gnu.org/savannah-checkouts/gnu/emacs/news/NEWS.27.1
+- https://github.com/kiwanami/emacs-epc/issues/35#issuecomment-660639327
 
 * Custom functions
 
