@@ -2,6 +2,76 @@
 #+OPTIONS: author:nil date:nil html-style:nil html-postamble:nil
 #+FILETAGS: :emacs:
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+#+STARTUP: inlineimages
+
+* Startup
+
+Make startup faster by reducing the frequency of garbage collection and then use a hook to measure Emacs startup time.
+
+** Performance
+
+#+begin_src emacs-lisp
+
+  ;; The default is 800 kilobytes.  Measured in bytes.
+  ;; Seems to have an effect, see plot below.
+  (setq gc-cons-threshold (* 50 1000 1000))
+
+  ;; Profile emacs startup
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "Emacs loaded in %s with %d garbage collections."
+                       (format "%.2f seconds"
+                               (float-time
+                                (time-subtract after-init-time before-init-time)))
+                       gcs-done)))
+
+#+end_src
+
+I ran a quick test to check if the above code actually makes a difference.
+=On=: means =gc-cons-threshold= is set (above), and
+=Off=: means =gc-cons-threshold= is the default value.
+
+#+tblname: data_table
+| Off (secs) | On (secs) |
+|       2.03 |      1.67 |
+|       1.67 |      1.29 |
+|       1.73 |      1.28 |
+|       1.67 |      1.28 |
+|       1.66 |      1.28 |
+
+#+begin_src python :var data=data_table :tangle no
+  import numpy
+  import matplotlib.pyplot as plt
+  off = numpy.array([d[0] for d in data[1:]])
+  on = numpy.array([d[1] for d in data[1:]])
+  means = [on.mean(), off.mean()]
+  stds = [on.std(), off.std()]
+  fig = plt.figure(figsize=(4, 3), facecolor='#272822')
+  ax = fig.gca()
+  ax.bar([0, 1], means, yerr=stds, ecolor='white', color=['#F92672', '#FD971F'])
+  ax.set_title('Performance comparison', color='white', fontsize=15)
+  ax.set_xticks([0, 1])
+  ax.set_xticklabels(['On', 'Off'], fontsize=15)
+  ax.set_ylim(0, 2)
+  ax.set_facecolor('#272822')
+  ax.spines['right'].set_color('white')
+  ax.spines['left'].set_color('white')
+  ax.spines['bottom'].set_color('white')
+  ax.spines['top'].set_color('white')
+  ax.tick_params(axis='x', colors='white')
+  ax.tick_params(axis='y', colors='white')
+  ax.set_ylabel('Startup time (secs)')
+  plt.savefig('imgs/startup-performance.png', facecolor=fig.get_facecolor())
+#+end_src
+
+#+RESULTS:
+: None
+
+#+CAPTION: Startup duration comparison between default =gc-cons-threshold= (Off) and value set above (On).
+[[./imgs/startup-performance.png]]
+
+
+
 ** Export Emacs.org to HTML
 
 Automatically export Emacs.org to HTML after save.
