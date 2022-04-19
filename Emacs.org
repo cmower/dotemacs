@@ -517,6 +517,37 @@ The following date indicators are required in the =org-super-agenda= setup in th
 - https://github.com/tom-tan/auctex-latexmk
 - https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
 
+* Python
+
+#+begin_src emacs-lisp
+
+  ;; Keybindings for indent left/right
+  (add-hook 'python-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-.") 'python-indent-shift-right)))
+
+  (add-hook 'python-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-,") 'python-indent-shift-left)))
+
+  ;; Auto completion
+  (use-package jedi
+    :ensure t
+    :init
+    (setq jedi:complete-on-dot t
+          jedi:tooltip-method nil
+          jedi:get-in-function-call-delay 1)
+    :config
+    (add-hook 'python-mode-hook 'jedi:setup))
+
+#+end_src
+
+** TODO [#C] Investigate Jedi auto-completion for Emacs
+
+** Resources
+
+- http://tkf.github.io/emacs-jedi/latest/#install
+
 * Keybindings
 
 #+begin_src emacs-lisp
