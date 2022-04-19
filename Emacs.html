@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-19 Tue 10:58 -->
+<!-- 2022-04-19 Tue 11:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs initialization</title>
@@ -61,76 +61,81 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ffd99d">1. Package management</a></li>
-<li><a href="#org73d12de">2. use-package</a></li>
-<li><a href="#orge0dc6dd">3. Constants</a>
+<li><a href="#orgce25453">1. Package management</a></li>
+<li><a href="#org0641eb1">2. use-package</a></li>
+<li><a href="#orgcc0e1cb">3. Constants</a>
 <ul>
-<li><a href="#orgf96f253">3.1. Resources</a></li>
+<li><a href="#orga70d117">3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org066f30d">4. Custom functions</a></li>
-<li><a href="#org95e2da6">5. User interface</a>
+<li><a href="#orgfc57627">4. Custom functions</a></li>
+<li><a href="#org53c4ae5">5. User interface</a>
 <ul>
-<li><a href="#org2f7dada">5.1. Theme</a></li>
-<li><a href="#org274f4d5">5.2. Appearance</a></li>
-<li><a href="#org535be72">5.3. Resources</a></li>
+<li><a href="#orge553032">5.1. Theme</a></li>
+<li><a href="#orgd13b6d5">5.2. Appearance</a></li>
+<li><a href="#org6100b0e">5.3. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org876859b">6. Magit</a></li>
-<li><a href="#org9b863a9">7. Undo</a></li>
-<li><a href="#org2bb2e27">8. Spelling</a>
+<li><a href="#org433b03e">6. Magit</a></li>
+<li><a href="#orgbf99b29">7. Undo</a></li>
+<li><a href="#org8607c5e">8. Spelling</a>
 <ul>
-<li><a href="#org4818500">8.1. Resources</a></li>
+<li><a href="#org376b57d">8.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgcb51f50">9. Org</a>
+<li><a href="#org98b5a16">9. Org</a>
 <ul>
-<li><a href="#org28cf485">9.1. Constants</a>
+<li><a href="#orgaa950e9">9.1. Constants</a>
 <ul>
-<li><a href="#org6c2e23f">9.1.1. Resources</a></li>
+<li><a href="#org276012b">9.1.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orga2a2b74">9.2. Org files</a>
+<li><a href="#org870fe40">9.2. Org files</a>
 <ul>
-<li><a href="#orgef8d63f">9.2.1. Resources</a></li>
+<li><a href="#orga576c63">9.2.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org5799261">9.3. Appearance</a>
+<li><a href="#orgabf80c7">9.3. Appearance</a>
 <ul>
-<li><a href="#org8af01c0">9.3.1. Resources</a></li>
+<li><a href="#orgfabc0c4">9.3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org1d8cc2e">9.4. org-babel</a></li>
-<li><a href="#org866fd82">9.5. org-ref</a>
+<li><a href="#orge9051c3">9.4. org-babel</a></li>
+<li><a href="#org5fcdff5">9.5. org-ref</a>
 <ul>
-<li><a href="#org25dec63">9.5.1. Resources</a></li>
+<li><a href="#org0387b83">9.5.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgc679987">9.6. org-super-agenda</a>
+<li><a href="#org46de45c">9.6. org-super-agenda</a>
 <ul>
-<li><a href="#org196a750">9.6.1. Preliminary setup</a></li>
-<li><a href="#orgbc620db">9.6.2. Main org-super-agenda configuration</a></li>
-<li><a href="#org28bc39f">9.6.3. Resources</a></li>
+<li><a href="#org5ab0379">9.6.1. Preliminary setup</a></li>
+<li><a href="#orga39ba96">9.6.2. Main org-super-agenda configuration</a></li>
+<li><a href="#org04c979d">9.6.3. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org2ab2bce">9.7. Finished Org</a></li>
+<li><a href="#orgbe51511">9.7. Finished Org</a></li>
 </ul>
 </li>
-<li><a href="#orgfb88010">10. LaTeX</a>
+<li><a href="#org0177e7f">10. LaTeX</a>
 <ul>
-<li><a href="#orgc0ce3dd">10.1. Resources</a></li>
+<li><a href="#org2281fe7">10.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org9acf156">11. Keybindings</a></li>
-<li><a href="#org38ad071">12. Hooks</a></li>
-<li><a href="#org5f20f77">13. Completed Emacs.org setup</a></li>
-<li><a href="#org41539c6">14. Local variables</a></li>
+<li><a href="#org59891dd">11. Python</a>
+<ul>
+<li><a href="#orgaff0626">11.1. Resources</a></li>
+</ul>
+</li>
+<li><a href="#orgc0dc515">12. Keybindings</a></li>
+<li><a href="#orgc037fbf">13. Hooks</a></li>
+<li><a href="#orgb3f9ebd">14. Completed Emacs.org setup</a></li>
+<li><a href="#org3ac6af2">15. Local variables</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9ffd99d" class="outline-2">
-<h2 id="org9ffd99d"><span class="section-number-2">1</span> Package management</h2>
+<div id="outline-container-orgce25453" class="outline-2">
+<h2 id="orgce25453"><span class="section-number-2">1</span> Package management</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -150,8 +155,8 @@
 </div>
 </div>
 
-<div id="outline-container-org73d12de" class="outline-2">
-<h2 id="org73d12de"><span class="section-number-2">2</span> use-package</h2>
+<div id="outline-container-org0641eb1" class="outline-2">
+<h2 id="org0641eb1"><span class="section-number-2">2</span> use-package</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -172,8 +177,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge0dc6dd" class="outline-2">
-<h2 id="orge0dc6dd"><span class="section-number-2">3</span> Constants</h2>
+<div id="outline-container-orgcc0e1cb" class="outline-2">
+<h2 id="orgcc0e1cb"><span class="section-number-2">3</span> Constants</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -219,8 +224,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf96f253" class="outline-3">
-<h3 id="orgf96f253"><span class="section-number-3">3.1</span> Resources</h3>
+<div id="outline-container-orga70d117" class="outline-3">
+<h3 id="orga70d117"><span class="section-number-3">3.1</span> Resources</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><a href="https://stackoverflow.com/a/1817318/4650592">https://stackoverflow.com/a/1817318/4650592</a></li>
@@ -231,8 +236,8 @@
 </div>
 </div>
 
-<div id="outline-container-org066f30d" class="outline-2">
-<h2 id="org066f30d"><span class="section-number-2">4</span> Custom functions</h2>
+<div id="outline-container-orgfc57627" class="outline-2">
+<h2 id="orgfc57627"><span class="section-number-2">4</span> Custom functions</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -251,12 +256,12 @@
 </div>
 </div>
 
-<div id="outline-container-org95e2da6" class="outline-2">
-<h2 id="org95e2da6"><span class="section-number-2">5</span> User interface</h2>
+<div id="outline-container-org53c4ae5" class="outline-2">
+<h2 id="org53c4ae5"><span class="section-number-2">5</span> User interface</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org2f7dada" class="outline-3">
-<h3 id="org2f7dada"><span class="section-number-3">5.1</span> Theme</h3>
+<div id="outline-container-orge553032" class="outline-3">
+<h3 id="orge553032"><span class="section-number-3">5.1</span> Theme</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #b8b298;">;; </span><span style="color: #b8b298;">(load-theme 'spacegray t)</span>
@@ -269,8 +274,8 @@
 </div>
 </div>
 
-<div id="outline-container-org274f4d5" class="outline-3">
-<h3 id="org274f4d5"><span class="section-number-3">5.2</span> Appearance</h3>
+<div id="outline-container-orgd13b6d5" class="outline-3">
+<h3 id="orgd13b6d5"><span class="section-number-3">5.2</span> Appearance</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -288,8 +293,8 @@
 </div>
 </div>
 
-<div id="outline-container-org535be72" class="outline-3">
-<h3 id="org535be72"><span class="section-number-3">5.3</span> Resources</h3>
+<div id="outline-container-org6100b0e" class="outline-3">
+<h3 id="org6100b0e"><span class="section-number-3">5.3</span> Resources</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li><a href="http://ergoemacs.org/emacs/emacs_highlight_parenthesis.html">http://ergoemacs.org/emacs/emacs_highlight_parenthesis.html</a></li>
@@ -298,8 +303,8 @@
 </div>
 </div>
 
-<div id="outline-container-org876859b" class="outline-2">
-<h2 id="org876859b"><span class="section-number-2">6</span> Magit</h2>
+<div id="outline-container-org433b03e" class="outline-2">
+<h2 id="org433b03e"><span class="section-number-2">6</span> Magit</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
@@ -338,8 +343,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9b863a9" class="outline-2">
-<h2 id="org9b863a9"><span class="section-number-2">7</span> Undo</h2>
+<div id="outline-container-orgbf99b29" class="outline-2">
+<h2 id="orgbf99b29"><span class="section-number-2">7</span> Undo</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -358,8 +363,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2bb2e27" class="outline-2">
-<h2 id="org2bb2e27"><span class="section-number-2">8</span> Spelling</h2>
+<div id="outline-container-org8607c5e" class="outline-2">
+<h2 id="org8607c5e"><span class="section-number-2">8</span> Spelling</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -376,8 +381,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4818500" class="outline-3">
-<h3 id="org4818500"><span class="section-number-3">8.1</span> Resources</h3>
+<div id="outline-container-org376b57d" class="outline-3">
+<h3 id="org376b57d"><span class="section-number-3">8.1</span> Resources</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li><a href="https://emacs.stackexchange.com/a/7469/30155">https://emacs.stackexchange.com/a/7469/30155</a></li>
@@ -387,12 +392,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgcb51f50" class="outline-2">
-<h2 id="orgcb51f50"><span class="section-number-2">9</span> Org</h2>
+<div id="outline-container-org98b5a16" class="outline-2">
+<h2 id="org98b5a16"><span class="section-number-2">9</span> Org</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org28cf485" class="outline-3">
-<h3 id="org28cf485"><span class="section-number-3">9.1</span> Constants</h3>
+<div id="outline-container-orgaa950e9" class="outline-3">
+<h3 id="orgaa950e9"><span class="section-number-3">9.1</span> Constants</h3>
 <div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -493,14 +498,17 @@
      (<span style="color: #E6DB74;">"\\.x?html?\\'"</span> . default)
      (<span style="color: #E6DB74;">"\\.pdf\\'"</span> . <span style="color: #E6DB74;">"open %s"</span>))))
 
+ <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">how the source code edit buffer should be displayed</span>
+ org-src-window-setup 'current-window
+
  )
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6c2e23f" class="outline-4">
-<h4 id="org6c2e23f"><span class="section-number-4">9.1.1</span> Resources</h4>
+<div id="outline-container-org276012b" class="outline-4">
+<h4 id="org276012b"><span class="section-number-4">9.1.1</span> Resources</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <ul class="org-ul">
 <li><a href="https://emacs.stackexchange.com/a/16561">https://emacs.stackexchange.com/a/16561</a></li>
@@ -511,8 +519,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga2a2b74" class="outline-3">
-<h3 id="orga2a2b74"><span class="section-number-3">9.2</span> Org files</h3>
+<div id="outline-container-org870fe40" class="outline-3">
+<h3 id="org870fe40"><span class="section-number-3">9.2</span> Org files</h3>
 <div class="outline-text-3" id="text-9-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -527,8 +535,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgef8d63f" class="outline-4">
-<h4 id="orgef8d63f"><span class="section-number-4">9.2.1</span> Resources</h4>
+<div id="outline-container-orga576c63" class="outline-4">
+<h4 id="orga576c63"><span class="section-number-4">9.2.1</span> Resources</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/">https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/</a></li>
@@ -537,8 +545,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5799261" class="outline-3">
-<h3 id="org5799261"><span class="section-number-3">9.3</span> Appearance</h3>
+<div id="outline-container-orgabf80c7" class="outline-3">
+<h3 id="orgabf80c7"><span class="section-number-3">9.3</span> Appearance</h3>
 <div class="outline-text-3" id="text-9-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -563,8 +571,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8af01c0" class="outline-4">
-<h4 id="org8af01c0"><span class="section-number-4">9.3.1</span> Resources</h4>
+<div id="outline-container-orgfabc0c4" class="outline-4">
+<h4 id="orgfabc0c4"><span class="section-number-4">9.3.1</span> Resources</h4>
 <div class="outline-text-4" id="text-9-3-1">
 <ul class="org-ul">
 <li><a href="https://github.com/awth13/org-appear">https://github.com/awth13/org-appear</a></li>
@@ -575,8 +583,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1d8cc2e" class="outline-3">
-<h3 id="org1d8cc2e"><span class="section-number-3">9.4</span> org-babel</h3>
+<div id="outline-container-orge9051c3" class="outline-3">
+<h3 id="orge9051c3"><span class="section-number-3">9.4</span> org-babel</h3>
 <div class="outline-text-3" id="text-9-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -590,8 +598,8 @@
 </div>
 </div>
 
-<div id="outline-container-org866fd82" class="outline-3">
-<h3 id="org866fd82"><span class="section-number-3">9.5</span> org-ref</h3>
+<div id="outline-container-org5fcdff5" class="outline-3">
+<h3 id="org5fcdff5"><span class="section-number-3">9.5</span> org-ref</h3>
 <div class="outline-text-3" id="text-9-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -624,8 +632,8 @@ however, when writing \(\LaTeX\) in Org-mode files, use
 </div>
 </div>
 
-<div id="outline-container-org25dec63" class="outline-4">
-<h4 id="org25dec63"><span class="section-number-4">9.5.1</span> Resources</h4>
+<div id="outline-container-org0387b83" class="outline-4">
+<h4 id="org0387b83"><span class="section-number-4">9.5.1</span> Resources</h4>
 <div class="outline-text-4" id="text-9-5-1">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=2t925KRBbFc">https://www.youtube.com/watch?v=2t925KRBbFc</a></li>
@@ -635,16 +643,16 @@ however, when writing \(\LaTeX\) in Org-mode files, use
 </div>
 </div>
 
-<div id="outline-container-orgc679987" class="outline-3">
-<h3 id="orgc679987"><span class="section-number-3">9.6</span> org-super-agenda</h3>
+<div id="outline-container-org46de45c" class="outline-3">
+<h3 id="org46de45c"><span class="section-number-3">9.6</span> org-super-agenda</h3>
 <div class="outline-text-3" id="text-9-6">
 <p>
 <a href="https://github.com/alphapapa/org-super-agenda">https://github.com/alphapapa/org-super-agenda</a>
 </p>
 </div>
 
-<div id="outline-container-org196a750" class="outline-4">
-<h4 id="org196a750"><span class="section-number-4">9.6.1</span> Preliminary setup</h4>
+<div id="outline-container-org5ab0379" class="outline-4">
+<h4 id="org5ab0379"><span class="section-number-4">9.6.1</span> Preliminary setup</h4>
 <div class="outline-text-4" id="text-9-6-1">
 <p>
 The following date indicators are required in the <code>org-super-agenda</code> setup in the next section.
@@ -679,8 +687,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-orgbc620db" class="outline-4">
-<h4 id="orgbc620db"><span class="section-number-4">9.6.2</span> Main org-super-agenda configuration</h4>
+<div id="outline-container-orga39ba96" class="outline-4">
+<h4 id="orga39ba96"><span class="section-number-4">9.6.2</span> Main org-super-agenda configuration</h4>
 <div class="outline-text-4" id="text-9-6-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -709,8 +717,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org28bc39f" class="outline-4">
-<h4 id="org28bc39f"><span class="section-number-4">9.6.3</span> Resources</h4>
+<div id="outline-container-org04c979d" class="outline-4">
+<h4 id="org04c979d"><span class="section-number-4">9.6.3</span> Resources</h4>
 <div class="outline-text-4" id="text-9-6-3">
 <ul class="org-ul">
 <li><a href="https://stackoverflow.com/a/67741229">https://stackoverflow.com/a/67741229</a></li>
@@ -720,8 +728,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org2ab2bce" class="outline-3">
-<h3 id="org2ab2bce"><span class="section-number-3">9.7</span> Finished Org</h3>
+<div id="outline-container-orgbe51511" class="outline-3">
+<h3 id="orgbe51511"><span class="section-number-3">9.7</span> Finished Org</h3>
 <div class="outline-text-3" id="text-9-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -733,8 +741,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-orgfb88010" class="outline-2">
-<h2 id="orgfb88010"><span class="section-number-2">10</span> LaTeX</h2>
+<div id="outline-container-org0177e7f" class="outline-2">
+<h2 id="org0177e7f"><span class="section-number-2">10</span> LaTeX</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -768,8 +776,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-orgc0ce3dd" class="outline-3">
-<h3 id="orgc0ce3dd"><span class="section-number-3">10.1</span> Resources</h3>
+<div id="outline-container-org2281fe7" class="outline-3">
+<h3 id="org2281fe7"><span class="section-number-3">10.1</span> Resources</h3>
 <div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li><a href="https://github.com/jwiegley/use-package/issues/379">https://github.com/jwiegley/use-package/issues/379</a></li>
@@ -780,9 +788,48 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org9acf156" class="outline-2">
-<h2 id="org9acf156"><span class="section-number-2">11</span> Keybindings</h2>
+<div id="outline-container-org59891dd" class="outline-2">
+<h2 id="org59891dd"><span class="section-number-2">11</span> Python</h2>
 <div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Keybindings for indent left/right</span>
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (local-set-key (kbd <span style="color: #E6DB74;">"C-."</span>) 'python-indent-shift-right)))
+
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (local-set-key (kbd <span style="color: #E6DB74;">"C-,"</span>) 'python-indent-shift-left)))
+
+<span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Auto completion</span>
+(<span style="color: #F92672;">use-package</span> <span style="color: #AE81FF;">jedi</span>
+  <span style="color: #F92672;">:ensure</span> t
+  <span style="color: #F92672;">:init</span>
+  (<span style="color: #F92672;">setq</span> jedi:complete-on-dot t
+        jedi:tooltip-method nil
+        jedi:get-in-function-call-delay 2)
+  <span style="color: #F92672;">:config</span>
+  (add-hook 'python-mode-hook 'jedi:setup))
+
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgaff0626" class="outline-3">
+<h3 id="orgaff0626"><span class="section-number-3">11.1</span> Resources</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li><a href="http://tkf.github.io/emacs-jedi/latest/#install">http://tkf.github.io/emacs-jedi/latest/#install</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0dc515" class="outline-2">
+<h2 id="orgc0dc515"><span class="section-number-2">12</span> Keybindings</h2>
+<div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">Org</span>
@@ -798,9 +845,9 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org38ad071" class="outline-2">
-<h2 id="org38ad071"><span class="section-number-2">12</span> Hooks</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-orgc037fbf" class="outline-2">
+<h2 id="orgc037fbf"><span class="section-number-2">13</span> Hooks</h2>
+<div class="outline-text-2" id="text-13">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 <span style="color: #b8b298;">;; </span><span style="color: #b8b298;">remove any trailing whitespace on save</span>
@@ -811,9 +858,9 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org5f20f77" class="outline-2">
-<h2 id="org5f20f77"><span class="section-number-2">13</span> Completed Emacs.org setup</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-orgb3f9ebd" class="outline-2">
+<h2 id="orgb3f9ebd"><span class="section-number-2">14</span> Completed Emacs.org setup</h2>
+<div class="outline-text-2" id="text-14">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(report-init-stage <span style="color: #E6DB74;">"finished Emacs.org setup"</span>)
 </pre>
@@ -821,9 +868,9 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org41539c6" class="outline-2">
-<h2 id="org41539c6"><span class="section-number-2">14</span> Local variables</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-org3ac6af2" class="outline-2">
+<h2 id="org3ac6af2"><span class="section-number-2">15</span> Local variables</h2>
+<div class="outline-text-2" id="text-15">
 <p>
 View this file as a text file to see the local variables.
 </p>
