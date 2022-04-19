@@ -316,6 +316,15 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
+* Git modes
+
+#+begin_src emacs-lisp
+
+  (use-package git-modes
+    :ensure t)
+
+#+end_src
+
 * Helm
 
 #+begin_src emacs-lisp
