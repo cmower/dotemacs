@@ -545,7 +545,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 * Local variables
 
-View this file as a text file.
+View this file as a text file to see the local variables.
 
 # Local variables:
 # eval: (add-hook 'after-save-hook 'org-html-export-to-html t t)
