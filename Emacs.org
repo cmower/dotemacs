@@ -46,9 +46,8 @@ I ran a quick test to check if the above code actually makes a difference.
   on = numpy.array([d[1] for d in data[1:]])
   means = [on.mean(), off.mean()]
   stds = [on.std(), off.std()]
-  fig = plt.figure(figsize=(4, 3), facecolor='#272822')
-  ax = fig.gca()
-  ax.bar([0, 1], means, yerr=stds, ecolor='white', color=['#F92672', '#FD971F'])
+  fig, ax = plt.subplots(figsize=(4, 3), facecolor='#272822', tight_layout=True)
+  ax.bar([0, 1], means, yerr=stds, ecolor='#006FE0', color=['#F92672', '#FD971F'])
   ax.set_title('Performance comparison', color='white', fontsize=15)
   ax.set_xticks([0, 1])
   ax.set_xticklabels(['On', 'Off'], fontsize=15)
@@ -60,7 +59,8 @@ I ran a quick test to check if the above code actually makes a difference.
   ax.spines['top'].set_color('white')
   ax.tick_params(axis='x', colors='white')
   ax.tick_params(axis='y', colors='white')
-  ax.set_ylabel('Startup time (secs)')
+  ax.set_ylabel('Startup time (secs)', color='white', fontsize=15)
+  ax.grid()
   plt.savefig('imgs/startup-performance.png', facecolor=fig.get_facecolor())
 #+end_src
 
