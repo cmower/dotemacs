@@ -296,6 +296,38 @@ https://magit.vc/manual/magit/
 
 #+end_src
 
+* Auto complete
+
+#+begin_src emacs-lisp
+
+  (use-package auto-complete
+    :commands auto-complete-mode
+    :init
+    (setq ac-delay 0.02
+          ac-use-menu-map t
+          ac-menu-height 50
+          ac-use-quick-help nil
+          ac-ignore-case nil
+          ac-dwim  t
+          ac-fuzzy-enable t)
+    :config
+    (auto-complete-mode t)
+    (ac-config-default))
+
+#+end_src
+
+* Helm
+
+#+begin_src emacs-lisp
+
+  (use-package helm
+    :ensure t
+    :bind
+    (("M-x" . helm-M-x)
+     ("C-x C-f" . helm-find-files)))
+
+#+end_src
+
 * Spelling
 
 #+begin_src emacs-lisp
@@ -448,6 +480,18 @@ https://magit.vc/manual/magit/
 *** Resources
 
 - https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/
+
+** Auto-complete
+
+#+begin_src emacs-lisp
+
+  ;; Org mode
+  (use-package org-ac
+    :ensure t
+    :config
+    (org-ac/config-default))
+
+#+end_src
 
 ** Appearance
 
