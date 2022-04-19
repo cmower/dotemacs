@@ -70,8 +70,6 @@ I ran a quick test to check if the above code actually makes a difference.
 #+CAPTION: Startup duration comparison between default =gc-cons-threshold= (Off) and value set above (On).
 [[./imgs/startup-performance.png]]
 
-
-
 ** Export Emacs.org to HTML
 
 Automatically export Emacs.org to HTML after save.
