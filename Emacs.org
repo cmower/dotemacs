@@ -467,6 +467,17 @@ https://magit.vc/manual/magit/
    ;; how the source code edit buffer should be displayed
    org-src-window-setup 'current-window
 
+   ;;
+   org-agenda-prefix-format
+   '((agenda . " %?-12t% s")
+     (todo . " %i %-12:c")
+     (tags . " %i %-12:c")
+     (search . " %i %-12:c"))
+   ;; '((agenda . "%i %-12:c%?-12t% s")
+   ;;   (todo . " %i %-12:c")
+   ;;   (tags . " %i %-12:c")
+   ;;   (search . " %i %-12:c"))
+
    )
 
 #+end_src
