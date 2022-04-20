@@ -99,39 +99,6 @@ Automatically export Emacs.org to HTML after save.
 
 - https://github.com/daviwil/dotfiles/blob/master/Emacs.org
 
-* Package management
-
-#+begin_src emacs-lisp
-
-  (require 'package)
-  (setq package-archives '(
-			   ("melpa" . "https://melpa.org/packages/")
-			   ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-			   ;; ("org" . "https://orgmode.org/elpa/")
-			   ("elpa" . "https://elpa.gnu.org/packages/")
-			   ))
-  (package-initialize)
-
-  (message "[INIT] successfully setup package managers")
-
-#+end_src
-
-* use-package
-
-#+begin_src emacs-lisp
-
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (eval-when-compile
-    (require 'use-package))
-
-  (message "[INIT] successfully setup use-package")
-
-#+end_src
-
-- [[https://emacs.stackexchange.com/a/50603/30155][use-package won't load]]
-
 * Constants
 
 #+begin_src emacs-lisp
@@ -201,6 +168,40 @@ Automatically export Emacs.org to HTML after save.
 - https://emacs.stackexchange.com/a/38
 - https://www.gnu.org/savannah-checkouts/gnu/emacs/news/NEWS.27.1
 - https://github.com/kiwanami/emacs-epc/issues/35#issuecomment-660639327
+- https://stackoverflow.com/a/15735931/4650592
+
+* Package management
+
+#+begin_src emacs-lisp
+
+  (require 'package)
+  (setq package-archives '(
+			   ("melpa" . "https://melpa.org/packages/")
+			   ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+			   ;; ("org" . "https://orgmode.org/elpa/")
+			   ("elpa" . "https://elpa.gnu.org/packages/")
+			   ))
+  (package-initialize)
+
+  (message "[INIT] successfully setup package managers")
+
+#+end_src
+
+* use-package
+
+#+begin_src emacs-lisp
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (eval-when-compile
+    (require 'use-package))
+
+  (message "[INIT] successfully setup use-package")
+
+#+end_src
+
+- [[https://emacs.stackexchange.com/a/50603/30155][use-package won't load]]
 
 * Custom functions
 
