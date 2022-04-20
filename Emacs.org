@@ -108,6 +108,9 @@ Automatically export Emacs.org to HTML after save.
    ;; full name of the user logged in
    user-full-name "Christopher E. Mower"
 
+   ;; the email address of the current user
+   user-mail-address "cmower@ed.ac.uk"
+
    ;; file used for storing customization information.
    custom-file (concat user-emacs-directory "/custom.el")
 
