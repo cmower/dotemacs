@@ -653,6 +653,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
     (org-super-agenda-mode t)
     (setq org-super-agenda-groups
           `((:name "Today" :time-grid t)
+            (:name "ASAP" :tag "asap")
             (:name "Scheduled" :scheduled past)
             (:name "Overdue reading" :and (:deadline past :tag "reading"))
             (:name "Overdue" :deadline past)
