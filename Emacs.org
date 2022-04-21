@@ -768,6 +768,13 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 - http://tkf.github.io/emacs-jedi/latest/#install
 
+* ROS
+
+#+begin_src emacs-lisp
+
+  (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+
+#+end_src
 * Keybindings
 
 #+begin_src emacs-lisp
