@@ -21,3 +21,6 @@ games/
 
 # Private files
 private.txt
+
+# Mac files
+.DS_Store
