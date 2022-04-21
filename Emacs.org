@@ -6,9 +6,20 @@
 
 * Startup
 
-Make startup faster by reducing the frequency of garbage collection and then use a hook to measure Emacs startup time.
+** Reporting function
+
+#+begin_src emacs-lisp
+
+  (message "------------------- started Emacs.org -------------------")
+
+  (defun report-init-stage (str)
+    (message (concat "[INIT] successfully finished: " str)))
+
+#+end_src
 
 ** Performance
+
+Make startup faster by reducing the frequency of garbage collection and then use a hook to measure Emacs startup time.
 
 #+begin_src emacs-lisp
 
@@ -91,7 +102,7 @@ Automatically export Emacs.org to HTML after save.
 
 #+begin_src emacs-lisp
 
-(message "[INIT] successfully completed startup setup")
+  (report-init-stage "startup")
 
 #+end_src
 
@@ -158,8 +169,7 @@ Automatically export Emacs.org to HTML after save.
 
    )
 
-  (message "[INIT] set constants")
-
+  (report-init-stage "constants")
 #+end_src
 
 ** Resources
@@ -179,14 +189,14 @@ Automatically export Emacs.org to HTML after save.
 
   (require 'package)
   (setq package-archives '(
-			   ("melpa" . "https://melpa.org/packages/")
-			   ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-			   ;; ("org" . "https://orgmode.org/elpa/")
-			   ("elpa" . "https://elpa.gnu.org/packages/")
-			   ))
+                           ("melpa" . "https://melpa.org/packages/")
+                           ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+                           ;; ("org" . "https://orgmode.org/elpa/")
+                           ("elpa" . "https://elpa.gnu.org/packages/")
+                           ))
   (package-initialize)
 
-  (message "[INIT] successfully setup package managers")
+  (report-init-stage "package managers")
 
 #+end_src
 
@@ -200,7 +210,7 @@ Automatically export Emacs.org to HTML after save.
   (eval-when-compile
     (require 'use-package))
 
-  (message "[INIT] successfully setup use-package")
+  (report-init-stage "use-package")
 
 #+end_src
 
@@ -215,10 +225,7 @@ Automatically export Emacs.org to HTML after save.
     (interactive)
     (find-file (expand-file-name "Emacs.org" user-emacs-directory)))
 
-  (defun report-init-stage (str)
-    (message (concat "[INIT] " str)))
-
-  (report-init-stage "successfuly setup custom functions")
+  (report-init-stage "custom functions")
 
 #+end_src
 
@@ -245,8 +252,12 @@ Automatically export Emacs.org to HTML after save.
   (global-hl-line-mode 1) ;; highlight current line
   (global-linum-mode 1) ;; show line numbers
 
-  (report-init-stage "successfully setup appearance")
+#+end_src
 
+** Finished setup
+
+#+begin_src emacs-lisp
+(report-init-stage "appearance")
 #+end_src
 
 ** Resources
@@ -283,11 +294,11 @@ https://magit.vc/manual/magit/
 	    (lambda ()
 	      (local-set-key (kbd "o") 'magit-open-repo)))
 
-  (report-init-stage "successfully setup magit")
+  (report-init-stage "magit")
 
 #+end_src
 
-* Undo
+* Undo-tree
 
 #+begin_src emacs-lisp
 
@@ -299,7 +310,7 @@ https://magit.vc/manual/magit/
     (global-undo-tree-mode))
 
 
-  (report-init-stage "successfully setup undo-tree")
+  (report-init-stage "undo-tree")
 
 #+end_src
 
@@ -322,6 +333,8 @@ https://magit.vc/manual/magit/
     (ac-config-default)
     (ac-flyspell-workaround))
 
+  (report-init-stage "auto complete")
+
 #+end_src
 
 ** Resources
@@ -335,6 +348,8 @@ https://magit.vc/manual/magit/
   (use-package git-modes
     :ensure t)
 
+  (report-init-stage "git-modes")
+
 #+end_src
 
 * Helm
@@ -346,6 +361,8 @@ https://magit.vc/manual/magit/
     :bind
     (("M-x" . helm-M-x)
      ("C-x C-f" . helm-find-files)))
+
+  (report-init-stage "helm")
 
 #+end_src
 
@@ -362,6 +379,8 @@ https://magit.vc/manual/magit/
     '(progn
        (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
 
+
+  (report-init-stage "spelling")
 #+end_src
 
 ** Resources
@@ -695,7 +714,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 #+begin_src emacs-lisp
 
-  (report-init-stage "successfully setup Org")
+  (report-init-stage "Org")
 
 #+end_src
 
@@ -727,7 +746,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
                     TeX-run-shell nil t :help "Compresses PDF.")
                   t))
 
-  (report-init-stage "successfully setup latex")
+  (report-init-stage "latex")
 
 #+end_src
 
@@ -760,6 +779,8 @@ The following date indicators are required in the =org-super-agenda= setup in th
     :config
     (add-hook 'python-mode-hook 'jedi:setup))
 
+
+  (report-init-stage "python")
 #+end_src
 
 ** TODO [#C] Investigate Jedi auto-completion for Emacs
@@ -774,6 +795,8 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
   (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
 
+  (report-init-stage "ROS")
+
 #+end_src
 
 * Yaml
@@ -783,6 +806,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
   (use-package yaml-mode
     :ensure t)
 
+  (report-init-stage "yaml")
 #+end_src
 
 * Markdown
@@ -792,13 +816,18 @@ The following date indicators are required in the =org-super-agenda= setup in th
   (use-package markdown-mode
     :ensure t)
 
+
+  (report-init-stage "markdown-mode")
 #+end_src
 
 * CMake
 
 #+begin_src emacs-lisp
+
   (use-package cmake-mode
     :ensure t)
+
+  (report-init-stage "cmake-mode")
 #+end_src
 
 * Keybindings
@@ -813,6 +842,8 @@ The following date indicators are required in the =org-super-agenda= setup in th
   ;; Init file
   (global-set-key (kbd "C-c i") 'open-init-file)
 
+  (report-init-stage "keybindings")
+
 #+end_src
 
 * Hooks
@@ -822,10 +853,12 @@ The following date indicators are required in the =org-super-agenda= setup in th
   ;; remove any trailing whitespace on save
   (add-hook 'after-save-hook 'delete-trailing-whitespace)
 
+  (report-init-stage "hooks")
+
 #+end_src
 
 * Completed Emacs.org setup
 
 #+begin_src emacs-lisp
-  (report-init-stage "finished Emacs.org setup")
+  (message "------------------- finished Emacs.org setup -------------------")
 #+end_src
