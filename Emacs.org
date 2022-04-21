@@ -505,9 +505,29 @@ https://magit.vc/manual/magit/
    ;;   (tags . " %i %-12:c")
    ;;   (search . " %i %-12:c"))
 
+   ;; sorting structure for the agenda items of a single day.
+   ;; org-agenda-sorting-strategy
+   ;; ((agenda habit-down time-up priority-down effort-up category-keep)
+   ;;  (todo priority-down effort-up category-keep)
+   ;;  (tags priority-down effort-up category-keep)
+   ;;  (search category-keep))
+   ;; ((agenda habit-down time-up priority-down effort-up category-keep)
+   ;;  (todo priority-down effort-up category-keep)
+   ;;  (tags priority-down effort-up category-keep)
+   ;;  (search category-keep))
+
+
    )
 
 #+end_src
+
+*** TODO [#C] Investigate =org-agenda-sorting-strategy=
+
+[2022-04-22 Fri]
+Ideal strategy:
+- sort mainly by number of days till deadline
+- then priority
+- after this, I guess what ever but perhaps best to read through documentation
 
 *** Resources
 
