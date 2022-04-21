@@ -494,7 +494,7 @@ https://magit.vc/manual/magit/
    ;; how the source code edit buffer should be displayed
    org-src-window-setup 'current-window
 
-   ;;
+   ;; format specifications for the prefix of items in the agenda views.
    org-agenda-prefix-format
    '((agenda . " %?-12t% s")
      (todo . " %i %-12:c")
