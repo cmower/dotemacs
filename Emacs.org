@@ -537,7 +537,9 @@ https://magit.vc/manual/magit/
 
 ** Auto-complete
 
-#+begin_src emacs-lisp
+Currently turned off since it causes Emacs to crash.
+
+#+begin_src emacs-lisp :tangle no
 
   ;; Org mode
   (use-package org-ac
@@ -546,6 +548,12 @@ https://magit.vc/manual/magit/
     (org-ac/config-default))
 
 #+end_src
+
+*** TODO [#C] Fix org-ac
+
+[2022-04-21 Thu]
+There is an issue when =org-ac= is turned on.
+It causes Emacs to lag a lot, and sometimes crashes.
 
 ** Appearance
 
