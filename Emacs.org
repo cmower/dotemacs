@@ -134,6 +134,30 @@ If this seems reasonable then I may consider investing in [[https://tosche.net/f
    ;; the email address of the current user
    user-mail-address "cmower@ed.ac.uk"
 
+   ;; default location to look for Org files
+   org-directory "~/Dropbox/org"
+
+   ;; dropbox directory
+   dropbox-directory "~/Dropbox"
+
+   ;; reading directory
+   reading-directory (expand-file-name "reading" dropbox-directory)
+
+   ;; reading.org file name
+   reading-org-file-name (expand-file-name "reading.org" org-directory)
+
+   ;; reading.tex file name
+   reading-tex-file-name (expand-file-name "reading.tex" org-directory)
+
+   ;; reading.pdf file name
+   reading-pdf-file-name (expand-file-name "reading.pdf" org-directory)
+
+   ;; reading.bbl file name
+   reading-bbl-file-name (expand-file-name "reading.bbl" org-directory)
+
+   ;; reading.bib file name
+   reading-bib-file-name (expand-file-name "reading.bib" reading-directory)
+
    ;; file used for storing customization information.
    custom-file (concat user-emacs-directory "/custom.el")
 
@@ -408,9 +432,6 @@ https://magit.vc/manual/magit/
 
   (setq
 
-   ;; default location to look for Org files
-   org-directory "~/Dropbox/org"
-
    ;; font-lock should hide the emphasis marker characters
    org-hide-emphasis-markers t
 
@@ -528,6 +549,8 @@ https://magit.vc/manual/magit/
    ;;  (tags priority-down effort-up category-keep)
    ;;  (search category-keep))
 
+   ;; the list of file extensions to consider as LaTeX logfiles
+   org-latex-logfiles-extensions '("lof" "lot" "tex~" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl")
 
    )
 
