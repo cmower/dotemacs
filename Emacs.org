@@ -765,6 +765,43 @@ The following date indicators are required in the =org-super-agenda= setup in th
 - https://stackoverflow.com/a/67741229
 - https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates
 
+** Autogen reading notes and bibtex
+
+#+begin_src emacs-lisp
+
+  ;; Generate reading.bib
+  (defun generate-reading-bib ()
+    "Generates reading.bib, requires buffer-file-name to be ~/Dropbox/org/reading.org"
+    (when (file-exists-p reading-bib-file-name)
+      (delete-file reading-bib-file-name))
+    (org-ref-extract-bibtex-blocks reading-bib-file-name))
+
+  (defun generate-reading-bib-on-save ()
+    "Generates reading.bib after save"
+    (when (string= (buffer-file-name) reading-org-file-name)
+      (generate-reading-bib)))
+
+  (add-hook 'after-save-hook 'generate-reading-bib-on-save)
+
+
+  ;; Generate reading.pdf
+  (defun generate-reading-pdf ()
+    "Generate reading.pdf, requires buffer-file-name to be ~/Dropbox/org/reading.org"
+    (when (file-exists-p reading-tex-file-name)
+      (delete-file reading-tex-file-name))
+    (when (file-exists-p reading-pdf-file-name)
+      (delete-file reading-pdf-file-name))
+    (org-latex-export-to-pdf))
+
+
+  (defun generate-reading-pdf-on-save ()
+    "Generates reading.pdf after save"
+    (when (string= (buffer-file-name) reading-org-file-name)
+      (generate-reading-pdf)))
+
+  (add-hook 'after-save-hook 'generate-reading-pdf-on-save)
+#+end_src
+
 ** Finished Org
 
 #+begin_src emacs-lisp
