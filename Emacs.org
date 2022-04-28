@@ -100,9 +100,9 @@ Automatically export Emacs.org to HTML after save.
 
 ** Font
 
-I am trying out the Comic Mono font by [[https://dtinth.github.io/comic-mono-font/][Toshi Omagari]]. 
-The downside to this font is that there is no /italic/ (Org file doesn't render italic in Emacs).
-If this seems reasonable then I may consider investing in [[https://tosche.net/fonts/comic-code][Comic Code]].
+I am trialing the [[https://dtinth.github.io/comic-mono-font/][Comic Mono font]]. 
+The downside to this font is that there is no /italic/ (note, Emacs.org doesn't render italic in Emacs).
+If this seems reasonable then I may consider investing in [[https://tosche.net/fonts/comic-code][Comic Code]] by Toshi Omagari.
 
 #+begin_src emacs-lisp
 
