@@ -945,7 +945,8 @@ The following date indicators are required in the =org-super-agenda= setup in th
 #+begin_src emacs-lisp
 
   ;; remove any trailing whitespace on save
-  (add-hook 'after-save-hook 'delete-trailing-whitespace)
+  ;; turned off for now, this causes issues when coding - people complain that there is no newline at the end of files
+  ;; (add-hook 'after-save-hook 'delete-trailing-whitespace)
 
   (report-init-stage "hooks")
 
