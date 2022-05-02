@@ -82,7 +82,14 @@ The trials were executed on a PC running Ubuntu 20.04, with a 16-core Intel(R) C
 #+CAPTION: Startup duration comparison between default =gc-cons-threshold= (Off) and value set above (On).
 [[./imgs/startup-performance.png]]
 
+** Load path
+
+#+begin_src emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/lisp/")
+#+end_src
+
 ** Export Emacs.org to HTML
+
 
 Automatically export Emacs.org to HTML after save.
 
@@ -838,8 +845,12 @@ The following date indicators are required in the =org-super-agenda= setup in th
                     TeX-run-shell nil t :help "Compresses PDF.")
                   t))
 
-  (report-init-stage "latex")
+  ;; cdlatex
+  ;; https://github.com/cdominik/cdlatex
+  (load "cdlatex.el")
+  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 
+  (report-init-stage "latex")
 #+end_src
 
 ** Resources
