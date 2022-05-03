@@ -750,11 +750,11 @@ The following date indicators are required in the =org-super-agenda= setup in th
     (org-super-agenda-mode t)
     (setq org-super-agenda-groups
           `((:name "Today" :time-grid t)
-            (:name "ASAP" :tag "asap")
             (:name "Scheduled" :scheduled past)
             (:name "Overdue reading" :and (:deadline past :tag "reading"))
             (:name "Overdue" :deadline past)
             (:name "Scheduled Today" :todo "TODAY")
+            (:name "ASAP" :tag "asap")
             (:name "Read by today" :and (:deadline today :tag "reading"))
             (:name "Watch today" :and (:deadline today :tag "watch"))
             (:name "By today" :deadline today)
@@ -764,7 +764,6 @@ The following date indicators are required in the =org-super-agenda= setup in th
             (:name "Watch by EOW" :and (:deadline (before ,org-end-of-week) :tag "watch"))
             (:name "By EOW" :deadline (before ,org-end-of-week))
             (:name "Reading" :tag "reading"))))
-
 #+end_src
 
 *** Resources
