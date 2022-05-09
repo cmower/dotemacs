@@ -851,17 +851,25 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
   ;; cdlatex
   ;; https://github.com/cdominik/cdlatex
-  (load "cdlatex.el")
-  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+  ;; (load "cdlatex.el")
+  ;; (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 
   (report-init-stage "latex")
 #+end_src
+
+** TODO [#C] Learn how to use cdlatex
+
+[2022-05-09 Mon]
+When I tried out cdlatex, it seems like a good idea but there was some annoying issues.
+Furthermore, I really need to see if it is configurable so I can customize to how I'd like to use it.
 
 ** Resources
 
 - https://github.com/jwiegley/use-package/issues/379
 - https://github.com/tom-tan/auctex-latexmk
 - https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
+
+
 
 * Python
 
