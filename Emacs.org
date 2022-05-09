@@ -8,6 +8,19 @@
 
 ** TODO [#C] Lots of annoying errors get thrown when installed on PC's without my Dropbox
 
+** TODO [#A] Investigate what changes are required in Emacs.org for Emacs on Windows
+DEADLINE: <2022-05-20 Fri>
+
+** TODO [#B] Sort out what to do with backup files in Emacs
+DEADLINE: <2022-05-13 Fri>
+
+** TODO [#C] Look into how to generate html/pdf files for reading notes
+
+[2022-05-09 Mon]
+I have turned off the auto-gen reading notes.
+The reason is so that I can develop an =add_paper= method.
+I plan to have multiple reading notes files in =Dropbox/org/reading= (so they all don't go into one big file).
+
 * Startup
 
 ** Reporting function
@@ -152,22 +165,22 @@ If this seems reasonable then I may consider investing in [[https://tosche.net/f
    dropbox-directory "~/Dropbox"
 
    ;; reading directory
-   reading-directory (expand-file-name "reading" dropbox-directory)
+   ;; reading-directory (expand-file-name "reading" dropbox-directory)
 
    ;; reading.org file name
-   reading-org-file-name (expand-file-name "reading.org" org-directory)
+   ;; reading-org-file-name (expand-file-name "reading.org" org-directory)
 
    ;; reading.tex file name
-   reading-tex-file-name (expand-file-name "reading.tex" org-directory)
+   ;; reading-tex-file-name (expand-file-name "reading.tex" org-directory)
 
    ;; reading.pdf file name
-   reading-pdf-file-name (expand-file-name "reading.pdf" org-directory)
+   ;; reading-pdf-file-name (expand-file-name "reading.pdf" org-directory)
 
    ;; reading.bbl file name
-   reading-bbl-file-name (expand-file-name "reading.bbl" org-directory)
+   ;; reading-bbl-file-name (expand-file-name "reading.bbl" org-directory)
 
    ;; reading.bib file name
-   reading-bib-file-name (expand-file-name "reading.bib" reading-directory)
+   ;; reading-bib-file-name (expand-file-name "reading.bib" reading-directory)
 
    ;; file used for storing customization information.
    custom-file (concat user-emacs-directory "/custom.el")
@@ -778,7 +791,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 ** Autogen reading notes and bibtex
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 
   ;; Generate reading.bib
   (defun generate-reading-bib ()
