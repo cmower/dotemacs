@@ -758,6 +758,7 @@ The following date indicators are required in the =org-super-agenda= setup in th
             (:name "Overdue reading" :and (:deadline past :tag "reading"))
             (:name "Overdue" :deadline past)
             (:name "Scheduled Today" :todo "TODAY")
+            (:name "Dislike" :tag "dislike")
             (:name "ASAP" :tag "asap")
             (:name "Read by today" :and (:deadline today :tag "reading"))
             (:name "Watch today" :and (:deadline today :tag "watch"))
