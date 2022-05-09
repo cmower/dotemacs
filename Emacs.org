@@ -4,6 +4,10 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 #+STARTUP: inlineimages
 
+* Todo
+
+** TODO [#C] Lots of annoying errors get thrown when installed on PC's without my Dropbox
+
 * Startup
 
 ** Reporting function
