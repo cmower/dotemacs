@@ -215,7 +215,7 @@ If this seems reasonable then I may consider investing in [[https://tosche.net/f
 
    ;; control use of local variables in files you visit
    ;; :safe means set the safe variables, and ignore the rest
-   enable-local-variables :safe
+   ;; enable-local-variables :safe
 
    ;; output type to be used by htmlize when formatting code snippets
    org-html-htmlize-output-type 'css
@@ -881,7 +881,6 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 - https://github.com/jwiegley/use-package/issues/379
 - https://github.com/tom-tan/auctex-latexmk
 - https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
-
 
 
 * Python
