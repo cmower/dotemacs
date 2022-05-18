@@ -9,10 +9,9 @@
 ** TODO [#C] Lots of annoying errors get thrown when installed on PC's without my Dropbox
 
 ** TODO [#A] Investigate what changes are required in Emacs.org for Emacs on Windows
-DEADLINE: <2022-05-20 Fri>
 
-** TODO [#B] Sort out what to do with backup files in Emacs
-DEADLINE: <2022-05-13 Fri>
+** TODO [#C] Sort out what to do with backup files in Emacs
+DEADLINE: <2022-05-20 Fri>
 
 ** TODO [#C] Look into how to generate html/pdf files for reading notes
 
