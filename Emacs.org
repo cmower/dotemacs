@@ -654,7 +654,20 @@ It causes Emacs to lag a lot, and sometimes crashes.
 
 ** Appearance
 
+_*HACK*_
+
+For some reason =org-appear= conflicts with =org-capture=.
+=org-link-descriptive= is referenced in the source code for =org-appear=
+and when I try to use =org-capture= it fails because there is no
+variable called =org-link-descriptive= set. This only started happening
+today [2022-05-19 Thu] so I'm not sure what happened.
+
 #+begin_src emacs-lisp
+(setq org-link-descriptive nil)
+#+end_src
+
+#+begin_src emacs-lisp
+
 
   ;; org-appear mode
   (use-package org-appear
