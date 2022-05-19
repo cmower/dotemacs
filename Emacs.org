@@ -840,9 +840,9 @@ The following date indicators are required in the =org-super-agenda= setup in th
   ;; AucTeX
   (use-package auctex
     :defer t
-    :ensure t
-    :init
-    (setq TeX-show-compilation 1))
+    :ensure t)
+    ;; :init
+    ;; (setq TeX-show-compilation 1))
 
   (use-package auctex-latexmk
     :defer t
@@ -880,7 +880,6 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 - https://github.com/jwiegley/use-package/issues/379
 - https://github.com/tom-tan/auctex-latexmk
 - https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
-
 
 * Python
 
