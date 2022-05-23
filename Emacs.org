@@ -10,9 +10,6 @@
 
 ** TODO [#A] Investigate what changes are required in Emacs.org for Emacs on Windows
 
-** TODO [#C] Sort out what to do with backup files in Emacs
-DEADLINE: <2022-05-20 Fri>
-
 ** TODO [#C] Look into how to generate html/pdf files for reading notes
 
 [2022-05-09 Mon]
@@ -225,6 +222,16 @@ If this seems reasonable then I may consider investing in [[https://tosche.net/f
 
    ;; directory containing the user’s Emacs Lisp packages
    package-user-dir "~/Dropbox/.elpa"
+
+   ;; Alist of filename patterns and backup directory names
+   ;; https://stackoverflow.com/a/151946
+   backup-directory-alist `(("." . "~/Dropbox/.backups"))
+
+   ;; delete excess backup versions silently
+   delete-old-versions t
+
+   ;; Control use of version numbers for backup files
+   version-control t
 
    )
 
