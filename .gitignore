@@ -24,3 +24,6 @@ private.txt
 
 # Mac files
 .DS_Store
+
+# Undo tree
+.undo-tree/
