@@ -368,15 +368,17 @@ https://magit.vc/manual/magit/
 
 #+begin_src emacs-lisp
 
-  (use-package undo-tree
-    :ensure t
-    :init
-    (setq undo-tree-visualizer-diff t)
-    :config
-    (global-undo-tree-mode))
+    (use-package undo-tree
+      :ensure t
+      :init
+      (setq
+       undo-tree-visualizer-diff t
+       undo-tree-history-directory-alist '(("." . "~/.emacs.d/.undo-tree")))
+      :config
+      (global-undo-tree-mode))
 
 
-  (report-init-stage "undo-tree")
+    (report-init-stage "undo-tree")
 
 #+end_src
 
