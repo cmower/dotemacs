@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-06-09 Thu 16:57 -->
+<!-- 2022-07-27 Wed 16:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs initialization</title>
@@ -85,131 +85,131 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org774d0ac">1. Todo</a>
+<li><a href="#orgf5d6520">1. Todo</a>
 <ul>
-<li><a href="#org293e095">1.1. <span class="todo TODO">TODO</span> Lots of annoying errors get thrown when installed on PC's without my Dropbox</a></li>
-<li><a href="#org8aa6c61">1.2. <span class="todo TODO">TODO</span> Investigate what changes are required in Emacs.org for Emacs on Windows</a></li>
-<li><a href="#org4dbdd92">1.3. <span class="todo TODO">TODO</span> Look into how to generate html/pdf files for reading notes</a></li>
+<li><a href="#org4653f9e">1.1. <span class="todo TODO">TODO</span> Lots of annoying errors get thrown when installed on PC's without my Dropbox</a></li>
+<li><a href="#orga86fa13">1.2. <span class="todo TODO">TODO</span> Investigate what changes are required in Emacs.org for Emacs on Windows</a></li>
+<li><a href="#orgdd07104">1.3. <span class="todo TODO">TODO</span> Look into how to generate html/pdf files for reading notes</a></li>
 </ul>
 </li>
-<li><a href="#org0adb74b">2. Startup</a>
+<li><a href="#org553ba94">2. Startup</a>
 <ul>
-<li><a href="#org6037935">2.1. Reporting function</a></li>
-<li><a href="#org960e978">2.2. Performance</a></li>
-<li><a href="#org49fa550">2.3. Load path</a></li>
-<li><a href="#orgcd81e17">2.4. Export Emacs.org to HTML</a></li>
-<li><a href="#org9ce208b">2.5. Font</a></li>
-<li><a href="#orgc23cc6d">2.6. Finished startup</a></li>
-<li><a href="#org0446205">2.7. Resources</a></li>
+<li><a href="#orgfb98419">2.1. Reporting function</a></li>
+<li><a href="#org1ea41d8">2.2. Performance</a></li>
+<li><a href="#org864266f">2.3. Load path</a></li>
+<li><a href="#orgc94b73e">2.4. Export Emacs.org to HTML</a></li>
+<li><a href="#orgc873a3f">2.5. Font</a></li>
+<li><a href="#org0410172">2.6. Finished startup</a></li>
+<li><a href="#org59503cf">2.7. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org269f69c">3. Constants</a>
+<li><a href="#org3476bcb">3. Constants</a>
 <ul>
-<li><a href="#orgdef9893">3.1. Resources</a></li>
+<li><a href="#org4d4147d">3.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgb4519a1">4. Package management</a></li>
-<li><a href="#orgbbeeb0e">5. use-package</a></li>
-<li><a href="#orga900276">6. Custom functions</a></li>
-<li><a href="#orgafefdb7">7. User interface</a>
+<li><a href="#org1f0bc81">4. Package management</a></li>
+<li><a href="#org340548d">5. use-package</a></li>
+<li><a href="#org9fe5e06">6. Custom functions</a></li>
+<li><a href="#org5dc054a">7. User interface</a>
 <ul>
-<li><a href="#orgbff64c3">7.1. Theme</a></li>
-<li><a href="#org3c4a0f4">7.2. Appearance</a></li>
-<li><a href="#org43c34f1">7.3. Finished setup</a></li>
-<li><a href="#org7c62ec9">7.4. Resources</a></li>
+<li><a href="#orge96fe90">7.1. Theme</a></li>
+<li><a href="#orgfc213a0">7.2. Appearance</a></li>
+<li><a href="#org3429e77">7.3. Finished setup</a></li>
+<li><a href="#org3bd4555">7.4. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org31a9bef">8. Magit</a></li>
-<li><a href="#org40a9803">9. Undo-tree</a></li>
-<li><a href="#org5ef2940">10. Auto complete</a>
+<li><a href="#org9c4c701">8. Magit</a></li>
+<li><a href="#org3ade0dd">9. Undo-tree</a></li>
+<li><a href="#orgf2eebde">10. Auto complete</a>
 <ul>
-<li><a href="#org223bc72">10.1. Resources</a></li>
+<li><a href="#orgb36a304">10.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgbdd3087">11. Git modes</a></li>
-<li><a href="#org4228f1b">12. Helm</a></li>
-<li><a href="#orgab09ccc">13. Spelling</a>
+<li><a href="#org697d1f4">11. Git modes</a></li>
+<li><a href="#org912af43">12. Helm</a></li>
+<li><a href="#orgd2d197d">13. Spelling</a>
 <ul>
-<li><a href="#orgd185121">13.1. Resources</a></li>
+<li><a href="#org6074bc7">13.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgf635413">14. Org</a>
+<li><a href="#orgd22442e">14. Org</a>
 <ul>
-<li><a href="#orge105179">14.1. Constants</a>
+<li><a href="#org0af8c12">14.1. Constants</a>
 <ul>
-<li><a href="#org5532fc7">14.1.1. <span class="todo TODO">TODO</span> Investigate <code>org-agenda-sorting-strategy</code></a></li>
-<li><a href="#org22484de">14.1.2. Resources</a></li>
+<li><a href="#org7074019">14.1.1. <span class="todo TODO">TODO</span> Investigate <code>org-agenda-sorting-strategy</code></a></li>
+<li><a href="#org2ae3d1d">14.1.2. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgcf0665e">14.2. Org files</a>
+<li><a href="#orgc8b024d">14.2. Org files</a>
 <ul>
-<li><a href="#orgebe7f8b">14.2.1. Resources</a></li>
+<li><a href="#org1d00964">14.2.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org85ca9cb">14.3. Auto-complete</a>
+<li><a href="#org2f1b37c">14.3. Auto-complete</a>
 <ul>
-<li><a href="#org309a447">14.3.1. <span class="todo TODO">TODO</span> Fix org-ac</a></li>
+<li><a href="#orgb329799">14.3.1. <span class="todo TODO">TODO</span> Fix org-ac</a></li>
 </ul>
 </li>
-<li><a href="#org9aee558">14.4. Appearance</a>
+<li><a href="#org5aae09e">14.4. Appearance</a>
 <ul>
-<li><a href="#orgd4ae9df">14.4.1. Resources</a></li>
+<li><a href="#org93138ad">14.4.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org04dd94c">14.5. org-babel</a></li>
-<li><a href="#org440982c">14.6. org-ref</a>
+<li><a href="#org699d974">14.5. org-babel</a></li>
+<li><a href="#org557fa21">14.6. org-ref</a>
 <ul>
-<li><a href="#org68e5005">14.6.1. Resources</a></li>
+<li><a href="#org217cbf2">14.6.1. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgb1ab8d4">14.7. org-super-agenda</a>
+<li><a href="#orgd7377fa">14.7. org-super-agenda</a>
 <ul>
-<li><a href="#org3ef0995">14.7.1. Preliminary setup</a></li>
-<li><a href="#org4c1d582">14.7.2. Main org-super-agenda configuration</a></li>
-<li><a href="#org41ff446">14.7.3. Resources</a></li>
+<li><a href="#org44032d8">14.7.1. Preliminary setup</a></li>
+<li><a href="#org4a9ea0d">14.7.2. Main org-super-agenda configuration</a></li>
+<li><a href="#org273ab85">14.7.3. Resources</a></li>
 </ul>
 </li>
-<li><a href="#org702df8b">14.8. Autogen reading notes and bibtex</a></li>
-<li><a href="#orgb15035d">14.9. Finished Org</a></li>
+<li><a href="#orgd472b6a">14.8. Autogen reading notes and bibtex</a></li>
+<li><a href="#orgba0edb7">14.9. Finished Org</a></li>
 </ul>
 </li>
-<li><a href="#orgbdde7da">15. LaTeX</a>
+<li><a href="#orgc6387b6">15. LaTeX</a>
 <ul>
-<li><a href="#org20f5c5e">15.1. <span class="todo TODO">TODO</span> Learn how to use cdlatex</a></li>
-<li><a href="#org52bcbe5">15.2. Resources</a></li>
+<li><a href="#orga716253">15.1. <span class="todo TODO">TODO</span> Learn how to use cdlatex</a></li>
+<li><a href="#org3f7da7f">15.2. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgd0573e2">16. Python</a>
+<li><a href="#orgcba0ccb">16. Python</a>
 <ul>
-<li><a href="#org95a9fe7">16.1. <span class="todo TODO">TODO</span> Investigate Jedi auto-completion for Emacs</a></li>
-<li><a href="#org98bbc49">16.2. Resources</a></li>
+<li><a href="#orgf6db06e">16.1. <span class="todo TODO">TODO</span> Investigate Jedi auto-completion for Emacs</a></li>
+<li><a href="#org3c5e381">16.2. Resources</a></li>
 </ul>
 </li>
-<li><a href="#orgd10ef08">17. ROS</a></li>
-<li><a href="#orgfaca0b8">18. Yaml</a></li>
-<li><a href="#orga5d305c">19. Markdown</a></li>
-<li><a href="#org1e7bd52">20. CMake</a></li>
-<li><a href="#org7c530f1">21. Keybindings</a></li>
-<li><a href="#org9cbeeec">22. Hooks</a></li>
-<li><a href="#org2c3791c">23. Completed Emacs.org setup</a></li>
+<li><a href="#org10b0a16">17. ROS</a></li>
+<li><a href="#org3390b33">18. Yaml</a></li>
+<li><a href="#org92ad9d9">19. Markdown</a></li>
+<li><a href="#org824a89a">20. CMake</a></li>
+<li><a href="#org8b59958">21. Keybindings</a></li>
+<li><a href="#org9080325">22. Hooks</a></li>
+<li><a href="#org4f2cd27">23. Completed Emacs.org setup</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org774d0ac" class="outline-2">
-<h2 id="org774d0ac"><span class="section-number-2">1</span> Todo</h2>
+<div id="outline-container-orgf5d6520" class="outline-2">
+<h2 id="orgf5d6520"><span class="section-number-2">1</span> Todo</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org293e095" class="outline-3">
-<h3 id="org293e095"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Lots of annoying errors get thrown when installed on PC's without my Dropbox</h3>
+<div id="outline-container-org4653f9e" class="outline-3">
+<h3 id="org4653f9e"><span class="section-number-3">1.1</span> <span class="todo TODO">TODO</span> Lots of annoying errors get thrown when installed on PC's without my Dropbox</h3>
 </div>
 
-<div id="outline-container-org8aa6c61" class="outline-3">
-<h3 id="org8aa6c61"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Investigate what changes are required in Emacs.org for Emacs on Windows</h3>
+<div id="outline-container-orga86fa13" class="outline-3">
+<h3 id="orga86fa13"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Investigate what changes are required in Emacs.org for Emacs on Windows</h3>
 </div>
 
-<div id="outline-container-org4dbdd92" class="outline-3">
-<h3 id="org4dbdd92"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> Look into how to generate html/pdf files for reading notes</h3>
+<div id="outline-container-orgdd07104" class="outline-3">
+<h3 id="orgdd07104"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> Look into how to generate html/pdf files for reading notes</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 <span class="timestamp-wrapper"><span class="timestamp">[2022-05-09 Mon]</span></span>
@@ -221,12 +221,12 @@ I plan to have multiple reading notes files in <code>Dropbox/org/reading</code> 
 </div>
 </div>
 
-<div id="outline-container-org0adb74b" class="outline-2">
-<h2 id="org0adb74b"><span class="section-number-2">2</span> Startup</h2>
+<div id="outline-container-org553ba94" class="outline-2">
+<h2 id="org553ba94"><span class="section-number-2">2</span> Startup</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org6037935" class="outline-3">
-<h3 id="org6037935"><span class="section-number-3">2.1</span> Reporting function</h3>
+<div id="outline-container-orgfb98419" class="outline-3">
+<h3 id="orgfb98419"><span class="section-number-3">2.1</span> Reporting function</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -240,8 +240,8 @@ I plan to have multiple reading notes files in <code>Dropbox/org/reading</code> 
 </div>
 </div>
 
-<div id="outline-container-org960e978" class="outline-3">
-<h3 id="org960e978"><span class="section-number-3">2.2</span> Performance</h3>
+<div id="outline-container-org1ea41d8" class="outline-3">
+<h3 id="org1ea41d8"><span class="section-number-3">2.2</span> Performance</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Make startup faster by reducing the frequency of garbage collection and then use a hook to measure Emacs startup time.
@@ -272,7 +272,7 @@ I ran a quick test to check if the above code actually makes a difference.
 The trials were executed on a PC running Ubuntu 20.04, with a 16-core Intel(R) Core(TM) i9-9900KF CPU @ 3.60GHz.
 </p>
 
-<table id="orgeb0ee17" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org0b17403" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -348,8 +348,8 @@ plt.savefig(<span class="org-string">'imgs/startup-performance.png'</span>, face
 </div>
 </div>
 
-<div id="outline-container-org49fa550" class="outline-3">
-<h3 id="org49fa550"><span class="section-number-3">2.3</span> Load path</h3>
+<div id="outline-container-org864266f" class="outline-3">
+<h3 id="org864266f"><span class="section-number-3">2.3</span> Load path</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'load-path <span class="org-string">"~/.emacs.d/lisp/"</span>)
@@ -358,8 +358,8 @@ plt.savefig(<span class="org-string">'imgs/startup-performance.png'</span>, face
 </div>
 </div>
 
-<div id="outline-container-orgcd81e17" class="outline-3">
-<h3 id="orgcd81e17"><span class="section-number-3">2.4</span> Export Emacs.org to HTML</h3>
+<div id="outline-container-orgc94b73e" class="outline-3">
+<h3 id="orgc94b73e"><span class="section-number-3">2.4</span> Export Emacs.org to HTML</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Automatically export Emacs.org to HTML after save.
@@ -380,8 +380,8 @@ Automatically export Emacs.org to HTML after save.
 </div>
 </div>
 
-<div id="outline-container-org9ce208b" class="outline-3">
-<h3 id="org9ce208b"><span class="section-number-3">2.5</span> Font</h3>
+<div id="outline-container-orgc873a3f" class="outline-3">
+<h3 id="orgc873a3f"><span class="section-number-3">2.5</span> Font</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 I am trialing the <a href="https://dtinth.github.io/comic-mono-font/">Comic Mono font</a>.
@@ -398,8 +398,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgc23cc6d" class="outline-3">
-<h3 id="orgc23cc6d"><span class="section-number-3">2.6</span> Finished startup</h3>
+<div id="outline-container-org0410172" class="outline-3">
+<h3 id="org0410172"><span class="section-number-3">2.6</span> Finished startup</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -410,8 +410,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org0446205" class="outline-3">
-<h3 id="org0446205"><span class="section-number-3">2.7</span> Resources</h3>
+<div id="outline-container-org59503cf" class="outline-3">
+<h3 id="org59503cf"><span class="section-number-3">2.7</span> Resources</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li><a href="https://github.com/daviwil/dotfiles/blob/master/Emacs.org">https://github.com/daviwil/dotfiles/blob/master/Emacs.org</a></li>
@@ -420,8 +420,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org269f69c" class="outline-2">
-<h2 id="org269f69c"><span class="section-number-2">3</span> Constants</h2>
+<div id="outline-container-org3476bcb" class="outline-2">
+<h2 id="org3476bcb"><span class="section-number-2">3</span> Constants</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -519,8 +519,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgdef9893" class="outline-3">
-<h3 id="orgdef9893"><span class="section-number-3">3.1</span> Resources</h3>
+<div id="outline-container-org4d4147d" class="outline-3">
+<h3 id="org4d4147d"><span class="section-number-3">3.1</span> Resources</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li><a href="https://stackoverflow.com/a/1817318/4650592">https://stackoverflow.com/a/1817318/4650592</a></li>
@@ -536,8 +536,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgb4519a1" class="outline-2">
-<h2 id="orgb4519a1"><span class="section-number-2">4</span> Package management</h2>
+<div id="outline-container-org1f0bc81" class="outline-2">
+<h2 id="org1f0bc81"><span class="section-number-2">4</span> Package management</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -557,8 +557,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgbbeeb0e" class="outline-2">
-<h2 id="orgbbeeb0e"><span class="section-number-2">5</span> use-package</h2>
+<div id="outline-container-org340548d" class="outline-2">
+<h2 id="org340548d"><span class="section-number-2">5</span> use-package</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -579,8 +579,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orga900276" class="outline-2">
-<h2 id="orga900276"><span class="section-number-2">6</span> Custom functions</h2>
+<div id="outline-container-org9fe5e06" class="outline-2">
+<h2 id="org9fe5e06"><span class="section-number-2">6</span> Custom functions</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -596,12 +596,12 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgafefdb7" class="outline-2">
-<h2 id="orgafefdb7"><span class="section-number-2">7</span> User interface</h2>
+<div id="outline-container-org5dc054a" class="outline-2">
+<h2 id="org5dc054a"><span class="section-number-2">7</span> User interface</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orgbff64c3" class="outline-3">
-<h3 id="orgbff64c3"><span class="section-number-3">7.1</span> Theme</h3>
+<div id="outline-container-orge96fe90" class="outline-3">
+<h3 id="orge96fe90"><span class="section-number-3">7.1</span> Theme</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(load-theme 'spacegray t)</span>
@@ -614,8 +614,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org3c4a0f4" class="outline-3">
-<h3 id="org3c4a0f4"><span class="section-number-3">7.2</span> Appearance</h3>
+<div id="outline-container-orgfc213a0" class="outline-3">
+<h3 id="orgfc213a0"><span class="section-number-3">7.2</span> Appearance</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -631,8 +631,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org43c34f1" class="outline-3">
-<h3 id="org43c34f1"><span class="section-number-3">7.3</span> Finished setup</h3>
+<div id="outline-container-org3429e77" class="outline-3">
+<h3 id="org3429e77"><span class="section-number-3">7.3</span> Finished setup</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(report-init-stage <span class="org-string">"appearance"</span>)
@@ -641,8 +641,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org7c62ec9" class="outline-3">
-<h3 id="org7c62ec9"><span class="section-number-3">7.4</span> Resources</h3>
+<div id="outline-container-org3bd4555" class="outline-3">
+<h3 id="org3bd4555"><span class="section-number-3">7.4</span> Resources</h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li><a href="http://ergoemacs.org/emacs/emacs_highlight_parenthesis.html">http://ergoemacs.org/emacs/emacs_highlight_parenthesis.html</a></li>
@@ -651,8 +651,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org31a9bef" class="outline-2">
-<h2 id="org31a9bef"><span class="section-number-2">8</span> Magit</h2>
+<div id="outline-container-org9c4c701" class="outline-2">
+<h2 id="org9c4c701"><span class="section-number-2">8</span> Magit</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 <a href="https://magit.vc/manual/magit/">https://magit.vc/manual/magit/</a>
@@ -691,8 +691,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org40a9803" class="outline-2">
-<h2 id="org40a9803"><span class="section-number-2">9</span> Undo-tree</h2>
+<div id="outline-container-org3ade0dd" class="outline-2">
+<h2 id="org3ade0dd"><span class="section-number-2">9</span> Undo-tree</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -713,8 +713,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org5ef2940" class="outline-2">
-<h2 id="org5ef2940"><span class="section-number-2">10</span> Auto complete</h2>
+<div id="outline-container-orgf2eebde" class="outline-2">
+<h2 id="orgf2eebde"><span class="section-number-2">10</span> Auto complete</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -739,8 +739,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org223bc72" class="outline-3">
-<h3 id="org223bc72"><span class="section-number-3">10.1</span> Resources</h3>
+<div id="outline-container-orgb36a304" class="outline-3">
+<h3 id="orgb36a304"><span class="section-number-3">10.1</span> Resources</h3>
 <div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li><a href="https://www.reddit.com/r/emacs/comments/7czblc/why_is_emacs_auto_complete_so_slow/">https://www.reddit.com/r/emacs/comments/7czblc/why_is_emacs_auto_complete_so_slow/</a></li>
@@ -749,8 +749,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgbdd3087" class="outline-2">
-<h2 id="orgbdd3087"><span class="section-number-2">11</span> Git modes</h2>
+<div id="outline-container-org697d1f4" class="outline-2">
+<h2 id="org697d1f4"><span class="section-number-2">11</span> Git modes</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -764,8 +764,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org4228f1b" class="outline-2">
-<h2 id="org4228f1b"><span class="section-number-2">12</span> Helm</h2>
+<div id="outline-container-org912af43" class="outline-2">
+<h2 id="org912af43"><span class="section-number-2">12</span> Helm</h2>
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -782,8 +782,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgab09ccc" class="outline-2">
-<h2 id="orgab09ccc"><span class="section-number-2">13</span> Spelling</h2>
+<div id="outline-container-orgd2d197d" class="outline-2">
+<h2 id="orgd2d197d"><span class="section-number-2">13</span> Spelling</h2>
 <div class="outline-text-2" id="text-13">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -802,8 +802,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgd185121" class="outline-3">
-<h3 id="orgd185121"><span class="section-number-3">13.1</span> Resources</h3>
+<div id="outline-container-org6074bc7" class="outline-3">
+<h3 id="org6074bc7"><span class="section-number-3">13.1</span> Resources</h3>
 <div class="outline-text-3" id="text-13-1">
 <ul class="org-ul">
 <li><a href="https://emacs.stackexchange.com/a/7469/30155">https://emacs.stackexchange.com/a/7469/30155</a></li>
@@ -813,12 +813,12 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-orgf635413" class="outline-2">
-<h2 id="orgf635413"><span class="section-number-2">14</span> Org</h2>
+<div id="outline-container-orgd22442e" class="outline-2">
+<h2 id="orgd22442e"><span class="section-number-2">14</span> Org</h2>
 <div class="outline-text-2" id="text-14">
 </div>
-<div id="outline-container-orge105179" class="outline-3">
-<h3 id="orge105179"><span class="section-number-3">14.1</span> Constants</h3>
+<div id="outline-container-org0af8c12" class="outline-3">
+<h3 id="org0af8c12"><span class="section-number-3">14.1</span> Constants</h3>
 <div class="outline-text-3" id="text-14-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -950,8 +950,8 @@ If this seems reasonable then I may consider investing in <a href="https://tosch
 </div>
 </div>
 
-<div id="outline-container-org5532fc7" class="outline-4">
-<h4 id="org5532fc7"><span class="section-number-4">14.1.1</span> <span class="todo TODO">TODO</span> Investigate <code>org-agenda-sorting-strategy</code></h4>
+<div id="outline-container-org7074019" class="outline-4">
+<h4 id="org7074019"><span class="section-number-4">14.1.1</span> <span class="todo TODO">TODO</span> Investigate <code>org-agenda-sorting-strategy</code></h4>
 <div class="outline-text-4" id="text-14-1-1">
 <p>
 <span class="timestamp-wrapper"><span class="timestamp">[2022-04-22 Fri]</span></span>
@@ -965,8 +965,8 @@ Ideal strategy:
 </div>
 </div>
 
-<div id="outline-container-org22484de" class="outline-4">
-<h4 id="org22484de"><span class="section-number-4">14.1.2</span> Resources</h4>
+<div id="outline-container-org2ae3d1d" class="outline-4">
+<h4 id="org2ae3d1d"><span class="section-number-4">14.1.2</span> Resources</h4>
 <div class="outline-text-4" id="text-14-1-2">
 <ul class="org-ul">
 <li><a href="https://emacs.stackexchange.com/a/16561">https://emacs.stackexchange.com/a/16561</a></li>
@@ -977,8 +977,8 @@ Ideal strategy:
 </div>
 </div>
 
-<div id="outline-container-orgcf0665e" class="outline-3">
-<h3 id="orgcf0665e"><span class="section-number-3">14.2</span> Org files</h3>
+<div id="outline-container-orgc8b024d" class="outline-3">
+<h3 id="orgc8b024d"><span class="section-number-3">14.2</span> Org files</h3>
 <div class="outline-text-3" id="text-14-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1014,8 +1014,8 @@ Ideal strategy:
 </div>
 </div>
 
-<div id="outline-container-orgebe7f8b" class="outline-4">
-<h4 id="orgebe7f8b"><span class="section-number-4">14.2.1</span> Resources</h4>
+<div id="outline-container-org1d00964" class="outline-4">
+<h4 id="org1d00964"><span class="section-number-4">14.2.1</span> Resources</h4>
 <div class="outline-text-4" id="text-14-2-1">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/">https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/</a></li>
@@ -1025,8 +1025,8 @@ Ideal strategy:
 </div>
 </div>
 
-<div id="outline-container-org85ca9cb" class="outline-3">
-<h3 id="org85ca9cb"><span class="section-number-3">14.3</span> Auto-complete</h3>
+<div id="outline-container-org2f1b37c" class="outline-3">
+<h3 id="org2f1b37c"><span class="section-number-3">14.3</span> Auto-complete</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 Currently turned off since it causes Emacs to crash.
@@ -1044,8 +1044,8 @@ Currently turned off since it causes Emacs to crash.
 </div>
 </div>
 
-<div id="outline-container-org309a447" class="outline-4">
-<h4 id="org309a447"><span class="section-number-4">14.3.1</span> <span class="todo TODO">TODO</span> Fix org-ac</h4>
+<div id="outline-container-orgb329799" class="outline-4">
+<h4 id="orgb329799"><span class="section-number-4">14.3.1</span> <span class="todo TODO">TODO</span> Fix org-ac</h4>
 <div class="outline-text-4" id="text-14-3-1">
 <p>
 <span class="timestamp-wrapper"><span class="timestamp">[2022-04-21 Thu]</span></span>
@@ -1056,8 +1056,8 @@ It causes Emacs to lag a lot, and sometimes crashes.
 </div>
 </div>
 
-<div id="outline-container-org9aee558" class="outline-3">
-<h3 id="org9aee558"><span class="section-number-3">14.4</span> Appearance</h3>
+<div id="outline-container-org5aae09e" class="outline-3">
+<h3 id="org5aae09e"><span class="section-number-3">14.4</span> Appearance</h3>
 <div class="outline-text-3" id="text-14-4">
 <p>
 <span class="underline"><b>HACK</b></span>
@@ -1100,8 +1100,8 @@ today <span class="timestamp-wrapper"><span class="timestamp">[2022-05-19 Thu] <
 </div>
 </div>
 
-<div id="outline-container-orgd4ae9df" class="outline-4">
-<h4 id="orgd4ae9df"><span class="section-number-4">14.4.1</span> Resources</h4>
+<div id="outline-container-org93138ad" class="outline-4">
+<h4 id="org93138ad"><span class="section-number-4">14.4.1</span> Resources</h4>
 <div class="outline-text-4" id="text-14-4-1">
 <ul class="org-ul">
 <li><a href="https://github.com/awth13/org-appear">https://github.com/awth13/org-appear</a></li>
@@ -1112,8 +1112,8 @@ today <span class="timestamp-wrapper"><span class="timestamp">[2022-05-19 Thu] <
 </div>
 </div>
 
-<div id="outline-container-org04dd94c" class="outline-3">
-<h3 id="org04dd94c"><span class="section-number-3">14.5</span> org-babel</h3>
+<div id="outline-container-org699d974" class="outline-3">
+<h3 id="org699d974"><span class="section-number-3">14.5</span> org-babel</h3>
 <div class="outline-text-3" id="text-14-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1127,8 +1127,8 @@ today <span class="timestamp-wrapper"><span class="timestamp">[2022-05-19 Thu] <
 </div>
 </div>
 
-<div id="outline-container-org440982c" class="outline-3">
-<h3 id="org440982c"><span class="section-number-3">14.6</span> org-ref</h3>
+<div id="outline-container-org557fa21" class="outline-3">
+<h3 id="org557fa21"><span class="section-number-3">14.6</span> org-ref</h3>
 <div class="outline-text-3" id="text-14-6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1161,8 +1161,8 @@ however, when writing \(\LaTeX\) in Org-mode files, use
 </div>
 </div>
 
-<div id="outline-container-org68e5005" class="outline-4">
-<h4 id="org68e5005"><span class="section-number-4">14.6.1</span> Resources</h4>
+<div id="outline-container-org217cbf2" class="outline-4">
+<h4 id="org217cbf2"><span class="section-number-4">14.6.1</span> Resources</h4>
 <div class="outline-text-4" id="text-14-6-1">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=2t925KRBbFc">https://www.youtube.com/watch?v=2t925KRBbFc</a></li>
@@ -1172,16 +1172,16 @@ however, when writing \(\LaTeX\) in Org-mode files, use
 </div>
 </div>
 
-<div id="outline-container-orgb1ab8d4" class="outline-3">
-<h3 id="orgb1ab8d4"><span class="section-number-3">14.7</span> org-super-agenda</h3>
+<div id="outline-container-orgd7377fa" class="outline-3">
+<h3 id="orgd7377fa"><span class="section-number-3">14.7</span> org-super-agenda</h3>
 <div class="outline-text-3" id="text-14-7">
 <p>
 <a href="https://github.com/alphapapa/org-super-agenda">https://github.com/alphapapa/org-super-agenda</a>
 </p>
 </div>
 
-<div id="outline-container-org3ef0995" class="outline-4">
-<h4 id="org3ef0995"><span class="section-number-4">14.7.1</span> Preliminary setup</h4>
+<div id="outline-container-org44032d8" class="outline-4">
+<h4 id="org44032d8"><span class="section-number-4">14.7.1</span> Preliminary setup</h4>
 <div class="outline-text-4" id="text-14-7-1">
 <p>
 The following date indicators are required in the <code>org-super-agenda</code> setup in the next section.
@@ -1216,8 +1216,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org4c1d582" class="outline-4">
-<h4 id="org4c1d582"><span class="section-number-4">14.7.2</span> Main org-super-agenda configuration</h4>
+<div id="outline-container-org4a9ea0d" class="outline-4">
+<h4 id="org4a9ea0d"><span class="section-number-4">14.7.2</span> Main org-super-agenda configuration</h4>
 <div class="outline-text-4" id="text-14-7-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1247,8 +1247,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org41ff446" class="outline-4">
-<h4 id="org41ff446"><span class="section-number-4">14.7.3</span> Resources</h4>
+<div id="outline-container-org273ab85" class="outline-4">
+<h4 id="org273ab85"><span class="section-number-4">14.7.3</span> Resources</h4>
 <div class="outline-text-4" id="text-14-7-3">
 <ul class="org-ul">
 <li><a href="https://stackoverflow.com/a/67741229">https://stackoverflow.com/a/67741229</a></li>
@@ -1258,8 +1258,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org702df8b" class="outline-3">
-<h3 id="org702df8b"><span class="section-number-3">14.8</span> Autogen reading notes and bibtex</h3>
+<div id="outline-container-orgd472b6a" class="outline-3">
+<h3 id="orgd472b6a"><span class="section-number-3">14.8</span> Autogen reading notes and bibtex</h3>
 <div class="outline-text-3" id="text-14-8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1299,8 +1299,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-orgb15035d" class="outline-3">
-<h3 id="orgb15035d"><span class="section-number-3">14.9</span> Finished Org</h3>
+<div id="outline-container-orgba0edb7" class="outline-3">
+<h3 id="orgba0edb7"><span class="section-number-3">14.9</span> Finished Org</h3>
 <div class="outline-text-3" id="text-14-9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1312,8 +1312,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-orgbdde7da" class="outline-2">
-<h2 id="orgbdde7da"><span class="section-number-2">15</span> LaTeX</h2>
+<div id="outline-container-orgc6387b6" class="outline-2">
+<h2 id="orgc6387b6"><span class="section-number-2">15</span> LaTeX</h2>
 <div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1351,8 +1351,8 @@ The following date indicators are required in the <code>org-super-agenda</code> 
 </div>
 </div>
 
-<div id="outline-container-org20f5c5e" class="outline-3">
-<h3 id="org20f5c5e"><span class="section-number-3">15.1</span> <span class="todo TODO">TODO</span> Learn how to use cdlatex</h3>
+<div id="outline-container-orga716253" class="outline-3">
+<h3 id="orga716253"><span class="section-number-3">15.1</span> <span class="todo TODO">TODO</span> Learn how to use cdlatex</h3>
 <div class="outline-text-3" id="text-15-1">
 <p>
 <span class="timestamp-wrapper"><span class="timestamp">[2022-05-09 Mon]</span></span>
@@ -1362,8 +1362,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-org52bcbe5" class="outline-3">
-<h3 id="org52bcbe5"><span class="section-number-3">15.2</span> Resources</h3>
+<div id="outline-container-org3f7da7f" class="outline-3">
+<h3 id="org3f7da7f"><span class="section-number-3">15.2</span> Resources</h3>
 <div class="outline-text-3" id="text-15-2">
 <ul class="org-ul">
 <li><a href="https://github.com/jwiegley/use-package/issues/379">https://github.com/jwiegley/use-package/issues/379</a></li>
@@ -1374,8 +1374,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-orgd0573e2" class="outline-2">
-<h2 id="orgd0573e2"><span class="section-number-2">16</span> Python</h2>
+<div id="outline-container-orgcba0ccb" class="outline-2">
+<h2 id="orgcba0ccb"><span class="section-number-2">16</span> Python</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1404,12 +1404,12 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-org95a9fe7" class="outline-3">
-<h3 id="org95a9fe7"><span class="section-number-3">16.1</span> <span class="todo TODO">TODO</span> Investigate Jedi auto-completion for Emacs</h3>
+<div id="outline-container-orgf6db06e" class="outline-3">
+<h3 id="orgf6db06e"><span class="section-number-3">16.1</span> <span class="todo TODO">TODO</span> Investigate Jedi auto-completion for Emacs</h3>
 </div>
 
-<div id="outline-container-org98bbc49" class="outline-3">
-<h3 id="org98bbc49"><span class="section-number-3">16.2</span> Resources</h3>
+<div id="outline-container-org3c5e381" class="outline-3">
+<h3 id="org3c5e381"><span class="section-number-3">16.2</span> Resources</h3>
 <div class="outline-text-3" id="text-16-2">
 <ul class="org-ul">
 <li><a href="http://tkf.github.io/emacs-jedi/latest/#install">http://tkf.github.io/emacs-jedi/latest/#install</a></li>
@@ -1418,8 +1418,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-orgd10ef08" class="outline-2">
-<h2 id="orgd10ef08"><span class="section-number-2">17</span> ROS</h2>
+<div id="outline-container-org10b0a16" class="outline-2">
+<h2 id="org10b0a16"><span class="section-number-2">17</span> ROS</h2>
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1434,8 +1434,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-orgfaca0b8" class="outline-2">
-<h2 id="orgfaca0b8"><span class="section-number-2">18</span> Yaml</h2>
+<div id="outline-container-org3390b33" class="outline-2">
+<h2 id="org3390b33"><span class="section-number-2">18</span> Yaml</h2>
 <div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1448,8 +1448,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-orga5d305c" class="outline-2">
-<h2 id="orga5d305c"><span class="section-number-2">19</span> Markdown</h2>
+<div id="outline-container-org92ad9d9" class="outline-2">
+<h2 id="org92ad9d9"><span class="section-number-2">19</span> Markdown</h2>
 <div class="outline-text-2" id="text-19">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1463,8 +1463,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-org1e7bd52" class="outline-2">
-<h2 id="org1e7bd52"><span class="section-number-2">20</span> CMake</h2>
+<div id="outline-container-org824a89a" class="outline-2">
+<h2 id="org824a89a"><span class="section-number-2">20</span> CMake</h2>
 <div class="outline-text-2" id="text-20">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1477,8 +1477,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-org7c530f1" class="outline-2">
-<h2 id="org7c530f1"><span class="section-number-2">21</span> Keybindings</h2>
+<div id="outline-container-org8b59958" class="outline-2">
+<h2 id="org8b59958"><span class="section-number-2">21</span> Keybindings</h2>
 <div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1497,8 +1497,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-org9cbeeec" class="outline-2">
-<h2 id="org9cbeeec"><span class="section-number-2">22</span> Hooks</h2>
+<div id="outline-container-org9080325" class="outline-2">
+<h2 id="org9080325"><span class="section-number-2">22</span> Hooks</h2>
 <div class="outline-text-2" id="text-22">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
@@ -1513,8 +1513,8 @@ Furthermore, I really need to see if it is configurable so I can customize to ho
 </div>
 </div>
 
-<div id="outline-container-org2c3791c" class="outline-2">
-<h2 id="org2c3791c"><span class="section-number-2">23</span> Completed Emacs.org setup</h2>
+<div id="outline-container-org4f2cd27" class="outline-2">
+<h2 id="org4f2cd27"><span class="section-number-2">23</span> Completed Emacs.org setup</h2>
 <div class="outline-text-2" id="text-23">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(message <span class="org-string">"------------------- finished Emacs.org setup -------------------"</span>)
