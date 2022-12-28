@@ -4,37 +4,14 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 #+STARTUP: inlineimages
 
-* Todo
-
-** TODO [#C] Lots of annoying errors get thrown when installed on PC's without my Dropbox
-
-** TODO [#A] Investigate what changes are required in Emacs.org for Emacs on Windows
-
-** TODO [#C] Look into how to generate html/pdf files for reading notes
-
-[2022-05-09 Mon]
-I have turned off the auto-gen reading notes.
-The reason is so that I can develop an =add_paper= method.
-I plan to have multiple reading notes files in =Dropbox/org/reading= (so they all don't go into one big file).
-
 * Startup
 
-** Reporting function
+** Startup Performance
+
+Make startup faster by reducing the frequency of garbage collection and then use a hook to measure Emacs startup time. Source [[https://github.com/daviwil/dotfiles/blob/master/Emacs.org#startup-performance][here]].
 
 #+begin_src emacs-lisp
-
-  (message "------------------- started Emacs.org -------------------")
-
-  (defun report-init-stage (str)
-    (message (concat "[INIT] successfully finished: " str)))
-
-#+end_src
-
-** Performance
-
-Make startup faster by reducing the frequency of garbage collection and then use a hook to measure Emacs startup time.
-
-#+begin_src emacs-lisp
+  ;; -*- lexical-binding: t; -*-
 
   ;; The default is 800 kilobytes.  Measured in bytes.
   ;; Seems to have an effect, see plot below.
@@ -48,7 +25,6 @@ Make startup faster by reducing the frequency of garbage collection and then use
                                (float-time
                                 (time-subtract after-init-time before-init-time)))
                        gcs-done)))
-
 #+end_src
 
 I ran a quick test to check if the above code actually makes a difference.
@@ -95,88 +71,183 @@ The trials were executed on a PC running Ubuntu 20.04, with a 16-core Intel(R) C
 #+CAPTION: Startup duration comparison between default =gc-cons-threshold= (Off) and value set above (On).
 [[./imgs/startup-performance.png]]
 
-** Load path
+** Path
 
 #+begin_src emacs-lisp
+  ;; my-home-directory variable documentation
+  (defvar my-home-directory nil
+    "The directory considered home. When Dropbox exists, then this will be ~/Dropbox, otherwise it is the value of the HOME environment variable.")
+
+  ;; Set my Home directory variable
+  (setq my-home-directory (if (file-directory-p "~/Dropbox") "~/Dropbox" (getenv "HOME")))
+
+  ;; Load path
   (add-to-list 'load-path "~/.emacs.d/lisp/")
 #+end_src
 
 ** Export Emacs.org to HTML
 
+*Temporarily turned off.*
 
 Automatically export Emacs.org to HTML after save.
 
-#+begin_src emacs-lisp
-
-  (defun org-html-export-to-html-for-emacs-init ()
+#+begin_src emacs-lisp :tangle no
+  (defun export-emacs-org-init-to-html ()  
     "When current buffer is Emacs.org, export to HTML"
     (when (string= (buffer-file-name) (expand-file-name "Emacs.org" user-emacs-directory))
       (message "Generating Emacs.html")
       (org-html-export-to-html)))
 
-  (add-hook 'after-save-hook 'org-html-export-to-html-for-emacs-init)
-
+  (add-hook 'after-save-hook 'export-emacs-org-init-to-html)
 #+end_src
 
-** Font
-
-I am trialing the [[https://dtinth.github.io/comic-mono-font/][Comic Mono font]].
-The downside to this font is that there is no /italic/ (note, Emacs.org doesn't render italic in Emacs).
-If this seems reasonable then I may consider investing in [[https://tosche.net/fonts/comic-code][Comic Code]] by Toshi Omagari.
-
-#+begin_src emacs-lisp
-
-  (add-to-list 'default-frame-alist '(font . "Comic Mono-12" ))
-
-#+end_src
-
-** Finished startup
-
-#+begin_src emacs-lisp
-
-  (report-init-stage "startup")
-
-#+end_src
-
-** Resources
-
-- https://github.com/daviwil/dotfiles/blob/master/Emacs.org
-
-* Constants
+** User information
 
 #+begin_src emacs-lisp
 
   (setq
 
    ;; full name of the user logged in
-   user-full-name "Christopher E. Mower"
+   user-full-name (replace-regexp-in-string "\n$" ""
+					    (shell-command-to-string "/usr/bin/git config --get user.name"))
 
    ;; the email address of the current user
-   user-mail-address "cmower@ed.ac.uk"
+   user-mail-address (replace-regexp-in-string "\n$" ""
+					       (shell-command-to-string "/usr/bin/git config --get user.email"))
 
-   ;; default location to look for Org files
-   org-directory "~/Dropbox/org"
+  )
 
-   ;; dropbox directory
-   dropbox-directory "~/Dropbox"
+#+end_src
 
-   ;; reading directory
-   ;; reading-directory (expand-file-name "reading" dropbox-directory)
+** Useful methods
 
-   ;; reading.org file name
-   ;; reading-org-file-name (expand-file-name "reading.org" org-directory)
+*** Create directory when it doesn't exist
 
-   ;; reading.tex file name
-   ;; reading-tex-file-name (expand-file-name "reading.tex" org-directory)
+#+begin_src emacs-lisp
+  (defun make-directory-unless-exists (dir-name)
+    "Makes a directory unless it exists"
+    (unless (file-directory-p dir-name)
+      (make-directory dir-name)))
+#+end_src
 
-   ;; reading.pdf file name
-   ;; reading-pdf-file-name (expand-file-name "reading.pdf" org-directory)
+* Package management
+** Package archives
 
-   ;; reading.bbl file name
-   ;; reading-bbl-file-name (expand-file-name "reading.bbl" org-directory)
+#+begin_src emacs-lisp
+   ;; directory containing the user’s Emacs Lisp packages
+   (setq package-user-dir (expand-file-name ".elpa" my-home-directory))
 
-   ;; reading.bib file name
-   ;; reading-bib-file-name (expand-file-name "reading.bib" reading-directory)
+   (require 'package)
+   (setq package-archives '(
+                            ("melpa" . "https://melpa.org/packages/")
+                            ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+                            ;; ("org" . "https://orgmode.org/elpa/")
+                            ("elpa" . "https://elpa.gnu.org/packages/")
+                            ))
+   (package-initialize)
+#+end_src
+
+** Setup use-package
+
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (eval-when-compile
+    (require 'use-package))
+#+end_src
+
+When =use-package= won't load, see [[https://emacs.stackexchange.com/a/50603/30155][here]].
+
+* User interface
+** Startup screen
+
+#+begin_src emacs-lisp
+  (setq
+ 
+   ;; inhibit the startup screen
+   inhibit-splash-screen t
+ 
+   )
+#+end_src
+
+** Font
+
+I use [[https://dtinth.github.io/comic-mono-font/][Comic Mono font]].
+The downside to this font is that there is no /italic/ (note, Emacs.org doesn't render italic in Emacs).
+Maybe one day I will invest in [[https://tosche.net/fonts/comic-code][Comic Code]] by Toshi Omagari.
+
+#+begin_src emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "Comic Mono-12" ))
+#+end_src
+
+** Theme
+
+#+begin_src emacs-lisp
+  ;; default user directory for storing custom theme files
+  (setq custom-theme-directory "~/.emacs.d/themes")
+
+  ;; Load theme
+  ;; (load-theme 'spacegray t)
+  (load-theme 'monokai t)
+#+end_src
+
+** Appearance
+
+#+begin_src emacs-lisp
+  (scroll-bar-mode 0) ;; remove scroll bar
+  (tool-bar-mode 0) ;; remove tool bar
+  (menu-bar-mode 0) ;; remove menu bar
+  (show-paren-mode 1) ;; highlight parentheses
+  (global-hl-line-mode 1) ;; highlight current line
+  (global-linum-mode 1) ;; show line numbers
+#+end_src
+
+** Scrolling
+
+#+begin_src emacs-lisp
+  (setq
+
+   ;; number of lines of margin at the top and bottom of a window
+   scroll-margin 5
+ 
+   ;; the number of lines to try scrolling a window by when point moves out
+   scroll-step 1
+
+   )
+#+end_src
+
+* Backup files
+
+Create backup directory.
+
+#+begin_src emacs-lisp
+  (setq backup-directory (expand-file-name ".backups" my-home-directory))
+  (make-directory-unless-exists backup-directory)
+#+end_src
+
+#+begin_src emacs-lisp
+
+  (setq
+   ;; Alist of filename patterns and backup directory names
+   ;; https://stackoverflow.com/a/151946
+   backup-directory-alist `(("." . backup-directory))
+
+   ;; delete excess backup versions silently
+   delete-old-versions t
+
+   ;; Control use of version numbers for backup files
+   version-control t
+ 
+   )
+
+#+end_src
+
+* Miscellaneous constants
+
+#+begin_src emacs-lisp
+
+  (setq
 
    ;; file used for storing customization information.
    custom-file (concat user-emacs-directory "/custom.el")
@@ -187,24 +258,9 @@ If this seems reasonable then I may consider investing in [[https://tosche.net/f
     ((string-equal system-type "gnu/linux") "evince")
     ((string-equal system-type "darwin") "open"))
 
-   ;; default user directory for storing custom theme files
-   custom-theme-directory "~/.emacs.d/themes"
-
-   ;; number of lines of margin at the top and bottom of a window
-   scroll-margin 5
-
-   ;; the number of lines to try scrolling a window by when point moves out
-   scroll-step 1
-
    ;; The day of the week on which a week in the calendar begins
    ;; 0 means Sunday (default), 1 means Monday, and so on
    calendar-week-start-day 1
-
-   ;; inhibit the startup screen
-   inhibit-splash-screen t
-
-   ;; default dictionary to use
-   ispell-dictionary "en_US"
 
    ;; fontify subscript and superscript strings
    font-latex-fontify-script nil
@@ -220,172 +276,63 @@ If this seems reasonable then I may consider investing in [[https://tosche.net/f
    ;; The 'cl' package is now officially deprecated in favor of 'cl-lib'.
    byte-compile-warnings '(cl-functions)
 
-   ;; directory containing the user’s Emacs Lisp packages
-   package-user-dir "~/Dropbox/.elpa"
-
-   ;; Alist of filename patterns and backup directory names
-   ;; https://stackoverflow.com/a/151946
-   backup-directory-alist `(("." . "~/Dropbox/.backups"))
-
-   ;; delete excess backup versions silently
-   delete-old-versions t
-
-   ;; Control use of version numbers for backup files
-   version-control t
-
    )
-
-  (report-init-stage "constants")
 #+end_src
-
-** Resources
-
-- https://stackoverflow.com/a/1817318/4650592
-- https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/
-- https://emacs.stackexchange.com/a/59811/30155
-- https://tex.stackexchange.com/a/74373
-- https://emacs.stackexchange.com/a/38
-- https://www.gnu.org/savannah-checkouts/gnu/emacs/news/NEWS.27.1
-- https://github.com/kiwanami/emacs-epc/issues/35#issuecomment-660639327
-- https://stackoverflow.com/a/15735931/4650592
-
-* Package management
-
-#+begin_src emacs-lisp
-
-  (require 'package)
-  (setq package-archives '(
-                           ("melpa" . "https://melpa.org/packages/")
-                           ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-                           ;; ("org" . "https://orgmode.org/elpa/")
-                           ("elpa" . "https://elpa.gnu.org/packages/")
-                           ))
-  (package-initialize)
-
-  (report-init-stage "package managers")
-
-#+end_src
-
-* use-package
-
-#+begin_src emacs-lisp
-
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (eval-when-compile
-    (require 'use-package))
-
-  (report-init-stage "use-package")
-
-#+end_src
-
-- [[https://emacs.stackexchange.com/a/50603/30155][use-package won't load]]
-
-* Custom functions
-
-#+begin_src emacs-lisp
-
-  (defun open-init-file ()
-    "Open Emacs init file."
-    (interactive)
-    (find-file (expand-file-name "Emacs.org" user-emacs-directory)))
-
-  (report-init-stage "custom functions")
-
-#+end_src
-
-* User interface
-
-** Theme
-
-#+begin_src emacs-lisp
-  ;; (load-theme 'spacegray t)
-  (load-theme 'monokai t)
-
-  (report-init-stage "successfully setup emacs theme")
-
-#+end_src
-
-** Appearance
-
-#+begin_src emacs-lisp
-
-  (scroll-bar-mode 0) ;; remove scroll bar
-  (tool-bar-mode 0) ;; remove tool bar
-  (menu-bar-mode 0) ;; remove menu bar
-  (show-paren-mode 1) ;; highlight parentheses
-  (global-hl-line-mode 1) ;; highlight current line
-  (global-linum-mode 1) ;; show line numbers
-
-#+end_src
-
-** Finished setup
-
-#+begin_src emacs-lisp
-(report-init-stage "appearance")
-#+end_src
-
-** Resources
-
-- http://ergoemacs.org/emacs/emacs_highlight_parenthesis.html
 
 * Magit
 
 https://magit.vc/manual/magit/
 
 #+begin_src emacs-lisp
-
   (use-package magit
+    :ensure t)
+
+  ;; https://github.com/magit/git-modes
+  (use-package git-modes
     :ensure t)
 
   ;; Custom functions for opening GitHub from magit
   (defun parse-github-url (url)
     "convert a git remote location as a HTTP URL"
     (if (string-match "^http" url)
-	url
+        url
       (replace-regexp-in-string "\\(.*\\)@\\(.*\\):\\(.*\\)\\(\\.git?\\)"
-				"https://\\2/\\3"
-				url)))
+                                "https://\\2/\\3"
+                                url)))
 
   (defun magit-open-repo ()
     "open remote repo URL"
     (interactive)
     (let ((url (magit-get "remote" "origin" "url")))
       (progn
-	(browse-url (parse-github-url url))
-	(message "Opening %s" url))))
+        (browse-url (parse-github-url url))
+        (message "Opening %s" url))))
 
   (add-hook 'magit-mode-hook
-	    (lambda ()
-	      (local-set-key (kbd "o") 'magit-open-repo)))
-
-  (report-init-stage "magit")
-
+            (lambda ()
+              (local-set-key (kbd "o") 'magit-open-repo)))
 #+end_src
 
 * Undo-tree
 
 #+begin_src emacs-lisp
+  ;; Ensure .undo-tree directory exists
+  (make-directory-unless-exists "~/.undo-tree")
 
-    (use-package undo-tree
-      :ensure t
-      :init
-      (setq
-       undo-tree-visualizer-diff t
-       undo-tree-history-directory-alist '(("." . "~/.emacs.d/.undo-tree")))
-      :config
-      (global-undo-tree-mode))
-
-
-    (report-init-stage "undo-tree")
-
+  ;; Setup undo-tree package
+  (use-package undo-tree
+    :ensure t
+    :init
+    (setq
+     undo-tree-visualizer-diff t
+     undo-tree-history-directory-alist '(("." . "~/.undo-tree")))
+    :config
+    (global-undo-tree-mode))
 #+end_src
 
 * Auto complete
 
 #+begin_src emacs-lisp
-
   (use-package auto-complete
     :commands auto-complete-mode
     :init
@@ -400,43 +347,23 @@ https://magit.vc/manual/magit/
     (auto-complete-mode t)
     (ac-config-default)
     (ac-flyspell-workaround))
-
-  (report-init-stage "auto complete")
-
-#+end_src
-
-** Resources
-
-- https://www.reddit.com/r/emacs/comments/7czblc/why_is_emacs_auto_complete_so_slow/
-
-* Git modes
-
-#+begin_src emacs-lisp
-
-  (use-package git-modes
-    :ensure t)
-
-  (report-init-stage "git-modes")
-
 #+end_src
 
 * Helm
 
 #+begin_src emacs-lisp
-
   (use-package helm
     :ensure t
     :bind
     (("M-x" . helm-M-x)
      ("C-x C-f" . helm-find-files)))
-
-  (report-init-stage "helm")
-
 #+end_src
 
 * Spelling
 
 #+begin_src emacs-lisp
+  ;; default dictionary to use
+  (setq ispell-dictionary "en_US")
 
   ;; Enable flyspell
   (add-hook 'org-mode-hook '(lambda () (flyspell-mode)))
@@ -446,23 +373,107 @@ https://magit.vc/manual/magit/
   (eval-after-load "flyspell"
     '(progn
        (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
-
-
-  (report-init-stage "spelling")
 #+end_src
 
-** Resources
+* LaTeX
 
-- https://emacs.stackexchange.com/a/7469/30155
-- https://tex.stackexchange.com/a/210879/106130
+#+begin_src emacs-lisp
+  ;; AucTeX
+  (use-package auctex
+    :defer t
+    :ensure t)
+    ;; :init
+    ;; (setq TeX-show-compilation 1))
+
+  ;; https://github.com/tom-tan/auctex-latexmk
+  (use-package auctex-latexmk
+    :defer t
+    :ensure t
+    :config
+    (progn
+      (auctex-latexmk-setup)
+      (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
+
+  ;; Add custom command to compress pdf
+  (eval-after-load "tex"
+    '(add-to-list 'TeX-command-list
+                  '(
+                    "Compress"
+                    "python $HOME/Dropbox/Documents/myscripts/my_python_scripts/pdfcompress.py %s.pdf"
+                    TeX-run-shell nil t :help "Compresses PDF.")
+                  t))
+#+end_src
+
+* Programming
+** Python
+
+#+begin_src emacs-lisp
+  ;; Keybindings for indent left/right
+  (add-hook 'python-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-.") 'python-indent-shift-right)))
+
+  (add-hook 'python-mode-hook
+            '(lambda ()
+               (local-set-key (kbd "C-,") 'python-indent-shift-left)))
+
+  ;; Auto completion
+  (use-package jedi
+    :ensure t
+    :init
+    (setq jedi:complete-on-dot t
+          jedi:tooltip-method nil
+          jedi:get-in-function-call-delay 1)
+    :config
+    (add-hook 'python-mode-hook 'jedi:setup))
+#+end_src
+
+** ROS
+
+#+begin_src emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.urdf\\'" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.xacro\\'" . xml-mode))
+#+end_src
+
+** YAML
+
+#+begin_src emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+#+end_src
+
+** Markdown
+
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :ensure t)
+#+end_src
+
+** CMake
+
+#+begin_src emacs-lisp
+  (use-package cmake-mode
+    :ensure t)
+#+end_src
 
 * Org
+
+** Org directory
+
+#+begin_src emacs-lisp
+  (setq org-directory (expand-file-name "org" my-home-directory))
+  (make-directory-unless-exists org-directory)
+#+end_src
 
 ** Constants
 
 #+begin_src emacs-lisp
 
   (setq
+
+   ;; default location to look for Org files
+   
 
    ;; font-lock should hide the emphasis marker characters
    org-hide-emphasis-markers t
@@ -584,23 +595,20 @@ https://magit.vc/manual/magit/
    ;; the list of file extensions to consider as LaTeX logfiles
    org-latex-logfiles-extensions '("lof" "lot" "tex~" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl")
 
+   org-format-latex-options '(:foreground default :background default :scale 1.75 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                                          ("begin" "$1" "$" "$$" "\\(" "\\["))
+
    )
 
 #+end_src
 
-*** TODO [#C] Investigate =org-agenda-sorting-strategy=
+** Keybindings
 
-[2022-04-22 Fri]
-Ideal strategy:
-- sort mainly by number of days till deadline
-- then priority
-- after this, I guess what ever but perhaps best to read through documentation
-
-*** Resources
-
-- https://emacs.stackexchange.com/a/16561
-- https://emacs.stackexchange.com/a/53007/30155
-- https://www.reddit.com/r/orgmode/comments/jqu70x/how_to_create_a_custom_agenda_view_to_show_all/
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+#+end_src
 
 ** Org files
 
@@ -636,16 +644,12 @@ Ideal strategy:
          (sa-find-org-file-recursively "~/Dropbox/Documents")))
 #+end_src
 
-*** Resources
-
-- https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/
-- https://stackoverflow.com/a/11384907/4650592
-
 ** Auto-complete
 
-Currently turned off since it causes Emacs to crash.
+This was causing Emacs to crash, however it seems fine now.
+If problems persist, then turn this off.
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 
   ;; Org mode
   (use-package org-ac
@@ -654,12 +658,6 @@ Currently turned off since it causes Emacs to crash.
     (org-ac/config-default))
 
 #+end_src
-
-*** TODO [#C] Fix org-ac
-
-[2022-04-21 Thu]
-There is an issue when =org-ac= is turned on.
-It causes Emacs to lag a lot, and sometimes crashes.
 
 ** Appearance
 
@@ -676,9 +674,7 @@ today [2022-05-19 Thu] so I'm not sure what happened.
 #+end_src
 
 #+begin_src emacs-lisp
-
-
-  ;; org-appear mode
+  ;; https://github.com/awth13/org-appear
   (use-package org-appear
     :ensure t
     :after org
@@ -686,7 +682,7 @@ today [2022-05-19 Thu] so I'm not sure what happened.
     (setq org-appear-autolinks t)
     :hook (org-mode . org-appear-mode))
 
-  ;; org-superstar
+  ;; https://github.com/integral-dw/org-superstar-mode
   (use-package org-superstar
     :ensure t
     :after org
@@ -694,14 +690,7 @@ today [2022-05-19 Thu] so I'm not sure what happened.
     :custom
     (org-superstar-headline-bullets-list
      '("◉" "●" "○" "▣" "■" "□" "▶" "▷")))
-
 #+end_src
-
-*** Resources
-
-- https://github.com/awth13/org-appear
-- https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets
-- https://github.com/integral-dw/org-superstar-mode
 
 ** org-babel
 
@@ -738,11 +727,6 @@ however, when writing $\LaTeX$ in Org-mode files, use
   E = mc^2
 #+end_export
 #+end_src
-
-*** Resources
-
-- https://www.youtube.com/watch?v=2t925KRBbFc
-- https://emacs.stackexchange.com/a/58641/30155
 
 ** org-super-agenda
 
@@ -805,11 +789,6 @@ The following date indicators are required in the =org-super-agenda= setup in th
             (:name "Reading" :tag "reading"))))
 #+end_src
 
-*** Resources
-
-- https://stackoverflow.com/a/67741229
-- https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates
-
 ** Autogen reading notes and bibtex
 
 #+begin_src emacs-lisp :tangle no
@@ -847,168 +826,32 @@ The following date indicators are required in the =org-super-agenda= setup in th
   (add-hook 'after-save-hook 'generate-reading-pdf-on-save)
 #+end_src
 
-** Finished Org
+* Resources
 
-#+begin_src emacs-lisp
+The following links have been helpful in creating this initialization script.
 
-  (report-init-stage "Org")
-
-#+end_src
-
-* LaTeX
-
-#+begin_src emacs-lisp
-
-  ;; AucTeX
-  (use-package auctex
-    :defer t
-    :ensure t)
-    ;; :init
-    ;; (setq TeX-show-compilation 1))
-
-  (use-package auctex-latexmk
-    :defer t
-    :ensure t
-    :config
-    (progn
-      (auctex-latexmk-setup)
-      (setq auctex-latexmk-inherit-TeX-PDF-mode t)))
-
-  ;; Add custom command to compress pdf
-  (eval-after-load "tex"
-    '(add-to-list 'TeX-command-list
-                  '(
-                    "Compress"
-                    "python $HOME/Dropbox/Documents/myscripts/my_python_scripts/pdfcompress.py %s.pdf"
-                    TeX-run-shell nil t :help "Compresses PDF.")
-                  t))
-
-  ;; cdlatex
-  ;; https://github.com/cdominik/cdlatex
-  ;; (load "cdlatex.el")
-  ;; (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
-
-  (report-init-stage "latex")
-#+end_src
-
-** TODO [#C] Learn how to use cdlatex
-
-[2022-05-09 Mon]
-When I tried out cdlatex, it seems like a good idea but there was some annoying issues.
-Furthermore, I really need to see if it is configurable so I can customize to how I'd like to use it.
-
-** Resources
-
-- https://github.com/jwiegley/use-package/issues/379
-- https://github.com/tom-tan/auctex-latexmk
-- https://www.gnu.org/software/auctex/manual/auctex/Selecting-a-Command.html
-
-* Python
-
-#+begin_src emacs-lisp
-
-  ;; Keybindings for indent left/right
-  (add-hook 'python-mode-hook
-            '(lambda ()
-               (local-set-key (kbd "C-.") 'python-indent-shift-right)))
-
-  (add-hook 'python-mode-hook
-            '(lambda ()
-               (local-set-key (kbd "C-,") 'python-indent-shift-left)))
-
-  ;; Auto completion
-  (use-package jedi
-    :ensure t
-    :init
-    (setq jedi:complete-on-dot t
-          jedi:tooltip-method nil
-          jedi:get-in-function-call-delay 1)
-    :config
-    (add-hook 'python-mode-hook 'jedi:setup))
-
-
-  (report-init-stage "python")
-#+end_src
-
-** TODO [#C] Investigate Jedi auto-completion for Emacs
-
-** Resources
-
-- http://tkf.github.io/emacs-jedi/latest/#install
-
-* ROS
-
-#+begin_src emacs-lisp
-
-  (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.urdf\\'" . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.xacro\\'" . xml-mode))
-
-  (report-init-stage "ROS")
-
-#+end_src
-
-* Yaml
-
-#+begin_src emacs-lisp
-
-  (use-package yaml-mode
-    :ensure t)
-
-  (report-init-stage "yaml")
-#+end_src
-
-* Markdown
-
-#+begin_src emacs-lisp
-
-  (use-package markdown-mode
-    :ensure t)
-
-
-  (report-init-stage "markdown-mode")
-#+end_src
-
-* CMake
-
-#+begin_src emacs-lisp
-
-  (use-package cmake-mode
-    :ensure t)
-
-  (report-init-stage "cmake-mode")
-#+end_src
-
-* Keybindings
-
-#+begin_src emacs-lisp
-
-  ;; Org
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c c") 'org-capture)
-
-  ;; Init file
-  (global-set-key (kbd "C-c i") 'open-init-file)
-
-  (report-init-stage "keybindings")
-
-#+end_src
-
-* Hooks
-
-#+begin_src emacs-lisp
-
-  ;; remove any trailing whitespace on save
-  ;; turned off for now, this causes issues when coding - people complain that there is no newline at the end of files
-  ;; (add-hook 'after-save-hook 'delete-trailing-whitespace)
-
-  (report-init-stage "hooks")
-
-#+end_src
-
-* Completed Emacs.org setup
-
-#+begin_src emacs-lisp
-  (message "------------------- finished Emacs.org setup -------------------")
-#+end_src
+- David Wilson's Emacs configuration: https://github.com/daviwil/dotfiles/blob/master/Emacs.org
+- Highlight brackets: http://xahlee.info/emacs/emacs/emacs_highlight_parenthesis.html
+- Determine OS type: https://stackoverflow.com/a/1817318/4650592
+- How to place custom-set-variables in dedicated script: https://www.reddit.com/r/emacs/comments/6dqap5/how_to_keep_initel_clean_if/
+- Set calendar week start day: https://emacs.stackexchange.com/a/59811/30155
+- Don't use superscript/subscript when editing latex: https://tex.stackexchange.com/a/74373
+- Handling local variables: https://emacs.stackexchange.com/a/38
+- Don't show package cl deprecation warning: https://github.com/kiwanami/emacs-epc/issues/35#issuecomment-660639327
+- How to modify directory containing the user’s Emacs Lisp packages: https://stackoverflow.com/a/15735931/4650592
+- Fix slow auto-complete: https://www.reddit.com/r/emacs/comments/7czblc/why_is_emacs_auto_complete_so_slow/
+- Hooks for latex/auctex: https://emacs.stackexchange.com/a/7469/30155
+- Modify how Emacs handles misspelled words: https://tex.stackexchange.com/a/210879/106130
+- Issue installing auctex: https://github.com/jwiegley/use-package/issues/379
+- Issue installing jedi (for Python): http://tkf.github.io/emacs-jedi/latest/#install
+- todos that are not recurring/scheduled: https://emacs.stackexchange.com/a/16561
+- Show tasks done in past and not clocked: https://emacs.stackexchange.com/a/53007/30155
+- How to create a custom agenda view to show all CLOSED TODO items during previous week: https://www.reddit.com/r/orgmode/comments/jqu70x/how_to_create_a_custom_agenda_view_to_show_all/
+- Adding org files recursively: 
+  - https://orgmode.org/list/81lit1jiol.fsf@gmail.com/t/
+  - https://stackoverflow.com/a/11384907/4650592
+- Setting fonts/bullet-points style in org: https://github.com/daviwil/dotfiles/blob/master/Emacs.org#fonts-and-bullets
+- Introduction to org-ref: https://www.youtube.com/watch?v=2t925KRBbFc
+- Issue when auto-generating .tex from .org re =#+BEGIN_LaTeX=: https://emacs.stackexchange.com/a/58641/30155
+- Setting due dates for org-super-agenda: https://stackoverflow.com/a/67741229
+- Org-super-agenda example re due dates: https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates
