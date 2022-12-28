@@ -222,16 +222,11 @@ Maybe one day I will invest in [[https://tosche.net/fonts/comic-code][Comic Code
 Create backup directory.
 
 #+begin_src emacs-lisp
-  (setq backup-directory (expand-file-name ".backups" my-home-directory))
-  (make-directory-unless-exists backup-directory)
-#+end_src
-
-#+begin_src emacs-lisp
 
   (setq
    ;; Alist of filename patterns and backup directory names
    ;; https://stackoverflow.com/a/151946
-   backup-directory-alist `(("." . backup-directory))
+   backup-directory-alist `(("." . "~/.backups"))
 
    ;; delete excess backup versions silently
    delete-old-versions t
@@ -246,7 +241,6 @@ Create backup directory.
 * Miscellaneous constants
 
 #+begin_src emacs-lisp
-
   (setq
 
    ;; file used for storing customization information.
@@ -258,23 +252,13 @@ Create backup directory.
     ((string-equal system-type "gnu/linux") "evince")
     ((string-equal system-type "darwin") "open"))
 
-   ;; The day of the week on which a week in the calendar begins
-   ;; 0 means Sunday (default), 1 means Monday, and so on
-   calendar-week-start-day 1
-
-   ;; fontify subscript and superscript strings
-   font-latex-fontify-script nil
-
    ;; control use of local variables in files you visit
    ;; :safe means set the safe variables, and ignore the rest
    ;; enable-local-variables :safe
 
-   ;; output type to be used by htmlize when formatting code snippets
-   org-html-htmlize-output-type 'css
-
    ;; List of warnings that the byte-compiler should issue
    ;; The 'cl' package is now officially deprecated in favor of 'cl-lib'.
-   byte-compile-warnings '(cl-functions)
+   ;; byte-compile-warnings '(cl-functions)
 
    )
 #+end_src
@@ -378,6 +362,9 @@ https://magit.vc/manual/magit/
 * LaTeX
 
 #+begin_src emacs-lisp
+  ;; fontify subscript and superscript strings
+  (setq font-latex-fontify-script nil)
+
   ;; AucTeX
   (use-package auctex
     :defer t
@@ -403,6 +390,14 @@ https://magit.vc/manual/magit/
                     TeX-run-shell nil t :help "Compresses PDF.")
                   t))
 #+end_src
+
+** TODO [#C] Fix path to pdfcompress.py
+
+The issue here is that not all PC's that I load my emacs initialization onto will have my Dropbox directory.
+This will create problems when trying to run "Compress" in AUCTeX.
+
+Ideally, myscripts would install =pdfcompress.py= (perhaps drop =.py=) into =~/.local= and "Compress" would check whether it exists first.
+When the script doesn't exist, Emacs should write a message to the user indicating that =pdfcompress= was not found.
 
 * Programming
 ** Python
@@ -462,6 +457,7 @@ https://magit.vc/manual/magit/
 ** Org directory
 
 #+begin_src emacs-lisp
+   ;; default location to look for Org files
   (setq org-directory (expand-file-name "org" my-home-directory))
   (make-directory-unless-exists org-directory)
 #+end_src
@@ -472,8 +468,12 @@ https://magit.vc/manual/magit/
 
   (setq
 
-   ;; default location to look for Org files
-   
+   ;; output type to be used by htmlize when formatting code snippets
+   org-html-htmlize-output-type 'css 
+
+   ;; The day of the week on which a week in the calendar begins
+   ;; 0 means Sunday (default), 1 means Monday, and so on
+   calendar-week-start-day 1
 
    ;; font-lock should hide the emphasis marker characters
    org-hide-emphasis-markers t
@@ -641,22 +641,18 @@ https://magit.vc/manual/magit/
   (setq org-agenda-files
         (append
          (sa-find-org-file-recursively org-directory)
-         (sa-find-org-file-recursively "~/Dropbox/Documents")))
+         (sa-find-org-file-recursively (expand-file-name "Documents" my-home-directory))))
 #+end_src
 
 ** Auto-complete
 
-This was causing Emacs to crash, however it seems fine now.
-If problems persist, then turn this off.
+This causes emacs to be very slow, turning off for now.
 
-#+begin_src emacs-lisp
-
-  ;; Org mode
+#+begin_src emacs-lisp :tangle no
   (use-package org-ac
     :ensure t
     :config
     (org-ac/config-default))
-
 #+end_src
 
 ** Appearance
@@ -692,6 +688,26 @@ today [2022-05-19 Thu] so I'm not sure what happened.
      '("◉" "●" "○" "▣" "■" "□" "▶" "▷")))
 #+end_src
 
+*** Prefix format
+
+*Currently turned off, see TODO below.*
+
+#+begin_src emacs-lisp
+  (defun my-buffer-file-name ()
+    "Give the directory name of (buffer-file-name)"
+    (interactive)
+    (file-name-nondirectory
+     (directory-file-name
+       (file-name-directory buffer-file-name))))
+
+  (setq org-agenda-prefix-format
+    '((agenda  . " [%(my-buffer-file-name)]%i %-12:c%?-12t% s ")
+      (timeline  . "  [%(my-buffer-file-name)]% s ")
+      (todo  . " [%(my-buffer-file-name)]%i %-12:c ")
+      (tags  . " [%(my-buffer-file-name)]%i %-12:c ")
+      (search . " [%(my-buffer-file-name)]%i %-12:c ")))
+#+end_src
+
 ** org-babel
 
 #+begin_src emacs-lisp
@@ -705,14 +721,14 @@ today [2022-05-19 Thu] so I'm not sure what happened.
 
 ** org-ref
 
-#+begin_src emacs-lisp
+*Currently turned off since I am not using reading.org at the moment.*
 
+#+begin_src emacs-lisp :tangle no
   (use-package org-ref
     :ensure t
     :init
     (setq org-ref-bibliography-notes "~/Dropbox/org/reading.org"
           org-ref-default-bibliography '("~/Dropbox/org/bib/bib.bib")))
-
 #+end_src
 
 Note, when writing $\LaTeX$ equations, the standard environment to use is
@@ -791,6 +807,8 @@ The following date indicators are required in the =org-super-agenda= setup in th
 
 ** Autogen reading notes and bibtex
 
+*Currently turned off since I am not using reading.org at the moment.*
+
 #+begin_src emacs-lisp :tangle no
 
   ;; Generate reading.bib
@@ -855,3 +873,4 @@ The following links have been helpful in creating this initialization script.
 - Issue when auto-generating .tex from .org re =#+BEGIN_LaTeX=: https://emacs.stackexchange.com/a/58641/30155
 - Setting due dates for org-super-agenda: https://stackoverflow.com/a/67741229
 - Org-super-agenda example re due dates: https://github.com/alphapapa/org-super-agenda/blob/master/examples.org#concrete-dates
+- Return only directory name from path: https://stackoverflow.com/a/27285582
