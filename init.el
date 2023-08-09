@@ -4,6 +4,7 @@
 (setq-default cursor-type '(bar . 3))
 (setq
  gc-cons-threshold 50000000
+ linum-format " %3d "
  inhibit-startup-echo-area-message t
  inhibit-splash-screen t
  backup-directory-alist `(("." . "~/.backups"))
