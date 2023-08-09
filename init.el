@@ -1,19 +1,4 @@
 ;; -*- lexical-binding: t; -*-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (leuven)))
- '(package-selected-packages
-   (quote
-    (clang-format cmake-mode markdown-mode yaml-mode python-black jedi auctex ivy helm magit use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;; Constants
 (setq-default cursor-type '(bar . 3))
@@ -37,6 +22,9 @@
 (add-to-list 'default-frame-alist '(font . "Comic Mono-12" ))
 
 ;; Misc appearance
+(scroll-bar-mode 0) ;; remove scroll bar
+(tool-bar-mode 0) ;; remove tool bar
+(menu-bar-mode 0) ;; remove menu bar
 (show-paren-mode 1) ;; highlight parentheses
 (global-hl-line-mode 1) ;; highlight current line
 (global-linum-mode 1) ;; show line numbers
@@ -44,9 +32,15 @@
 ;; Packages
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")
-                         ))
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
+
+;; Theme
+(setq custom-theme-directory "~/.emacs.d/themes")
+(load-theme 'mymy t)
+(set-face-foreground 'linum "#5D6B99")
+(set-face-background 'linum "white")
+
 
 ;; Install use-package
 (unless (package-installed-p 'use-package)
