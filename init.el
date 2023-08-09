@@ -7,6 +7,7 @@
  inhibit-startup-echo-area-message t
  inhibit-splash-screen t
  backup-directory-alist `(("." . "~/.backups"))
+ ispell-dictionary "en_US"
  pdf-open-application
  (cond
   ((string-equal system-type "gnu/linux") "evince")
@@ -109,3 +110,12 @@
       "")))
 
 (setq-default mode-line-format '(:eval (my-custom-mode-line-format)))
+
+;; Spelling
+(add-hook 'org-mode-hook '(lambda () (flyspell-mode)))
+(add-hook 'LaTeX-mode-hook '(lambda () (flyspell-mode)))
+
+;; Use right-mouse button to correct spelling
+(eval-after-load "flyspell"
+  '(progn
+     (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
