@@ -421,6 +421,13 @@ When the script doesn't exist, Emacs should write a message to the user indicati
           jedi:get-in-function-call-delay 1)
     :config
     (add-hook 'python-mode-hook 'jedi:setup))
+
+
+  ;; Code formatting
+  (use-package python-black
+    :demand t
+    :after python
+    :hook (python-mode . python-black-on-save-mode-enable-dwim))
 #+end_src
 
 ** ROS
@@ -441,8 +448,9 @@ When the script doesn't exist, Emacs should write a message to the user indicati
 ** Markdown
 
 #+begin_src emacs-lisp
-  (use-package markdown-mode
+  (use-package markdown-mode    
     :ensure t)
+
 #+end_src
 
 ** CMake
@@ -452,6 +460,14 @@ When the script doesn't exist, Emacs should write a message to the user indicati
     :ensure t)
 #+end_src
 
+
+** C++
+
+#+begin_src emacs-lisp
+  (use-package clang-format
+    :ensure t
+    )
+#+end_src
 * Org
 
 ** Org directory
