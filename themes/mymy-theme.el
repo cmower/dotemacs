@@ -1,4 +1,4 @@
-;;; my-theme.el
+;;; mymy-theme.el
 
 (defgroup mymy nil
   "MyMy theme options.
@@ -1082,4 +1082,4 @@ more...")
 
 (provide-theme 'mymy)
 
-;;; my-theme.el ends here
+;;; mymy-theme.el ends here
