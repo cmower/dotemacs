@@ -16,6 +16,7 @@
  )
 
 ;; Constants
+(setq-default cursor-type '(bar . 3))
 (setq
  gc-cons-threshold 50000000
  inhibit-startup-echo-area-message t
