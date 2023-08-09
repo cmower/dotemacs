@@ -84,10 +84,10 @@
    )
   (fset 'helm-display-mode-line #'ignore)
   (add-hook 'helm-after-initialize-hook
-          (defun hide-mode-line-in-helm-buffer ()
-            "Hide mode line in `helm-buffer'."
-            (with-helm-buffer
-              (setq-local mode-line-format nil)))))
+	    (defun hide-mode-line-in-helm-buffer ()
+	      "Hide mode line in `helm-buffer'."
+	      (with-helm-buffer
+		(setq-local mode-line-format nil)))))
 
 ;; AucTeX
 (use-package auctex :defer t :ensure t)
