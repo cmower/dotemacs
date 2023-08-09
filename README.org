@@ -1,3 +1,0 @@
-#+title: dotemacs
-
-This repository contains my Emacs initialization.
