@@ -121,3 +121,6 @@
 (eval-after-load "flyspell"
   '(progn
      (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
+
+;; Org mode
+(setq org-directory (expand-file-name "Dropbox/Documents/org" (getenv "HOME")))
