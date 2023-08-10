@@ -8,6 +8,7 @@
  inhibit-startup-echo-area-message t
  calendar-week-start-day 1
  inhibit-splash-screen t
+ custom-file "~/.emacs.d/custom.el"
  backup-directory-alist `(("." . "~/.backups"))
  ispell-dictionary "en_US"
  pdf-open-application
@@ -120,7 +121,7 @@
   '(progn
      (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
 
-;; recursively find .org files in provided directory
+;; Recursively find .org files in provided directory
 ;; modified from an Emacs Lisp Intro example
 (defun find-org-file-recursively (&optional directory filext)
   "Return .org and .org_archive files recursively from DIRECTORY.
@@ -145,20 +146,46 @@ If FILEXT is provided, return files with extension FILEXT instead."
 
 ;; Org mode (only when Dropbox appears)
 (when (file-directory-p "~/Dropbox")
+
   (setq org-directory "~/Dropbox/Documents/org")
 
   (setq
    org-hide-emphasis-markers t
    org-startup-indented t
+   org-agenda-remove-tags t
    org-default-notes-file (concat org-directory "/quick.org")
    org-agenda-skip-deadline-if-done t
    org-agenda-skip-scheduled-if-done t
-   org-src-window-setup 'current-window)
+   org-src-window-setup 'current-window
+   org-agenda-todo-keyword-format ""
+   org-agenda-sorting-strategy
+   '((agenda habit-down time-up priority-down effort-up category-keep)
+     (todo priority-down effort-up category-keep)
+     (tags priority-down effort-up category-keep)
+     (search category-keep))
+   org-agenda-prefix-format '((agenda  . "    ")
+			      (timeline  . "  % s")
+			      (todo  . " %i %-12:c")
+			      (tags  . " %i %-12:c")
+			      (search . " %i %-12:c"))
+   org-agenda-files
+   (find-org-file-recursively org-directory))
 
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
 
-  ;; the files to be used for agenda display
-  (setq org-agenda-files
-	(find-org-file-recursively (concat org-directory "/agenda"))))
+  (use-package org-superstar
+    :ensure t
+    :after org
+    :hook (org-mode . org-superstar-mode)
+    :custom
+    (org-superstar-headline-bullets-list
+     '("●" "◉" "○" "■" "▣" "□" "▶" "▷")))
+
+  (use-package org-appear
+    :ensure t
+    :after org
+    :init
+    (setq org-appear-autolinks t)
+    :hook (org-mode . org-appear-mode)))
