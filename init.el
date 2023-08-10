@@ -175,14 +175,6 @@ If FILEXT is provided, return files with extension FILEXT instead."
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
 
-  (use-package org-superstar
-    :ensure t
-    :after org
-    :hook (org-mode . org-superstar-mode)
-    :custom
-    (org-superstar-headline-bullets-list
-     '("●" "◉" "○" "■" "▣" "□" "▶" "▷")))
-
   (use-package org-appear
     :ensure t
     :after org
