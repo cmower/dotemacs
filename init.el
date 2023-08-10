@@ -16,8 +16,7 @@
   ((string-equal system-type "darwin") "open")))
 
 ;; Startup
-(defun display-startup-echo-area-message ()
-  (message nil))
+(defun display-startup-echo-area-message () (message nil))
 
 ;; Font
 ;; * https://dtinth.github.io/comic-mono-font/
@@ -44,7 +43,6 @@
 (load-theme 'mymy t)
 (set-face-foreground 'linum "#5D6B99")
 (set-face-background 'linum "white")
-
 
 ;; Install use-package
 (unless (package-installed-p 'use-package)
@@ -81,8 +79,7 @@
   (setq
    helm-mode-line-string nil
    helm-find-files-doc-header nil
-   helm-display-mode-line nil
-   )
+   helm-display-mode-line nil)
   (fset 'helm-display-mode-line #'ignore)
   (add-hook 'helm-after-initialize-hook
 	    (defun hide-mode-line-in-helm-buffer ()
@@ -123,24 +120,9 @@
   '(progn
      (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
 
-;; Org mode
-(setq org-directory (expand-file-name "Dropbox/Documents/org" (getenv "HOME")))
-
-(setq
- org-hide-emphasis-markers t
- org-startup-indented t
- org-default-notes-file (concat org-directory "/quick.org")
- org-agenda-skip-deadline-if-done t
- org-agenda-skip-scheduled-if-done t
- org-src-window-setup 'current-window)
-
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-
 ;; recursively find .org files in provided directory
 ;; modified from an Emacs Lisp Intro example
-(defun sa-find-org-file-recursively (&optional directory filext)
+(defun find-org-file-recursively (&optional directory filext)
   "Return .org and .org_archive files recursively from DIRECTORY.
 If FILEXT is provided, return files with extension FILEXT instead."
   (interactive "DDirectory: ")
@@ -157,10 +139,26 @@ If FILEXT is provided, return files with extension FILEXT instead."
         (if (string-match fileregex file-or-dir) ; org files
             (add-to-list 'org-file-list file-or-dir)))
        ((file-directory-p file-or-dir)
-        (dolist (org-file (sa-find-org-file-recursively file-or-dir filext)
+        (dolist (org-file (find-org-file-recursively file-or-dir filext)
                           org-file-list) ; add files found to result
           (add-to-list 'org-file-list org-file)))))))
 
-;; the files to be used for agenda display
-(setq org-agenda-files
-      (sa-find-org-file-recursively (concat org-directory "/agenda")))
+;; Org mode (only when Dropbox appears)
+(when (file-directory-p "~/Dropbox")
+  (setq org-directory "~/Dropbox/Documents/org")
+
+  (setq
+   org-hide-emphasis-markers t
+   org-startup-indented t
+   org-default-notes-file (concat org-directory "/quick.org")
+   org-agenda-skip-deadline-if-done t
+   org-agenda-skip-scheduled-if-done t
+   org-src-window-setup 'current-window)
+
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+
+  ;; the files to be used for agenda display
+  (setq org-agenda-files
+	(find-org-file-recursively (concat org-directory "/agenda"))))
