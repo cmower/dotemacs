@@ -89,7 +89,12 @@
 		(setq-local mode-line-format nil)))))
 
 ;; AucTeX
-(use-package auctex :defer t :ensure t)
+(use-package auctex
+  :defer t
+  :ensure t)
+
+(with-eval-after-load 'font-latex
+  (setq-default font-latex-fontify-script nil))
 
 ;; Python programming
 (use-package python-black
