@@ -30,7 +30,6 @@
 (menu-bar-mode 0) ;; remove menu bar
 (show-paren-mode 1) ;; highlight parentheses
 (global-hl-line-mode 1) ;; highlight current line
-(global-linum-mode 1) ;; show line numbers
 (add-to-list 'default-frame-alist '(internal-border-width . 6))
 
 ;; Packages
