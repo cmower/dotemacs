@@ -624,7 +624,8 @@ more...")
    `(highlight-changes ((,class (:foreground unspecified)))) ;; blue "#2E08B5"
    `(highlight-changes-delete ((,class (:strike-through nil :foreground unspecified)))) ;; red "#B5082E"
    `(highlight-symbol-face ((,class (:background "#FFFFA0"))))
-   `(hl-line ((,class ,highlight-yellow))) ; Highlight current line.
+   `(hl-line ((,class ,highlight-red))) ; Highlight current line.
+   ;; `(hl-line ((,class ,highlight-yellow))) ; Highlight current line.   
    `(hl-tags-face ((,class ,highlight-current-tag))) ; ~ Pair highlighting (matching tags).
    `(holiday-face ((,class (:foreground "#777777" :background "#E4EBFE"))))
    `(html-helper-bold-face ((,class (:weight bold :foreground "black"))))
