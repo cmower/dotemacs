@@ -186,3 +186,10 @@ If FILEXT is provided, return files with extension FILEXT instead."
     :init
     (setq org-appear-autolinks t)
     :hook (org-mode . org-appear-mode)))
+;; Magit
+(use-package magit
+  :ensure t               ;; Automatically install Magit if it's not installed
+  :bind (("C-x g" . magit-status))  ;; Bind "C-x g" to open Magit status
+  :config
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ;; Open magit in full frame
+  )
