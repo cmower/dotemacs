@@ -27,3 +27,6 @@ private.txt
 
 # Undo tree
 .undo-tree/
+
+# Tramp file
+tramp
