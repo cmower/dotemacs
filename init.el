@@ -53,22 +53,25 @@
   (require 'use-package))
 
 ;; Magit
-(use-package magit :ensure t)
-
-(defun magit-open-repo ()
-  "Open remote repo URL."
-  (interactive)
-  (let ((url (magit-get "remote" "origin" "url")))
-    (progn
-      (browse-url (if (string-match "^http" url) url
-		    (replace-regexp-in-string "\\(.*\\)@\\(.*\\):\\(.*\\)\\(\\.git?\\)"
-					      "https://\\2/\\3"
-					      url)))
-      (message "Opening %s" url))))
-
-(add-hook 'magit-mode-hook
-          (lambda ()
-            (local-set-key (kbd "o") 'magit-open-repo)))
+;; >>NOTE<< currently something wrong with installing magit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (use-package magit :ensure t)								  ;;
+;; 												  ;;
+;; (defun magit-open-repo ()									  ;;
+;;   "Open remote repo URL."									  ;;
+;;   (interactive)										  ;;
+;;   (let ((url (magit-get "remote" "origin" "url")))						  ;;
+;;     (progn											  ;;
+;;       (browse-url (if (string-match "^http" url) url						  ;;
+;; 		    (replace-regexp-in-string "\\(.*\\)@\\(.*\\):\\(.*\\)\\(\\.git?\\)"		  ;;
+;; 					      "https://\\2/\\3"					  ;;
+;; 					      url)))						  ;;
+;;       (message "Opening %s" url))))								  ;;
+;; 												  ;;
+;; (add-hook 'magit-mode-hook									  ;;
+;;           (lambda ()										  ;;
+;;             (local-set-key (kbd "o") 'magit-open-repo)))					  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Helm
 (use-package helm
@@ -89,12 +92,15 @@
 		(setq-local mode-line-format nil)))))
 
 ;; AucTeX
-(use-package auctex
-  :defer t
-  :ensure t)
-
-(with-eval-after-load 'font-latex
-  (setq-default font-latex-fontify-script nil))
+;; >>NOTE<< something wrong with installing, plus not needed on this laptop
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (use-package auctex				   ;;
+;;   :defer t					   ;;
+;;   :ensure t)					   ;;
+;; 						   ;;
+;; (with-eval-after-load 'font-latex		   ;;
+;;   (setq-default font-latex-fontify-script nil)) ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Python programming
 (use-package python-black
@@ -149,43 +155,42 @@ If FILEXT is provided, return files with extension FILEXT instead."
                           org-file-list) ; add files found to result
           (add-to-list 'org-file-list org-file)))))))
 
-;; Org mode (only when Dropbox appears)
-(when (file-directory-p "~/Dropbox")
+;; Org mode setup
+(setq org-directory "~/org")
 
-  (setq org-directory "~/Dropbox/Documents/org")
+(setq
+ org-hide-emphasis-markers t
+ org-startup-indented t
+ org-agenda-remove-tags t
+ org-default-notes-file (concat org-directory "/quick.org")
+ org-agenda-skip-deadline-if-done t
+ org-agenda-skip-scheduled-if-done t
+ org-src-window-setup 'current-window
+ org-agenda-todo-keyword-format ""
+ org-agenda-sorting-strategy
+ '((agenda habit-down time-up priority-down effort-up category-keep)
+   (todo priority-down effort-up category-keep)
+   (tags priority-down effort-up category-keep)
+   (search category-keep))
+ org-agenda-prefix-format '((agenda  . "    ")
+			    (timeline  . "  % s")
+			    (todo  . " %i %-12:c")
+			    (tags  . " %i %-12:c")
+			    (search . " %i %-12:c"))
+ org-agenda-files
+ (find-org-file-recursively org-directory))
 
-  (setq
-   org-hide-emphasis-markers t
-   org-startup-indented t
-   org-agenda-remove-tags t
-   org-default-notes-file (concat org-directory "/quick.org")
-   org-agenda-skip-deadline-if-done t
-   org-agenda-skip-scheduled-if-done t
-   org-src-window-setup 'current-window
-   org-agenda-todo-keyword-format ""
-   org-agenda-sorting-strategy
-   '((agenda habit-down time-up priority-down effort-up category-keep)
-     (todo priority-down effort-up category-keep)
-     (tags priority-down effort-up category-keep)
-     (search category-keep))
-   org-agenda-prefix-format '((agenda  . "    ")
-			      (timeline  . "  % s")
-			      (todo  . " %i %-12:c")
-			      (tags  . " %i %-12:c")
-			      (search . " %i %-12:c"))
-   org-agenda-files
-   (find-org-file-recursively org-directory))
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
 
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c c") 'org-capture)
+(use-package org-appear
+  :ensure t
+  :after org
+  :init
+  (setq org-appear-autolinks t)
+  :hook (org-mode . org-appear-mode))
 
-  (use-package org-appear
-    :ensure t
-    :after org
-    :init
-    (setq org-appear-autolinks t)
-    :hook (org-mode . org-appear-mode)))
 ;; Magit
 (use-package magit
   :ensure t               ;; Automatically install Magit if it's not installed
