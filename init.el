@@ -42,8 +42,8 @@
 ;; Theme
 (setq custom-theme-directory "~/.emacs.d/themes")
 (load-theme 'mymy t)
-(set-face-foreground 'linum "#5D6B99")
-(set-face-background 'linum "white")
+;; (set-face-foreground 'linum "#5D6B99")
+;; (set-face-background 'linum "white")
 
 ;; Install use-package
 (unless (package-installed-p 'use-package)
