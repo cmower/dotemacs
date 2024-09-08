@@ -174,6 +174,23 @@ If FILEXT is provided, return files with extension FILEXT instead."
   (setq org-appear-autolinks t)
   :hook (org-mode . org-appear-mode))
 
+(setq org-latex-default-packages-alist
+      '(("AUTO" "inputenc" t
+	 ("pdflatex"))
+	("T1" "fontenc" t
+	 ("pdflatex"))
+	(#1="" "graphicx" t)
+	(#1# "longtable" nil)
+	(#1# "wrapfig" nil)
+	(#1# "rotating" nil)
+	("normalem" "ulem" t)
+	(#1# "amsmath" t)
+	(#1# "amssymb" t)
+	(#1# "capt-of" nil)
+	;; (#1# "hyperref" nil) ; i prefer to modify the settings for this package, e.g. remove boarders
+	)
+      )
+
 ;; Magit
 (use-package magit
   :ensure t               ;; Automatically install Magit if it's not installed
