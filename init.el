@@ -22,7 +22,8 @@
 ;; Font
 ;; * https://dtinth.github.io/comic-mono-font/
 ;; * https://tosche.net/fonts/comic-code
-(add-to-list 'default-frame-alist '(font . "Comic Mono-12" ))
+;; (add-to-list 'default-frame-alist '(font . "Comic Mono-12" ))
+(add-to-list 'default-frame-alist '(font . "Comic Code-12" ))
 
 ;; Misc appearance
 (scroll-bar-mode 0) ;; remove scroll bar
