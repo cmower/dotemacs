@@ -53,26 +53,6 @@
 (eval-when-compile
   (require 'use-package))
 
-;; Magit
-;; >>NOTE<< currently something wrong with installing magit
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package magit :ensure t)								  ;;
-;; 												  ;;
-;; (defun magit-open-repo ()									  ;;
-;;   "Open remote repo URL."									  ;;
-;;   (interactive)										  ;;
-;;   (let ((url (magit-get "remote" "origin" "url")))						  ;;
-;;     (progn											  ;;
-;;       (browse-url (if (string-match "^http" url) url						  ;;
-;; 		    (replace-regexp-in-string "\\(.*\\)@\\(.*\\):\\(.*\\)\\(\\.git?\\)"		  ;;
-;; 					      "https://\\2/\\3"					  ;;
-;; 					      url)))						  ;;
-;;       (message "Opening %s" url))))								  ;;
-;; 												  ;;
-;; (add-hook 'magit-mode-hook									  ;;
-;;           (lambda ()										  ;;
-;;             (local-set-key (kbd "o") 'magit-open-repo)))					  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Helm
 (use-package helm
@@ -199,3 +179,18 @@ If FILEXT is provided, return files with extension FILEXT instead."
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ;; Open magit in full frame
   )
+
+(defun magit-open-repo ()
+  "Open remote repo URL."
+  (interactive)
+  (let ((url (magit-get "remote" "origin" "url")))
+    (progn
+      (browse-url (if (string-match "^http" url) url
+		    (replace-regexp-in-string "\\(.*\\)@\\(.*\\):\\(.*\\)\\(\\.git?\\)"
+					      "https://\\2/\\3"
+					      url)))
+      (message "Opening %s" url))))
+
+(add-hook 'magit-mode-hook
+          (lambda ()
+            (local-set-key (kbd "o") 'magit-open-repo)))
