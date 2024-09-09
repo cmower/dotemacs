@@ -194,6 +194,37 @@ If FILEXT is provided, return files with extension FILEXT instead."
 	)
       )
 
+
+
+
+(defun my-org-insert-delegated-to ()
+  "Insert the DELEGATED_TO property into the org buffer before export."
+  (org-map-entries
+   (lambda ()
+     (let ((delegated-to (org-entry-get nil "DELEGATED_TO")))
+       (when delegated-to
+         ;; Insert the Delegated To information after the headline
+         (save-excursion
+           (end-of-line)
+           (insert (format "\n\\textbf{Delegated to:} %s\n" delegated-to))))))))
+
+(defun my-org-export-insert-delegated-to-property (backend)
+  "Hook to insert the DELEGATED_TO property before exporting to LaTeX."
+  (when (org-export-derived-backend-p backend 'latex)
+    (my-org-insert-delegated-to)))
+
+;; Add the hook to run the function before parsing
+(add-hook 'org-export-before-parsing-hook 'my-org-export-insert-delegated-to-property)
+
+;; Completely disable property drawer export
+(setq org-export-with-properties nil)
+
+;; Hide the property drawers completely in export
+(setq org-export-with-drawers nil)
+
+
+
+
 ;; Magit
 (use-package magit
   :ensure t               ;; Automatically install Magit if it's not installed
