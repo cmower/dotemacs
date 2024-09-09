@@ -167,6 +167,9 @@ If FILEXT is provided, return files with extension FILEXT instead."
 
 (add-hook 'org-mode-hook #'visual-line-mode) ; wrap text
 
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DELEGATED" "|" "DONE" "CANCELLED")))
+
 (use-package org-appear
   :ensure t
   :after org
