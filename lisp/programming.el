@@ -17,4 +17,15 @@
   :commands (magit-status)
   :bind (("C-x g" . magit-status))) ; the classic shortcut
 
+(use-package python-black
+  :demand t                          ;; load immediately so the hook exists
+  :after python                      ;; ensure python-mode is already loaded
+  :hook (python-mode . python-black-on-save-mode-enable-dwim)
+  ;; Optional tweaks:
+  ;; :custom
+  ;; (python-black-extra-args '("--line-length" "100"))
+  )
+
+(add-hook 'python-mode-hook #'python-black-on-save-mode)
+
 (provide 'programming)
