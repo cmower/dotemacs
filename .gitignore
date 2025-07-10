@@ -84,3 +84,6 @@ tramp
 
 # eln-cache
 eln-cache/
+
+# Cache directory
+.cache/
