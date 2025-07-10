@@ -1,8 +1,11 @@
 # dotemacs
 
-![](screenshot.png)
+My Emacs initialization.
 
-I have declared [dot Emacs bankruptcy](https://www.emacswiki.org/emacs/DotEmacsBankruptcy) several times over the years, and this is the latest incarnation of my initialization.
-The current version has been designed to be minimalistic and easy to maintain.
+# Initial setup
 
-Currently, I am running Emacs 29.4.50 built from source.
+1. Clone this repo into `~/.emacs.d` (or I usually clone it to `~/Documents` and create a symbolic link). Ensure you use `--recursive`.
+2. Install `nodejs` (version 22 or higher), see [here](https://nodejs.org/en/download)
+3. Start emacs, the first time may take some time. If there are any errors, just close emacs and restart and this should resolve the issue.
+4. Install copilot server, use `M-x copilot-install-server`.
+5. Login to github, `M-x copilot-login` and follow instructions.

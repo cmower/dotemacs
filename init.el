@@ -1,249 +1,58 @@
-;; -*- lexical-binding: t; -*-
+;;; init.el --- Personal Emacs init  -*- lexical-binding: t; -*-
+;;; Commentary:
+;; A modular, Git‑tracked Emacs configuration with Copilot integration.
+;; Each top‑level section is separated by a header made of semicolons
+;; so that outline‑minor‑mode (`C-c C-o` in Prog‑mode) can fold them.
 
-;; Constants
-(setq-default cursor-type '(bar . 3))
-(setq
- gc-cons-threshold 50000000
- linum-format " %3d "
- inhibit-startup-echo-area-message t
- calendar-week-start-day 1
- inhibit-splash-screen t
- custom-file "~/.emacs.d/custom.el"
- backup-directory-alist `(("." . "~/.backups"))
- ispell-dictionary "en_US"
- pdf-open-application
- (cond
-  ((string-equal system-type "gnu/linux") "evince")
-  ((string-equal system-type "darwin") "open")))
+;;; Code:
 
-;; Startup
-(defun display-startup-echo-area-message () (message nil))
+;;;; Paths --------------------------------------------------------------------
+;; Core Lisp directory (your own elisp files)
+(add-to-list 'load-path (locate-user-emacs-file "lisp"))
 
-;; Font
-;; * https://dtinth.github.io/comic-mono-font/
-;; * https://tosche.net/fonts/comic-code
-;; (add-to-list 'default-frame-alist '(font . "Comic Mono-12" ))
-(add-to-list 'default-frame-alist '(font . "Comic Code-12" ))
+;; Automatically add every first‑level directory inside site-lisp/ (e.g. Git
+;; submodules like copilot.el) to the load‑path.  Keeps cloning simple: just
+;; `git submodule add … site-lisp/PKG`.
+(let ((site-lisp (locate-user-emacs-file "site-lisp")))
+  (when (file-directory-p site-lisp)
+    (dolist (dir (directory-files site-lisp t "^[^.].*"))
+      (when (file-directory-p dir)
+        (add-to-list 'load-path dir)))))
 
-;; Misc appearance
-(scroll-bar-mode 0) ;; remove scroll bar
-(tool-bar-mode 0) ;; remove tool bar
-(menu-bar-mode 0) ;; remove menu bar
-(show-paren-mode 1) ;; highlight parentheses
-(global-hl-line-mode 1) ;; highlight current line
-(add-to-list 'default-frame-alist '(internal-border-width . 6))
+;;;; Custom file --------------------------------------------------------------
+;; Keep Custom‑UI changes out of version control.
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file 'noerror)
 
-;; Packages
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
+;;;; Core modules -------------------------------------------------------------
+(require 'core)         ;; low-level defaults & sanity tweaks
+(require 'packages)     ;; package archives + use-package bootstrap
+(require 'ui)           ;; appearance & UX
+(require 'org-config)   ;; org-mode and agenda rules
+(require 'programming)  ;; language-specific extras (Python, etc.)
+(require 'keybindings)  ;; global keymaps
+(require 'custom-funcs) ;; helper functions you wrote
 
-;; Theme
-(setq custom-theme-directory "~/.emacs.d/themes")
-(load-theme 'mymy t)
-;; (set-face-foreground 'linum "#5D6B99")
-;; (set-face-background 'linum "white")
+;;;; Copilot ------------------------------------------------------------------
+;; The repository is expected at site-lisp/copilot.el (Git submodule).
+(require 'copilot)
 
-;; Install use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
+;; Enable in all programming buffers.
+(add-hook 'prog-mode-hook #'copilot-mode)
 
+;; Completion keys
+(let ((map copilot-completion-map))
+  (define-key map (kbd "TAB")        #'copilot-accept-completion)
+  (define-key map (kbd "<tab>")      #'copilot-accept-completion)
+  (define-key map (kbd "C-TAB")      #'copilot-accept-completion-by-word)
+  (define-key map (kbd "C-<tab>")    #'copilot-accept-completion-by-word)
+  (define-key map (kbd "C-n")        #'copilot-next-completion)
+  (define-key map (kbd "C-p")        #'copilot-previous-completion))
 
-;; Helm
-(use-package helm
-  :ensure t
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x C-f" . helm-find-files))
-  :config
-  (setq
-   helm-mode-line-string nil
-   helm-find-files-doc-header nil
-   helm-display-mode-line nil)
-  (fset 'helm-display-mode-line #'ignore)
-  (add-hook 'helm-after-initialize-hook
-	    (defun hide-mode-line-in-helm-buffer ()
-	      "Hide mode line in `helm-buffer'."
-	      (with-helm-buffer
-		(setq-local mode-line-format nil)))))
+;; Behaviour tweaks
+(setq copilot-idle-delay 0.2)            ; Wait 200 ms before querying
+(add-to-list 'copilot-indentation-alist '(prog-mode 2))
+(add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
 
-;; AucTeX
-;; >>NOTE<< something wrong with installing, plus not needed on this laptop
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package auctex				   ;;
-;;   :defer t					   ;;
-;;   :ensure t)					   ;;
-;; 						   ;;
-;; (with-eval-after-load 'font-latex		   ;;
-;;   (setq-default font-latex-fontify-script nil)) ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Python programming
-(use-package python-black
-  :demand t
-  :ensure t
-  :after python
-  :hook (python-mode . python-black-on-save-mode-enable-dwim))
-
-;; Additional modes
-(use-package yaml-mode :ensure t)
-(use-package cmake-mode :ensure t)
-(use-package clang-format :ensure t)
-
-;; Mode line
-(defun my-custom-mode-line-format ()
-  (let ((file-name (buffer-file-name)))
-    (if file-name
-        (concat "   " (file-name-nondirectory file-name) " [" mode-name "]")
-      "")))
-
-(setq-default mode-line-format '(:eval (my-custom-mode-line-format)))
-
-;; Spelling
-(add-hook 'org-mode-hook '(lambda () (flyspell-mode)))
-(add-hook 'LaTeX-mode-hook '(lambda () (flyspell-mode)))
-
-;; Use right-mouse button to correct spelling
-(eval-after-load "flyspell"
-  '(progn
-     (define-key flyspell-mouse-map (kbd "<mouse-3>") #'flyspell-correct-word)))
-
-;; Recursively find .org files in provided directory
-;; modified from an Emacs Lisp Intro example
-(defun find-org-file-recursively (&optional directory filext)
-  "Return .org and .org_archive files recursively from DIRECTORY.
-If FILEXT is provided, return files with extension FILEXT instead."
-  (interactive "DDirectory: ")
-  (let* (org-file-list
-         (case-fold-search t)         ; filesystems are case sensitive
-         (file-name-regex "^[^.#].*") ; exclude dot, autosave, and backupfiles
-         (filext (or filext "org$\\\|org_archive"))
-         (fileregex (format "%s\\.\\(%s$\\)" file-name-regex filext))
-         (cur-dir-list (directory-files directory t file-name-regex)))
-    ;; loop over directory listing
-    (dolist (file-or-dir cur-dir-list org-file-list) ; returns org-file-list
-      (cond
-       ((file-regular-p file-or-dir)             ; regular files
-        (if (string-match fileregex file-or-dir) ; org files
-            (add-to-list 'org-file-list file-or-dir)))
-       ((file-directory-p file-or-dir)
-        (dolist (org-file (find-org-file-recursively file-or-dir filext)
-                          org-file-list) ; add files found to result
-          (add-to-list 'org-file-list org-file)))))))
-
-;; Org mode setup
-(setq org-directory "~/org")
-
-(setq
- org-hide-emphasis-markers t
- org-startup-indented t
- org-agenda-remove-tags t
- org-default-notes-file (concat org-directory "/quick.org")
- org-agenda-skip-deadline-if-done t
- org-agenda-skip-scheduled-if-done t
- org-src-window-setup 'current-window
- org-agenda-todo-keyword-format ""
- org-agenda-sorting-strategy
- '((agenda habit-down time-up priority-down effort-up category-keep)
-   (todo priority-down effort-up category-keep)
-   (tags priority-down effort-up category-keep)
-   (search category-keep))
- org-agenda-prefix-format '((agenda  . "    ")
-			    (timeline  . "  % s")
-			    (todo  . " %i %-12:c")
-			    (tags  . " %i %-12:c")
-			    (search . " %i %-12:c"))
- org-agenda-files
- (find-org-file-recursively org-directory))
-
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-
-(add-hook 'org-mode-hook #'visual-line-mode) ; wrap text
-
-(setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DELEGATED" "|" "DONE" "CANCELLED")))
-
-(use-package org-appear
-  :ensure t
-  :after org
-  :init
-  (setq org-appear-autolinks t)
-  :hook (org-mode . org-appear-mode))
-
-(setq org-latex-default-packages-alist
-      '(("AUTO" "inputenc" t
-	 ("pdflatex"))
-	("T1" "fontenc" t
-	 ("pdflatex"))
-	(#1="" "graphicx" t)
-	(#1# "longtable" nil)
-	(#1# "wrapfig" nil)
-	(#1# "rotating" nil)
-	("normalem" "ulem" t)
-	(#1# "amsmath" t)
-	(#1# "amssymb" t)
-	(#1# "capt-of" nil)
-	;; (#1# "hyperref" nil) ; i prefer to modify the settings for this package, e.g. remove boarders
-	)
-      )
-
-
-
-
-(defun my-org-insert-delegated-to ()
-  "Insert the DELEGATED_TO property into the org buffer before export."
-  (org-map-entries
-   (lambda ()
-     (let ((delegated-to (org-entry-get nil "DELEGATED_TO")))
-       (when delegated-to
-         ;; Insert the Delegated To information after the headline
-         (save-excursion
-           (end-of-line)
-           (insert (format "\n\\textbf{Delegated to:} %s\n" delegated-to))))))))
-
-(defun my-org-export-insert-delegated-to-property (backend)
-  "Hook to insert the DELEGATED_TO property before exporting to LaTeX."
-  (when (org-export-derived-backend-p backend 'latex)
-    (my-org-insert-delegated-to)))
-
-;; Add the hook to run the function before parsing
-(add-hook 'org-export-before-parsing-hook 'my-org-export-insert-delegated-to-property)
-
-;; Completely disable property drawer export
-(setq org-export-with-properties nil)
-
-;; Hide the property drawers completely in export
-(setq org-export-with-drawers nil)
-
-
-
-
-;; Magit
-(use-package magit
-  :ensure t               ;; Automatically install Magit if it's not installed
-  :bind (("C-x g" . magit-status))  ;; Bind "C-x g" to open Magit status
-  :config
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1) ;; Open magit in full frame
-  )
-
-(defun magit-open-repo ()
-  "Open remote repo URL."
-  (interactive)
-  (let ((url (magit-get "remote" "origin" "url")))
-    (progn
-      (browse-url (if (string-match "^http" url) url
-		    (replace-regexp-in-string "\\(.*\\)@\\(.*\\):\\(.*\\)\\(\\.git?\\)"
-					      "https://\\2/\\3"
-					      url)))
-      (message "Opening %s" url))))
-
-(add-hook 'magit-mode-hook
-          (lambda ()
-            (local-set-key (kbd "o") 'magit-open-repo)))
+(provide 'init)
+;;; init.el ends here
