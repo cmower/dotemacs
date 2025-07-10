@@ -7,6 +7,11 @@
                          ("gnu"          . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(dolist (pkg '(editorconfig f))
+  (unless (package-installed-p pkg)
+    (unless package-archive-contents (package-refresh-contents))
+    (package-install pkg)))
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
