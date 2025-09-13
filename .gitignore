@@ -87,3 +87,5 @@ eln-cache/
 
 # Cache directory
 .cache/
+
+.python-environments/

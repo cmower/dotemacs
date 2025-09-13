@@ -35,24 +35,24 @@
 
 ;;;; Copilot ------------------------------------------------------------------
 ;; The repository is expected at site-lisp/copilot.el (Git submodule).
-(require 'copilot)
+;; (require 'copilot)
 
 ;; Enable in all programming buffers.
-(add-hook 'prog-mode-hook #'copilot-mode)
+;; (add-hook 'prog-mode-hook #'copilot-mode)
 
 ;; Completion keys
-(let ((map copilot-completion-map))
-  (define-key map (kbd "TAB")        #'copilot-accept-completion)
-  (define-key map (kbd "<tab>")      #'copilot-accept-completion)
-  (define-key map (kbd "C-TAB")      #'copilot-accept-completion-by-word)
-  (define-key map (kbd "C-<tab>")    #'copilot-accept-completion-by-word)
-  (define-key map (kbd "C-n")        #'copilot-next-completion)
-  (define-key map (kbd "C-p")        #'copilot-previous-completion))
+;; (let ((map copilot-completion-map))
+;;   (define-key map (kbd "TAB")        #'copilot-accept-completion)
+;;   (define-key map (kbd "<tab>")      #'copilot-accept-completion)
+;;   (define-key map (kbd "C-TAB")      #'copilot-accept-completion-by-word)
+;;   (define-key map (kbd "C-<tab>")    #'copilot-accept-completion-by-word)
+;;   (define-key map (kbd "C-n")        #'copilot-next-completion)
+;;   (define-key map (kbd "C-p")        #'copilot-previous-completion))
 
 ;; Behaviour tweaks
-(setq copilot-idle-delay 0.2)            ; Wait 200 ms before querying
-(add-to-list 'copilot-indentation-alist '(prog-mode 2))
-(add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
+;; (setq copilot-idle-delay 0.2)            ; Wait 200 ms before querying
+;; (add-to-list 'copilot-indentation-alist '(prog-mode 2))
+;; (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
 
 (provide 'init)
 ;;; init.el ends here

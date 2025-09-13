@@ -11,6 +11,14 @@
       (cond ((eq system-type 'gnu/linux) "evince")
             ((eq system-type 'darwin)    "open")))
 
+;; Jedi for python
+(use-package jedi
+  :ensure t
+  :hook (python-mode . jedi:setup)
+  :config
+  (setq jedi:complete-on-dot t    ; complete on typing "."
+        jedi:use-shortcuts t))    ; enable M-. and M-,
+
 ;; Magit – the Git porcelain inside Emacs
 (use-package magit
   :defer t                      ; load on first use
